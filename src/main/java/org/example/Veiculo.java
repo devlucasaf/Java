@@ -1,6 +1,13 @@
 package org.example;
 
-class VeiculoAutoMovel {
+// Código desenvolvido por Lucas Freitas a fim de estudos
+// Herança em Java - Classe Veículo
+// Código Semi Finalizado, adicionarei cores hexadecimal para as saídas no terminal
+
+abstract class VeiculoAutoMovel {
+    private static int contadorVeiculos = 0;
+    private int numeroVeiculo;
+
     private String marca;
     private String modelo;
     private double preco;
@@ -16,6 +23,9 @@ class VeiculoAutoMovel {
         this.km = km;
         this.anoLancamento = anoLancamento;
         this.velocidade = velocidade;
+
+        contadorVeiculos++;
+        this.numeroVeiculo = contadorVeiculos;
     }
 
     public String getMarca() {
@@ -55,10 +65,11 @@ class VeiculoAutoMovel {
     }
 
     public void mostrarDados() {
+        System.out.println(">>>>>>>>>> VEÍCULO " + numeroVeiculo + " <<<<<<<<<<\n");
         System.out.println("Marca: " +  getMarca());
         System.out.println("Modelo: " + getModelo());
         System.out.println("Preço: R$" + getPreco());
-        System.out.println("Quilometragem: " + getKm() +" kmh/h");
+        System.out.println("Quilometragem: " + getKm() +" kmh");
         System.out.println("Ano de lançamento: " + getAnoLancamento());
         System.out.println("Velocidade: " + getVelocidade());
     }
@@ -75,9 +86,19 @@ class Carro extends VeiculoAutoMovel {
     private boolean pilotoAutomatico;
 
 
-    public Carro(String _nome, String _modelo, double _preco, double _km, int _anoLancamento, int _velocidade) {
-        super(_nome, _modelo, _preco, _km, _anoLancamento, _velocidade);
-       this.passageirosAtuais = 0;
+    public Carro(String _marca, String _modelo, double _preco, double _km, int _anoLancamento, int _velocidade,
+                 int quantidadePortas, int quantidadeMarchas, int quantidadePassageiros, int passageirosAtuais, String tipoCambio, String tipoCombustivel,
+                 double capacidadePortaMalas, boolean pilotoAutomatico) {
+        super(_marca, _modelo, _preco, _km, _anoLancamento, _velocidade);
+        this.quantidadePortas = quantidadePortas;
+        this.quantidadeMarchas = quantidadeMarchas;
+        this.quantidadePassageiros = quantidadePassageiros;
+        this.passageirosAtuais = passageirosAtuais;
+        this.tipoCambio = tipoCambio;
+        this.tipoCombustivel = tipoCombustivel;
+        this.capacidadePortaMalas = capacidadePortaMalas;
+        this.pilotoAutomatico =  pilotoAutomatico;
+        this.passageirosAtuais = 0;
     }
 
     public void setQuantidadePortas(int quantidadePortas) {
@@ -175,8 +196,19 @@ class Onibus extends VeiculoAutoMovel {
     private boolean cobrador;
     private boolean tv;
 
-    public Onibus(String _nome, String _modelo, double _preco, double _km, int _anoLancamento, int _velocidade) {
-        super(_nome, _modelo, _preco, _km, _anoLancamento, _velocidade);
+    public Onibus(String _marca, String _modelo, double _preco, double _km, int _anoLancamento, int _velocidade,
+                  int quantidadePortas, int quantidadeAssentos, int capacidadePassageiros, int quantidadePassageirosAtuais,
+                  int quantidadeMarchas, boolean portaAberta, boolean arCondicionado, boolean cobrador, boolean tv) {
+        super(_marca, _modelo, _preco, _km, _anoLancamento, _velocidade);
+        this.quantidadePortas = quantidadePortas;
+        this.quantidadeAssentos = quantidadeAssentos;
+        this.capacidadePassageiros = capacidadePassageiros;
+        this.quantidadePassageirosAtuais = quantidadePassageirosAtuais;
+        this.quantidadeMarchas = quantidadeMarchas;
+        this.portaAberta =  portaAberta;
+        this.arCondicionado =  arCondicionado;
+        this.cobrador =  cobrador;
+        this.tv =  tv;
         this.quantidadePassageirosAtuais = 0;
         this.portaAberta = false;
     }
@@ -253,6 +285,19 @@ class Onibus extends VeiculoAutoMovel {
         super.acelerar(incremento);
     }
 
+    @Override
+    public void mostrarDados() {
+        super.mostrarDados();
+
+        System.out.println("Quantidade de portas: " + quantidadePortas);
+        System.out.println("Quantidade de assentos: " + quantidadeAssentos);
+        System.out.println("Capacidade de passageiros: " + capacidadePassageiros);
+        System.out.println("Passageiros atuais: " + quantidadePassageirosAtuais);
+        System.out.println("Ar-condicionado: " + (arCondicionado ? "Sim" : "Não"));
+        System.out.println("Cobrador: " + (cobrador ? "Sim" : "Não"));
+        System.out.println("TV: " + (tv ? "Sim" : "Não"));
+    }
+
 }
 
 class Moto extends VeiculoAutoMovel {
@@ -261,8 +306,13 @@ class Moto extends VeiculoAutoMovel {
     private int capacidadeTanque;
     private String tipoMoto;
 
-    public Moto(String _nome, String _modelo, double _preco, double _km, int _anoLancamento, int _velocidade) {
-        super(_nome, _modelo, _preco, _km, _anoLancamento, _velocidade);
+    public Moto(String _marca, String _modelo, double _preco, double _km, int _anoLancamento, int _velocidade,
+                int cilindradas, int quantidadeMarchas, int capacidadeTanque, String tipoMoto) {
+        super(_marca, _modelo, _preco, _km, _anoLancamento, _velocidade);
+        this.cilindradas = cilindradas;
+        this.quantidadeMarchas = quantidadeMarchas;
+        this.capacidadeTanque = capacidadeTanque;
+        this.tipoMoto = tipoMoto;
     }
 
     public void setCilindradas(int cilindradas) {
@@ -295,15 +345,23 @@ class Moto extends VeiculoAutoMovel {
         }
         super.acelerar(incremento);
     }
+
+    @Override
+    public void mostrarDados() {
+        super.mostrarDados();
+        System.out.println("Cilindradas: " + cilindradas + " cc");
+        System.out.println("Marchas: " + quantidadeMarchas);
+        System.out.println("Capacidade do tanque: " + capacidadeTanque + " L");
+        System.out.println("Tipo de moto: " + tipoMoto);
+    }
+
 }
 
 class Aviao extends VeiculoAutoMovel {
     private int capacidadePassageiros;
     private int quantidadePassageirosAtuais;
     private int quantidadeTripulantes;
-    private int quantidadeAssentos;
     private double altitude;
-    private boolean arCondicionado;
     private boolean comida;
     private boolean tremPousoAbaixado;
     private boolean pilotoAutomatico;
@@ -311,23 +369,437 @@ class Aviao extends VeiculoAutoMovel {
     private boolean classeExecutiva;
     private String tipoAviao;
 
-    public Aviao(String _nome, String _modelo, double _preco, double _km, int _anoLancamento, int _velocidade) {
-        super(_nome, _modelo, _preco, _km, _anoLancamento, _velocidade);
-        this.altitude = 0;
+    public Aviao(String _marca, String _modelo, double _preco, double _km, int _anoLancamento, int _velocidade,
+                 int capacidadePassageiros, int quantidadePassageirosAtuais, int quantidadeTripulantes,
+                 double altitude, boolean comida, boolean tremPousoAbaixado, boolean pilotoAutomatico,
+                 boolean wifi, boolean classeExecutiva, String tipoAviao) {
+        super(_marca, _modelo, _preco, _km, _anoLancamento, _velocidade);
+        this.capacidadePassageiros = capacidadePassageiros;
         this.quantidadePassageirosAtuais = 0;
+        this.quantidadeTripulantes = quantidadeTripulantes;
+        this.altitude = 0;
+        this.comida = false;
         this.tremPousoAbaixado = true;
+        this.pilotoAutomatico = pilotoAutomatico;
+        this.wifi = wifi;
+        this.classeExecutiva = classeExecutiva;
+        this.tipoAviao = tipoAviao;
     }
-    
-    
+
+    public void setCapacidadePassageiros(int capacidadePassageiros) {
+        if (capacidadePassageiros > 0) {
+            this.capacidadePassageiros = capacidadePassageiros;
+        }
+    }
+
+    public void embarcarPassageiros() {
+        if (quantidadePassageirosAtuais < capacidadePassageiros) {
+            quantidadePassageirosAtuais++;
+        }
+        else {
+            System.out.println("Avião lotado!");
+        }
+    }
+
+    public void setQuantidadeTripulantes(int quantidadeTripulantes) {
+        if (quantidadeTripulantes > 0) {
+            this.quantidadeTripulantes = quantidadeTripulantes;
+        }
+    }
+
+    public void setTipoAviao(String tipoAviao) {
+        this.tipoAviao = tipoAviao;
+    }
+
+    public void decolar() {
+        if (getVelocidade() >= 250) {
+            altitude = 1000;
+            tremPousoAbaixado = false;
+            System.out.println("Avião decolou!");
+        }
+        else {
+            System.out.println("Velocidade insuficiente para iniciar a decolagem!");
+        }
+    }
+
+    public void subirAviao(double metros) {
+        if (altitude > 0) {
+            altitude += metros;
+        }
+    }
+
+    public void setServirComida() {
+        if (altitude >= 10000) {
+            this.comida = true;
+            System.out.println("Serviço de bordo iniciado!");
+        }
+        else {
+            System.out.println("Altitude insuficiente para iniciar o serviço de bordo!");
+        }
+    }
+
+    public void desligarTremPouso() {
+        if (altitude >= 100) {
+            this.tremPousoAbaixado = false;
+            System.out.println("Avião decolando! Trem de pouso desligado!");
+        }
+        else {
+            System.out.println("Avião em solo! Trem de pouso ligado!");
+        }
+    }
+
+    public void setPilotoAutomatico(boolean pilotoAutomatico) {
+        if (altitude > 10000) {
+            this.pilotoAutomatico = true;
+            System.out.println("Piloto automático ligado!");
+        }
+        else {
+            System.out.println("Altitude insuficiente para ligar o piloto automático!");
+        }
+    }
+
+    public void desligarPilotoAutomatico() {
+        pilotoAutomatico = false;
+        System.out.println("Piloto automático desligado!");
+    }
+
+    public void conectarInternet() {
+        if (altitude >= 5000) {
+            wifi = true;
+            System.out.println("Wi-fi ligado!");
+        }
+        else {
+            System.out.println("Wi-fi não conectado! Só será ativado durante o voo!");
+        }
+    }
+
+    public void desligarWifi() {
+        wifi = false;
+        System.out.println("Wi-fi desligado!");
+    }
+
+    public void configurarClasseExecutiva(boolean possuiClasseExecutiva) {
+        this.classeExecutiva = possuiClasseExecutiva;
+
+        if (classeExecutiva) {
+            System.out.println("Avião com classe executiva.");
+        }
+        else {
+            System.out.println("Avião sem classe executiva.");
+        }
+    }
+
+    @Override
+    public void mostrarDados() {
+        super.mostrarDados();
+
+        System.out.println("Tipo de avião: " + tipoAviao);
+        System.out.println("Capacidade de passageiros: " + capacidadePassageiros);
+        System.out.println("Passageiros atuais: " + quantidadePassageirosAtuais);
+        System.out.println("Quantidade de tripulantes: " + quantidadeTripulantes);
+        System.out.println("Altitude atual: " + altitude + " m");
+        System.out.println("Trem de pouso abaixado: " + (tremPousoAbaixado ? "Sim" : "Não"));
+        System.out.println("Piloto automático: " + (pilotoAutomatico ? "Ligado" : "Desligado"));
+        System.out.println("Serviço de bordo: " + (comida ? "Ativo" : "Inativo"));
+        System.out.println("Wi-Fi: " + (wifi ? "Ligado" : "Desligado"));
+        System.out.println("Classe executiva: " + (classeExecutiva ? "Sim" : "Não"));
+    }
+
 }
 
 class Trem extends VeiculoAutoMovel {
-    public Trem(String _nome, String _modelo, double _preco, double _km, int _anoLancamento, int _velocidade) {
-        super(_nome, _modelo, _preco, _km, _anoLancamento, _velocidade);
+    private int quantidadeVagoes;
+    private int capacidadePorVagao;
+    private int quantidadePassageiros;
+    private int quantidadePassageirosAtuais;
+    private boolean portasAbertas;
+    private boolean naEstacao;
+
+    public Trem(String _marca, String _modelo, double _preco, double _km, int _anoLancamento, int _velocidade) {
+        super(_marca, _modelo, _preco, _km, _anoLancamento, _velocidade);
     }
+
+    public void setQuantidadeVagoes(int quantidadeVagoes) {
+        if (quantidadeVagoes > 0) {
+            this.quantidadeVagoes = quantidadeVagoes;
+        }
+    }
+
+    public void setQuantidadePassageiros(int quantidadePassageiros) {
+        if (quantidadePassageiros > 0) {
+            this.quantidadePassageiros = quantidadePassageiros;
+        }
+    }
+
+    public void embarcarPassageiros() {
+        if (quantidadePassageirosAtuais < quantidadePassageiros) {
+            quantidadePassageirosAtuais++;
+            System.out.println("Passageiros embarcando!");
+        }
+        else {
+            System.out.println("Trem lotado!");
+        }
+    }
+
+    public void desembarcarPassageiros() {
+        if (getVelocidade() > 0) {
+            System.out.println("O trem está em movimento!");
+            return;
+        }
+
+        if (quantidadePassageirosAtuais > 0) {
+            quantidadePassageirosAtuais--;
+            System.out.println("Passageiro desceu! Quantidade de passageiros: " + quantidadePassageirosAtuais);
+        }
+        else {
+            System.out.println("Não há passageiros para descer.");
+        }
+    }
+
+    public void abrirPortas() {
+        if (getVelocidade() == 0 && naEstacao) {
+            portasAbertas = true;
+            System.out.println("Portas abertas.");
+        }
+        else {
+            System.out.println("O trem precisa estar parado na estação.");
+        }
+    }
+
+    public void chegarEstacao() {
+        if (getVelocidade() == 0) {
+            naEstacao = true;
+            System.out.println("Trem chegou à estação!");
+        }
+    }
+
+    @Override
+    public void mostrarDados() {
+        super.mostrarDados();
+        System.out.println("Quantidade de vagões: " + quantidadeVagoes);
+        System.out.println("Passageiros atuais: " + quantidadePassageirosAtuais);
+        System.out.println("Na estação: " + naEstacao);
+        System.out.println("Portas abertas: " + portasAbertas);
+    }
+
 }
 
 public class Veiculo {
+    public static void main(String[] args) {
+        Carro carro1 = new Carro("Honda",
+                "Civic Hybrid 2025",
+                265.900,
+                0,
+                2025,
+                180,
+                4,
+                5,
+                3,
+                3,
+                "Automático/Elétrico",
+                "Aditivada",
+                495,
+                false
+        );
 
+        Carro carro2 = new Carro("Porsche",
+                "Panamera Turbo S E-Hybrid",
+                991.755,
+                259456,
+                2022,
+                315,
+                4,
+                8,
+                5,
+                2,
+                "Automático",
+                "Comum",
+                425,
+                true
+        );
+
+        Carro carro3 = new Carro(
+                "Renault",
+                "Kwid Desgrama Outsider",
+                47.520,
+                20.547,
+                2019,
+                2,
+                4,
+                5,
+                5,
+                8,
+                "Manual",
+                "Comum",
+                290,
+                false
+        );
+
+        Onibus onibus1 = new Onibus
+                ("Mercedes-Benz",
+                        "OF 1519",
+                        165.000,
+                        0,
+                        2014,
+                        80,
+                        3,
+                        32,
+                        85,
+                        70,
+                        5,
+                        true,
+                        false,
+                        true,
+                        false
+                );
+
+        Onibus onibus2 = new Onibus(
+                "BYD",
+                "BYD D9W",
+                2800000,
+                0,
+                2025,
+                70,
+                2,
+                40,
+                100,
+                140,
+                6,
+                false,
+                true,
+                false,
+                true
+        );
+
+        Onibus onibus3 = new Onibus(
+                "Volkswagen",
+                "Volksbus 17.230 OD",
+                300.000,
+                80000,
+                2016,
+                95,
+                3,
+                45,
+                120,
+                10,
+                5,
+                true,
+                false,
+                true,
+                false
+        );
+
+        Moto moto1 = new Moto(
+                "Kawasaki",
+                "Ninja ZX-10R",
+                115000.00,
+                0.0,
+                2024,
+                299,
+                5,
+                8,
+                450,
+                "Esportiva"
+        );
+
+        Moto moto2 = new Moto(
+                "Yamaha",
+                "MT-07",
+                47500.00,
+                0.0,
+                2024,
+                230,
+                2,
+                6,
+                250,
+                "Urbano"
+        );
+
+        Moto moto3 = new Moto(
+                "BMW",
+                "R 1250 GS",
+                125000.00,
+                5500.0,
+                2024,
+                200,
+                4,
+                6,
+                320,
+                "Trabalho"
+        );
+
+        Aviao aviao1 = new Aviao(
+                "Embraer",
+                "Phenom 300",
+                50000000.0,
+                500.0,
+                2023,
+                839,
+                10,
+                8,
+                2,
+                9500.0,
+                false,
+                false,
+                true,
+                true,
+                false,
+                "Jato"
+        );
+
+        Aviao aviao2 = new Aviao(
+                "Cessna",
+                "172 Skyhawk",
+                2500000.0,
+                1500.0,
+                2022,
+                226,
+                3,
+                2,
+                1,
+                15000.0,
+                false,
+                true,
+                false,
+                false,
+                false,
+                "Monomotor"
+        );
+
+        Aviao aviao3 = new Aviao(
+                "LATAM Airlines Group",
+                "A320",
+                600000000.0,
+                2500.0,
+                2021,
+                876,
+                220,
+                210,
+                2,
+                0,
+                true,
+                true,
+                false,
+                true,
+                false,
+                "Passageiro bimotor de fuselagem estreita"
+        );
+
+        Trem trem1 = new Trem("Alstom", "TGV Euroduplex", 180000000.0, 12000.0, 2022, 320);
+        Trem trem2 = new Trem("Siemens", "Velaro", 150000000.0, 8500.0, 2021, 330);
+        Trem trem3 = new Trem("Bombardier", "Zefiro 380", 140000000.0, 5000.0, 2023, 380);
+
+        VeiculoAutoMovel[] veiculos = {
+                carro1, carro2, carro3,
+                onibus1, onibus2, onibus3,
+                moto1, moto2, moto3,
+                aviao1, aviao2, aviao3,
+                trem1, trem2, trem3
+        };
+
+        for (VeiculoAutoMovel v : veiculos) {
+            v.mostrarDados();
+            System.out.println("\n+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=\n");
+        }
+    }
 }
-
