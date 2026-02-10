@@ -1,4 +1,4 @@
-package org.example;
+package org.application;
 
 // Código desenvolvido por Lucas Freitas a fim de estudos
 // Herança em Java - Classe Veículo

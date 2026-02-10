@@ -1,6 +1,7 @@
+package org.games;
+
 import java.text.Normalizer;
 import java.util.*;
-import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 
 public class TermoGame {

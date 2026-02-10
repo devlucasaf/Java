@@ -1,3 +1,5 @@
+package org.games;
+
 import java.util.*;
 
 public class JogoDaForca {
