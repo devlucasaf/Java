@@ -1,9 +1,11 @@
+package ScoreBoard.src;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
 // Classe que representa a segunda tela do aplicativo
-public class pageTwo {
+public class PageTwo {
 
     // Construtor - será chamado quando a tela for criada
     public PageTwo() {

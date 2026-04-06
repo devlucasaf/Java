@@ -1,3 +1,5 @@
+package ScoreBoard.src;
+
 public class DataBase {
     // Variáveis estáticas para armazenar os nomes dos jogadores
     static String playerOne;  // Nome do primeiro jogador
