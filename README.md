@@ -1,6 +1,6 @@
 <img
-width=100%
-src="https://capsule-render.vercel.app/api?type=waving&color=A020F0&height=120&section=header"
+    width=100%
+    src="https://capsule-render.vercel.app/api?type=waving&color=A020F0&height=120&section=header"
 />
 
 <div align="center">
@@ -34,7 +34,7 @@ O repositório pode acabar bagunçado — os arquivos serão salvos a fim de mos
         title="Java"
         height="60" 
         style="padding-right: 10px;"
-        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg"
+        src="https://skillicons.dev/icons?i=java" 
     />
     <img
         align="center"
@@ -44,9 +44,25 @@ O repositório pode acabar bagunçado — os arquivos serão salvos a fim de mos
         style="padding-right: 10px"
         src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/intellij/intellij-original.svg"
     />
+    <img
+        align="center" 
+        alt="Git" 
+        title="Git"
+        height="60" 
+        style="padding-right: 10px;"
+        src="https://skillicons.dev/icons?i=git" 
+    />
+    <img
+        align="center" 
+        alt="GitHub" 
+        title="GitHub"
+        height="60" 
+        style="padding-right: 10px;"
+        src="https://skillicons.dev/icons?i=github" 
+    />
 </div>
 
 <img
-width=100%
-src="https://capsule-render.vercel.app/api?type=waving&color=A020F0&height=120&section=footer"
+    width=100%
+    src="https://capsule-render.vercel.app/api?type=waving&color=A020F0&height=120&section=footer"
 />
