@@ -1,4 +1,4 @@
-package org.games;
+package org.games.termo;
 
 import java.text.Normalizer;
 import java.util.*;
@@ -131,14 +131,14 @@ public class TermoGame {
             // Rola as letras aleatórias
             for (int j = 0; j < 10; j++) {
                 palavraAtual[i] = charsPossiveis.charAt(rand.nextInt(charsPossiveis.length()));
-                System.out.print("\r✨ " + new String(palavraAtual) + " ✨");
+                System.out.print("\r" + new String(palavraAtual) + "");
                 System.out.flush();
                 sleep(20); // Mais rápido (0.02s)
             }
             
             // Fixa a letra correta
             palavraAtual[i] = letraAlvo;
-            System.out.print("\r✨ " + new String(palavraAtual) + " ✨");
+            System.out.print("\r" + new String(palavraAtual) + "");
         }
         System.out.println("\n");
     }
