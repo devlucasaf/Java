@@ -17,11 +17,11 @@ public class TermoGame {
         VERDE, AMARELO, CINZA
     }
 
-    private List<String> dicionarioPalavras;
-    private String palavraSecreta;
-    private String secretaLogica;
-    private int tentativasMaximas;
-    private Scanner scanner;
+    private List<String>    dicionarioPalavras;
+    private String          palavraSecreta;
+    private String          secretaLogica;
+    private int             tentativasMaximas;
+    private Scanner         scanner;
 
     public TermoGame() {
         // 1. Dicionário
@@ -76,7 +76,9 @@ public class TermoGame {
 
         // Passo 2: Amarelos
         for (int i = 0; i < 5; i++) {
-            if (resultadoCores[i] == EstadoCor.VERDE) continue;
+            if (resultadoCores[i] == EstadoCor.VERDE) {
+                continue;
+            }
 
             char letra = chuteChars[i];
             if (contagemLetras.containsKey(letra) && contagemLetras.get(letra) > 0) {
@@ -98,9 +100,15 @@ public class TermoGame {
         for (int i = 0; i < letras.length; i++) {
             String corCode;
             switch (cores[i]) {
-                case VERDE:   corCode = VERDE_BG; break;
-                case AMARELO: corCode = AMARELO_BG; break;
-                default:      corCode = CINZA_BG; break;
+                case VERDE:
+                    corCode = VERDE_BG;
+                    break;
+                case AMARELO:
+                    corCode = AMARELO_BG;
+                    break;
+                default:
+                    corCode = CINZA_BG;
+                    break;
             }
 
             System.out.print(corCode + " " + letras[i] + " " + RESET + " ");
@@ -162,7 +170,7 @@ public class TermoGame {
             String chute = scanner.nextLine().toUpperCase().trim();
 
             if (chute.length() != 5) {
-                System.out.println("⚠️  A palavra precisa ter 5 letras!");
+                System.out.println("A palavra precisa ter 5 letras!");
                 i--; // Decrementa o contador para não gastar a tentativa (redo)
                 continue;
             }
@@ -180,7 +188,7 @@ public class TermoGame {
             }
         }
 
-        System.out.println("\n💀 Fim de jogo!");
+        System.out.println("\nFim de jogo!");
         System.out.println("A palavra era: " + palavraSecreta);
     }
 
