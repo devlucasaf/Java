@@ -3,8 +3,8 @@ package org.application.estacionamento;
 import java.util.Scanner;
 
 public class Main {
-    private static Estacionamento estacionamento = new Estacionamento();
-    private static Scanner scanner = new Scanner(System.in);
+    private static Estacionamento   estacionamento = new Estacionamento();
+    private static Scanner          scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
         int opcao;
@@ -52,9 +52,7 @@ public class Main {
 
         if (v != null && estacionamento.estacionar(v)) {
             System.out.println("Entrada registrada com sucesso!");
-        }
-
-        else if (v == null) {
+        } else if (v == null) {
             System.out.println("Tipo de veículo inválido.");
         }
     }
@@ -66,9 +64,7 @@ public class Main {
 
         if (valor != -1) {
             System.out.println("Veículo liberado! Total a pagar: " + Utils.formatarMoeda(valor));
-        }
-
-        else {
+        } else {
             System.out.println("Veículo não encontrado.");
         }
     }
@@ -77,9 +73,7 @@ public class Main {
         var lista = estacionamento.getVeiculosAtuais();
         if (lista.isEmpty()) {
             System.out.println("Estacionamento vazio.");
-        }
-
-        else {
+        } else {
             lista.forEach(System.out::println);
         }
     }

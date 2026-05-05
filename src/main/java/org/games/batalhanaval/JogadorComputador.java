@@ -5,8 +5,8 @@ import java.util.Queue;
 import java.util.Random;
 
 public class JogadorComputador extends Jogador {
-    private final Random aleatorio = new Random();
-    private final boolean[][] memoria = new boolean[Tabuleiro.TAMANHO][Tabuleiro.TAMANHO];
+    private final Random            aleatorio = new Random();
+    private final boolean[][]       memoria = new boolean[Tabuleiro.TAMANHO][Tabuleiro.TAMANHO];
     private final Queue<Coordenada> filaDeCaca = new LinkedList<>();
 
     public JogadorComputador(String nome) {

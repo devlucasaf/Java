@@ -1,10 +1,10 @@
 package org.application.veiculo;
 
 class Moto extends VeiculoAutoMovel {
-    private int cilindradas;
-    private int quantidadeMarchas;
-    private int capacidadeTanque;
-    private String tipoMoto;
+    private int     cilindradas;
+    private int     quantidadeMarchas;
+    private int     capacidadeTanque;
+    private String  tipoMoto;
 
     public Moto(String _marca, String _modelo, double _preco, double _km, int _anoLancamento, int _velocidade,
                 int cilindradas, int quantidadeMarchas, int capacidadeTanque, String tipoMoto) {

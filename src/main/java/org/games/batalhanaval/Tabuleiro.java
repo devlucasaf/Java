@@ -1,9 +1,9 @@
 package org.games.batalhanaval;
 
 public class Tabuleiro {
-    public static final int TAMANHO = 10;
-    private final char[][]  grade;
-    private final Navio[][] posicoesNavios;
+    public static final int     TAMANHO = 10;
+    private final char[][]      grade;
+    private final Navio[][]     posicoesNavios;
 
     // Cores ANSI para o terminal
     private static final String RESETAR = "\u001B[0m";
@@ -41,9 +41,7 @@ public class Tabuleiro {
                 if (posicoesNavios[l][c + i] != null) {
                     return false;
                 }
-            }
-
-            else {
+            } else {
                 if (posicoesNavios[l + i][c] != null) {
                     return false;
                 }
@@ -54,9 +52,7 @@ public class Tabuleiro {
         for (int i = 0; i < navio.getTamanho(); i++) {
             if (horizontal) {
                 posicoesNavios[l][c + i] = navio;
-            }
-
-            else {
+            } else {
                 posicoesNavios[l + i][c] = navio;
             }
         }
@@ -80,9 +76,7 @@ public class Tabuleiro {
                 return "DESTRUÍDO: " + navioAtingido.getNome() + "!";
             }
             return "ACERTO!";
-        }
-
-        else {
+        } else {
             grade[l][c] = 'O';
             return "ÁGUA!";
         }
@@ -99,17 +93,11 @@ public class Tabuleiro {
 
                 if (simbolo == '~' && mostrarNavios && posicoesNavios[i][j] != null) {
                     System.out.print(VERDE + "N " + RESETAR);
-                }
-
-                else if (simbolo == '~') {
+                } else if (simbolo == '~') {
                     System.out.print(AZUL + "~ " + RESETAR);
-                }
-
-                else if (simbolo == 'X') {
+                } else if (simbolo == 'X') {
                     System.out.print(VERMELHO + "X " + RESETAR);
-                }
-
-                else if (simbolo == 'O') {
+                } else if (simbolo == 'O') {
                     System.out.print(AMARELO + "O " + RESETAR);
                 }
             }

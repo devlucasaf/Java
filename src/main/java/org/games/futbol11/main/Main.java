@@ -1,6 +1,6 @@
-package futbol11.main;
+package org.games.futbol11.main;
 
-import futbol11.service.JogoService;
+import org.games.futbol11.service.JogoService;
 
 public class Main {
 

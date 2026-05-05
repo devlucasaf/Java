@@ -32,9 +32,7 @@ public class Coordenada {
 
         try {
             coluna = Integer.parseInt(entrada.substring(1)) - 1;
-        }
-
-        catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException("Coluna inválida. Use de 1 até 10.");
         }
 

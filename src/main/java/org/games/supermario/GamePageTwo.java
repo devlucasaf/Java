@@ -1,15 +1,15 @@
-package Game;// Importa as bibliotecas necessárias para a interface gráfica e manipulação de eventos
+package org.games.supermario;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 public class GamePageTwo {
-    // Variáveis para controlar a posição (x, y) do personagem (Mario)
-    private int x = 0, y = 0;
-    private JButton buttonImageMario; // Botão que representa o Mario (essa variável de instância não está sendo usada de fato, pois outra variável local com o mesmo nome é criada dentro do construtor)
+    private int     x = 0;
+    private int     y = 0;
+    private JButton buttonImageMario;
 
-    // Construtor da classe GamePageTwo
     public GamePageTwo() {
 
         // Criação da janela principal (JFrame)
@@ -66,22 +66,32 @@ public class GamePageTwo {
                 buttonImageMario.setBounds(x, y, 60, 60);
 
                 // Verifica colisão entre o Mario e o cogumelo
-                Rectangle marioBounds = buttonImageMario.getBounds();
-                Rectangle mushroomBounds = buttonImageMushroom.getBounds();
+                Rectangle marioBounds       = buttonImageMario.getBounds();
+                Rectangle mushroomBounds    = buttonImageMushroom.getBounds();
 
                 if (marioBounds.intersects(mushroomBounds)) {
                     frame.dispose(); // Fecha a janela se o Mario encostar no cogumelo
                 }
 
                 // Impede que o Mario saia da área visível da tela
-                if (x < 0) x = 0;
-                if (y < 0) y = 0;
-                if (x > 750 - 100) x = 750 - 100; // margem extra de 40px por algum motivo (60 + 40?)
-                if (y > 480 - 100) y = 480 - 100;
+                if (x < 0) {
+                    x = 0;
+                }
+
+                if (y < 0) {
+                    y = 0;
+                }
+
+                if (x > 750 - 100) {
+                    x = 750 - 100;
+                }
+
+                if (y > 480 - 100) {
+                    y = 480 - 100;
+                }
             }
         });
 
-        // Garante que o frame possa capturar os eventos do teclado
         frame.setFocusable(true);
         frame.requestFocusInWindow();
     }

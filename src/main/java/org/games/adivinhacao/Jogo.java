@@ -8,7 +8,7 @@ import java.util.*;
 public class Jogo {
 
     private Scanner scanner = new Scanner(System.in);
-    private Random random = new Random();
+    private Random  random = new Random();
 
     public void iniciar() {
         int opcao;
@@ -57,13 +57,9 @@ public class Jogo {
                 System.out.println("Tentativas: " + tentativas);
                 System.out.println("Histórico: " + historico);
                 return;
-            }
-
-            else if (palpite < numeroSecreto) {
+            } else if (palpite < numeroSecreto) {
                 System.out.println("O número é MAIOR.");
-            }
-
-            else {
+            } else {
                 System.out.println("O número é MENOR.");
             }
         }
@@ -93,17 +89,11 @@ public class Jogo {
             if (resposta.equals("C")) {
                 System.out.println("A IA acertou em " + tentativas + " tentativas!");
                 break;
-            }
-
-            else if (resposta.equals("M")) {
+            } else if (resposta.equals("M")) {
                 ia.diminuirLimite(palpite);
-            }
-
-            else if (resposta.equals("m")) {
+            } else if (resposta.equals("m")) {
                 ia.aumentarLimite(palpite);
-            }
-
-            else {
+            } else {
                 System.out.println("Entrada inválida. Use M, m ou C.");
                 tentativas--;
             }
@@ -130,9 +120,7 @@ public class Jogo {
             try {
                 System.out.print(mensagem);
                 return Integer.parseInt(scanner.nextLine());
-            }
-
-            catch (NumberFormatException e) {
+            } catch (NumberFormatException e) {
                 System.out.println("Digite apenas números.");
             }
         }

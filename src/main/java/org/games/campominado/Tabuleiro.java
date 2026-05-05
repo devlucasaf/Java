@@ -4,11 +4,11 @@ import java.util.Random;
 
 public class Tabuleiro {
 
-    private int        linhas;
-    private int        colunas;
-    private int        totalMinas;
-    private Celula[][] grid;
-    private boolean minasGeradas = false;
+    private int         linhas;
+    private int         colunas;
+    private int         totalMinas;
+    private Celula[][]  grid;
+    private boolean     minasGeradas = false;
 
     public Tabuleiro(int linhas, int colunas, int totalMinas) {
         this.linhas = linhas;
@@ -117,22 +117,14 @@ public class Tabuleiro {
                 if (c.isRevelada()) {
                     if (c.isMina()) {
                         System.out.print("* ");
-                    }
-
-                    else if (c.getMinasAoRedor() == 0) {
+                    } else if (c.getMinasAoRedor() == 0) {
                         System.out.print("  ");
-                    }
-
-                    else {
+                    } else {
                         System.out.print(c.getMinasAoRedor() + " ");
                     }
-                }
-
-                else if (c.isBandeira()) {
+                } else if (c.isBandeira()) {
                     System.out.print("F ");
-                }
-
-                else {
+                } else {
                     System.out.print(". ");
                 }
             }

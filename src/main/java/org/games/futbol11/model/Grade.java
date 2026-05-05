@@ -1,4 +1,4 @@
-package futbol11.model;
+package org.games.futbol11.model;
 
 public class Grade {
 

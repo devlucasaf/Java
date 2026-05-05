@@ -12,17 +12,11 @@ public class TermoGameFutebol {
     private static final String AMARELO_BG = "\u001B[43m\u001B[30m";
     private static final String CINZA_BG = "\u001B[40m\u001B[37m";
 
-    enum EstadoCor {
-        VERDE,
-        AMARELO,
-        CINZA
-    }
-
-    private List<String>    dicionarioJogadores;
-    private String          jogadorSecreto;
-    private String          secretoLogica;
-    private int             tentativasMaximas;
-    private Scanner         scanner;
+    private List<String>        dicionarioJogadores;
+    private String              jogadorSecreto;
+    private String              secretoLogica;
+    private int                 tentativasMaximas;
+    private Scanner             scanner;
 
     public TermoGameFutebol() {
 

@@ -4,10 +4,10 @@ import java.util.Scanner;
 
 public class Jogo {
 
-    private Tabuleiro tabuleiro;
-    private Scanner scanner;
-    private int jogadas = 0;
-    private long inicio;
+    private Tabuleiro   tabuleiro;
+    private Scanner     scanner;
+    private int         jogadas = 0;
+    private long        inicio;
 
     public Jogo(int linhas, int colunas, int minas) {
         this.tabuleiro = new Tabuleiro(linhas, colunas, minas);
@@ -43,9 +43,7 @@ public class Jogo {
                     System.out.println("\nVocê perdeu!");
                     fim = true;
                 }
-            }
-
-            else if (acao.equals("F")) {
+            } else if (acao.equals("F")) {
                 tabuleiro.alternarBandeira(l, c);
             }
 

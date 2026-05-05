@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Jogador {
-    protected String nome;
-    protected Tabuleiro tabuleiro;
-    protected List<Navio> frota;
+    protected String        nome;
+    protected Tabuleiro     tabuleiro;
+    protected List<Navio>   frota;
 
     public Jogador(String nome) {
         this.nome = nome;

@@ -1,10 +1,10 @@
 package org.application.veiculo;
 
 class Trem extends VeiculoAutoMovel {
-    private int quantidadeVagoes;
-    private int capacidadePorVagao;
-    private int quantidadePassageiros;
-    private int quantidadePassageirosAtuais;
+    private int     quantidadeVagoes;
+    private int     capacidadePorVagao;
+    private int     quantidadePassageiros;
+    private int     quantidadePassageirosAtuais;
     private boolean portasAbertas;
     private boolean naEstacao;
 
@@ -36,9 +36,7 @@ class Trem extends VeiculoAutoMovel {
         if (quantidadePassageirosAtuais < quantidadePassageiros) {
             quantidadePassageirosAtuais++;
             System.out.println("Passageiros embarcando!");
-        }
-
-        else {
+        } else {
             System.out.println("Trem lotado!");
         }
     }
@@ -52,9 +50,7 @@ class Trem extends VeiculoAutoMovel {
         if (quantidadePassageirosAtuais > 0) {
             quantidadePassageirosAtuais--;
             System.out.println("Passageiro desceu! Quantidade de passageiros: " + quantidadePassageirosAtuais);
-        }
-
-        else {
+        } else {
             System.out.println("Não há passageiros para descer.");
         }
     }
@@ -63,9 +59,7 @@ class Trem extends VeiculoAutoMovel {
         if (getVelocidade() == 0 && naEstacao) {
             portasAbertas = true;
             System.out.println("Portas abertas.");
-        }
-
-        else {
+        } else {
             System.out.println("O trem precisa estar parado na estação.");
         }
     }

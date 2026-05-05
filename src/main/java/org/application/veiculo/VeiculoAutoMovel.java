@@ -1,15 +1,15 @@
 package org.application.veiculo;
 
 abstract class VeiculoAutoMovel {
-    private static int contadorVeiculos = 0;
-    private int numeroVeiculo;
+    private static int  contadorVeiculos = 0;
+    private int         numeroVeiculo;
 
-    private String marca;
-    private String modelo;
-    private double preco;
-    private double km;
-    private int anoLancamento;
-    private int velocidade;
+    private String      marca;
+    private String      modelo;
+    private double      preco;
+    private double      km;
+    private int         anoLancamento;
+    private int         velocidade;
 
     public VeiculoAutoMovel(String marca, String modelo, double preco,
                             double km, int anoLancamento, int velocidade) {

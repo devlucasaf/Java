@@ -6,17 +6,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SimuladorBanco {
+    static final int    SALDO_INICIAL = 1000;
+    static final int    GANHO_TRABALHO = 200;
+    static final int    MAX_TURNOS = 10;
 
-    // Configurações do jogo
-    static final int SALDO_INICIAL = 1000;
-    static final int GANHO_TRABALHO = 200;
-    static final int MAX_TURNOS = 10;
+    static int          saldo = SALDO_INICIAL;
+    static int          turnos = 0;
 
-    static int saldo = SALDO_INICIAL;
-    static int turnos = 0;
-
-    static Random random = new Random();
-    static Scanner scanner = new Scanner(System.in);
+    static Random       random = new Random();
+    static Scanner      scanner = new Scanner(System.in);
     static List<String> historico = new ArrayList<>();
 
     public static void main(String[] args) {
@@ -70,50 +68,48 @@ public class SimuladorBanco {
         encerrarJogo();
     }
 
-    // ================= MÉTODOS =================
-
-    static void trabalhar() {
+    public static void trabalhar() {
         saldo += GANHO_TRABALHO;
-        String msg = "💼 Trabalhou e ganhou R$ " + GANHO_TRABALHO;
+        String msg = "Trabalhou e ganhou R$ " + GANHO_TRABALHO;
         System.out.println(msg);
         historico.add(msg);
     }
 
-    static void investir() {
+    public static void investir() {
         int valor = random.nextInt(401) - 200; // -200 a +200
         saldo += valor;
 
-        String msg;
+        String mensagem;
         if (valor >= 0) {
-            msg = "Investimento deu lucro de R$ " + valor;
+            mensagem = "Investimento deu lucro de R$ " + valor;
         } else {
-            msg = "Investimento deu prejuízo de R$ " + Math.abs(valor);
+            mensagem = "Investimento deu prejuízo de R$ " + Math.abs(valor);
         }
 
-        System.out.println(msg);
-        historico.add(msg);
+        System.out.println(mensagem);
+        historico.add(mensagem);
     }
 
-    static void apostar() {
+    public static void apostar() {
         int valor = random.nextInt(801) - 400; // -400 a +400
         saldo += valor;
 
-        String msg;
+        String mensagem;
         if (valor >= 0) {
-            msg = "Apostou e ganhou R$ " + valor;
+            mensagem = "Apostou e ganhou R$ " + valor;
         } else {
-            msg = "Apostou e perdeu R$ " + Math.abs(valor);
+            mensagem = "Apostou e perdeu R$ " + Math.abs(valor);
         }
 
-        System.out.println(msg);
-        historico.add(msg);
+        System.out.println(mensagem);
+        historico.add(mensagem);
     }
 
-    static void mostrarSaldo() {
+    public static void mostrarSaldo() {
         System.out.println("Saldo atual: R$ " + saldo);
     }
 
-    static void mostrarMenu() {
+    public static void mostrarMenu() {
         System.out.println("\n------ TURNO " + (turnos + 1) + " ------");
         System.out.println("1 - Trabalhar");
         System.out.println("2 - Investir");
@@ -123,7 +119,7 @@ public class SimuladorBanco {
         System.out.print("Escolha uma opção: ");
     }
 
-    static void mostrarNivel() {
+    public static void mostrarNivel() {
         String nivel;
 
         if (saldo < 1500) {
@@ -137,7 +133,7 @@ public class SimuladorBanco {
         System.out.println("\n🎖Nível atual: " + nivel);
     }
 
-    static void eventoAleatorio() {
+    public static void eventoAleatorio() {
         int chance = random.nextInt(100);
 
         if (chance < 15) {
@@ -146,7 +142,6 @@ public class SimuladorBanco {
             String msg = "Bônus inesperado! Recebeu R$ " + bonus;
             System.out.println(msg);
             historico.add(msg);
-
         } else if (chance > 85) {
             int perda = random.nextInt(201) + 100;
             saldo -= perda;
@@ -156,12 +151,12 @@ public class SimuladorBanco {
         }
     }
 
-    static void encerrarJogo() {
+    public static void encerrarJogo() {
         System.out.println("\nFIM DO JOGO");
         System.out.println("Saldo final: R$ " + saldo);
         System.out.println("Turnos jogados: " + turnos);
 
-        System.out.println("\n📜 Histórico de ações:");
+        System.out.println("\nHistórico de ações:");
         for (String h : historico) {
             System.out.println("- " + h);
         }

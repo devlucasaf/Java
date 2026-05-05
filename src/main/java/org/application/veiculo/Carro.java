@@ -1,13 +1,13 @@
 package org.application.veiculo;
 
 class Carro extends VeiculoAutoMovel {
-    private int quantidadePortas;
-    private int quantidadeMarchas;
-    private int quantidadePassageiros;
-    private int passageirosAtuais;
-    private String tipoCambio;
-    private String tipoCombustivel;
-    private double capacidadePortaMalas;
+    private int     quantidadePortas;
+    private int     quantidadeMarchas;
+    private int     quantidadePassageiros;
+    private int     passageirosAtuais;
+    private String  tipoCambio;
+    private String  tipoCombustivel;
+    private double  capacidadePortaMalas;
     private boolean pilotoAutomatico;
 
 
@@ -66,9 +66,7 @@ class Carro extends VeiculoAutoMovel {
         if (passageirosAtuais < quantidadePassageiros) {
             passageirosAtuais++;
             System.out.println("Passageiro entrou! Quantidade de passageiros: " + passageirosAtuais);
-        }
-
-        else {
+        } else {
             System.out.println("Carro lotado!");
         }
     }
@@ -77,9 +75,7 @@ class Carro extends VeiculoAutoMovel {
         if (passageirosAtuais > 0) {
             passageirosAtuais--;
             System.out.println("Passageiro saiu! Quantidade de passageiros: " + passageirosAtuais);
-        }
-
-        else {
+        } else {
             System.out.println("Não há passageiros no carro!");
         }
     }

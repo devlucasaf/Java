@@ -6,13 +6,13 @@ import java.util.Random;
 
 public class Bingo {
 
-    private static final int TAM = 5;
+    private static final int        TAM = 5;
 
-    private static int[][] cartela = new int[TAM][TAM];
-    private static boolean[][] marcacoes = new boolean[TAM][TAM];
+    private static int[][]          cartela = new int[TAM][TAM];
+    private static boolean[][]      marcacoes = new boolean[TAM][TAM];
 
-    private static List<Integer> numerosSorteados = new ArrayList<>();
-    private static Random random = new Random();
+    private static List<Integer>    numerosSorteados = new ArrayList<>();
+    private static Random           random = new Random();
 
     public static void main(String[] args) {
 

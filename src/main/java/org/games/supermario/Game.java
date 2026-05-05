@@ -1,14 +1,14 @@
-package Game;// Importa as bibliotecas necessárias
-import javax.swing.*; // Interface gráfica (JFrame, JPanel, JButton, etc.)
-import java.awt.*; // Cores, dimensões, etc.
-import java.awt.event.*; // Eventos do teclado
+package org.games.supermario;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 
 public class Game {
-    // Variáveis para armazenar a posição (x, y) do personagem (Mario)
-    private int x = 0, y = 0;
-    private JButton buttonImage; // (não está sendo usado)
+    private int     x = 0;
+    private int     y = 0;
+    private JButton buttonImage;
 
-    // Construtor da classe Game
     public Game() {
 
         // Criação da janela principal (JFrame)
@@ -74,10 +74,21 @@ public class Game {
                 }
 
                 // Impede que o Mario ultrapasse os limites da tela
-                if (x < 0) x = 0;
-                if (y < 0) y = 0;
-                if (x > 750 - 60) x = 750 - 60;
-                if (y > 480 - 60) y = 480 - 60;
+                if (x < 0) {
+                    x = 0;
+                }
+
+                if (y < 0) {
+                    y = 0;
+                }
+
+                if (x > 750 - 60) {
+                    x = 750 - 60;
+                }
+
+                if (y > 480 - 60) {
+                    y = 480 - 60;
+                }
             }
         });
 

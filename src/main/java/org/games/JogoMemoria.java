@@ -6,12 +6,12 @@ import java.util.Scanner;
 
 public class JogoMemoria {
 
-    private static final char[] OPCOES = {'A', 'B', 'C', 'D'};
-    private static final int TEMPO_PAUSA_MS = 800;
+    private static final char[]         OPCOES = {'A', 'B', 'C', 'D'};
+    private static final int            TEMPO_PAUSA_MS = 800;
 
     private static ArrayList<Character> sequencia = new ArrayList<>();
-    private static Random random = new Random();
-    private static Scanner scanner = new Scanner(System.in);
+    private static Random               random = new Random();
+    private static Scanner              scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
 

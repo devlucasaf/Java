@@ -5,33 +5,27 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.*;
 
-// Classe que representa um jogo da Mega Sena
 public class MegaSena {
-    private List<Integer> NumerosJogosAJogar; // Lista que guarda os números sorteados para o jogo
+    private List<Integer> NumerosJogosAJogar;
 
-    // Método para gerar um jogo com a quantidade de dezenas escolhida
     public List<Integer> gerarJogo (int quantidadeNumeros) {
-        // Valida se a quantidade de dezenas está dentro do intervalo permitido (6 a 20)
         if (quantidadeNumeros < 6 || quantidadeNumeros > 20) {
             throw new IllegalArgumentException("Para jogar, escolha entre 6 e 20 dezenas.");
         }
 
-        Set<Integer> selecao = new HashSet<>(); // Usado para evitar números repetidos
+        Set<Integer> selecao = new HashSet<>();
         Random random = new Random();
 
-        // Sorteia números aleatórios entre 1 e 60 até atingir a quantidade desejada
         while (selecao.size() < quantidadeNumeros) {
             selecao.add(random.nextInt(60) + 1);
         }
 
-        // Converte o conjunto em lista e ordena os números
         this.NumerosJogosAJogar = new ArrayList<>(selecao);
         Collections.sort(this.NumerosJogosAJogar);
 
         return this.NumerosJogosAJogar;
     }
 
-    // Método que retorna o custo do jogo de acordo com a quantidade de dezenas escolhida
     public double custoJogoMegaSena (int tamanho) {
         return switch (tamanho) {
             case 6 -> 5.00;
@@ -49,16 +43,14 @@ public class MegaSena {
             case 18 -> 92820.00;
             case 19 -> 135600.00;
             case 20 -> 193800.00;
-            default -> 0.0; // Caso inválido
+            default -> 0.0;
         };
     }
 
-    // Método para gravar os jogos em um arquivo de texto
     public void gravarJogos() {
-        try (FileWriter fileWriter = new FileWriter("mega-teste.txt", true); // Abre arquivo em modo append
+        try (FileWriter fileWriter = new FileWriter("mega-teste.txt", true);
              PrintWriter printWriter = new PrintWriter(fileWriter)) {
 
-            // Escreve informações formatadas no arquivo
             printWriter.println("     Jogo para a Mega da Virada     ");
             printWriter.println("                |                   ");
             printWriter.println("------------------------------------");
@@ -67,9 +59,7 @@ public class MegaSena {
             printWriter.printf("- Valor total: R$%.2f ------\n", custoJogoMegaSena(this.NumerosJogosAJogar.size()));
             printWriter.println("\n");
 
-        }
-        catch (IOException e) {
-            // Caso ocorra erro ao salvar o arquivo
+        } catch (IOException e) {
             System.err.println("Erro ao salvar: " + e.getMessage());
         }
     }

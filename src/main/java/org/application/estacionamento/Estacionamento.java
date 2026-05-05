@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.Optional;
 
 public class Estacionamento {
-    private List<Veiculo> veiculosAtuais;
-    private final int CAPACIDADE = 50;
+    private List<Veiculo>   veiculosAtuais;
+    private final int       CAPACIDADE = 50;
 
     public Estacionamento() {
         this.veiculosAtuais = new ArrayList<>();
@@ -44,7 +44,6 @@ public class Estacionamento {
         Veiculo v = vOpt.get();
         LocalDateTime agora = LocalDateTime.now();
 
-        // Cálculo de horas (arredondado para cima)
         long minutos = Duration.between(v.getHoraEntrada(), agora).toMinutes();
         long horasCobradas = (long) Math.ceil(minutos / 60.0);
 
@@ -54,7 +53,7 @@ public class Estacionamento {
 
         double valorTotal = horasCobradas * v.getValorHora();
         if (valorTotal < 5.0) {
-            valorTotal = 5.0; // Valor mínimo
+            valorTotal = 5.0;
         }
 
         veiculosAtuais.remove(v);

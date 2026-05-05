@@ -2,15 +2,15 @@ package org.games.ascii;
 
 class Jogador {
 
-    public int x;
-    public int y;
+    public int          x;
+    public int          y;
 
-    private int velocidadeY = 0;
-    private boolean noChao = false;
+    private int         velocidadeY = 0;
+    private boolean     noChao = false;
 
-    private final int FORCA_PULO = -3;
-    private final int GRAVIDADE = 1;
-    private final int VELOCIDADE_QUEDA_MAX = 3;
+    private final int   FORCA_PULO = -3;
+    private final int   GRAVIDADE = 1;
+    private final int   VELOCIDADE_QUEDA_MAX = 3;
 
     public Jogador(int x, int y) {
         this.x = x;

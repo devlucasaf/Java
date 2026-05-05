@@ -32,9 +32,7 @@ public class JogadorHumano extends Jogador {
                     if (!posicionado) {
                         System.out.println("Posição inválida (sobreposição ou fora dos limites). Tente novamente.");
                     }
-                }
-
-                catch (IllegalArgumentException e) {
+                } catch (IllegalArgumentException e) {
                     System.out.println("Erro: " + e.getMessage());
                 }
             }
@@ -50,9 +48,7 @@ public class JogadorHumano extends Jogador {
 
             try {
                 return Coordenada.interpretar(strCoord);
-            }
-
-            catch (IllegalArgumentException e) {
+            } catch (IllegalArgumentException e) {
                 System.out.println("Erro: " + e.getMessage());
             }
         }

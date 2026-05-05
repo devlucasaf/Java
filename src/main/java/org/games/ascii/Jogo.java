@@ -5,16 +5,16 @@ import java.util.Scanner;
 
 class Jogo {
 
-    private final int LARGURA_TELA = 60;
-    private final int ALTURA_TELA = 15;
-    private final int FPS = 15;
+    private final int   LARGURA_TELA = 60;
+    private final int   ALTURA_TELA = 15;
+    private final int   FPS = 15;
 
-    private boolean jogando = true;
-    private long pontuacao = 0;
+    private boolean     jogando = true;
+    private long        pontuacao = 0;
 
-    private Jogador jogador;
-    private Fase    fase;
-    private Scanner scanner;
+    private Jogador     jogador;
+    private Fase        fase;
+    private Scanner     scanner;
 
     public Jogo() {
         jogador = new Jogador(5, ALTURA_TELA - 3);

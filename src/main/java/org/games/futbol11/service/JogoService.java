@@ -1,7 +1,7 @@
-package futbol11.service;
+package org.games.futbol11.service;
 
-import futbol11.model.Grade;
-import futbol11.model.Jogador;
+import org.games.futbol11.model.Grade;
+import org.games.futbol11.model.Jogador;
 
 import java.util.List;
 import java.util.Scanner;

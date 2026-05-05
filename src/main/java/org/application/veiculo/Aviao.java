@@ -1,16 +1,16 @@
 package org.application.veiculo;
 
 class Aviao extends VeiculoAutoMovel {
-    private int capacidadePassageiros;
-    private int quantidadePassageirosAtuais;
-    private int quantidadeTripulantes;
-    private double altitude;
+    private int     capacidadePassageiros;
+    private int     quantidadePassageirosAtuais;
+    private int     quantidadeTripulantes;
+    private double  altitude;
     private boolean comida;
     private boolean tremPousoAbaixado;
     private boolean pilotoAutomatico;
     private boolean wifi;
     private boolean classeExecutiva;
-    private String tipoAviao;
+    private String  tipoAviao;
 
     public Aviao(String _marca, String _modelo, double _preco, double _km, int _anoLancamento, int _velocidade,
                  int capacidadePassageiros, int quantidadePassageirosAtuais, int quantidadeTripulantes,
@@ -38,9 +38,7 @@ class Aviao extends VeiculoAutoMovel {
     public void embarcarPassageiros() {
         if (quantidadePassageirosAtuais < capacidadePassageiros) {
             quantidadePassageirosAtuais++;
-        }
-
-        else {
+        } else {
             System.out.println("Avião lotado!");
         }
     }
@@ -77,9 +75,7 @@ class Aviao extends VeiculoAutoMovel {
         if (altitude >= 10000) {
             this.comida = true;
             System.out.println("Serviço de bordo iniciado!");
-        }
-
-        else {
+        } else {
             System.out.println("Altitude insuficiente para iniciar o serviço de bordo!");
         }
     }
@@ -88,9 +84,7 @@ class Aviao extends VeiculoAutoMovel {
         if (altitude >= 100) {
             this.tremPousoAbaixado = false;
             System.out.println("Avião decolando! Trem de pouso desligado!");
-        }
-
-        else {
+        } else {
             System.out.println("Avião em solo! Trem de pouso ligado!");
         }
     }
@@ -99,9 +93,7 @@ class Aviao extends VeiculoAutoMovel {
         if (altitude > 10000) {
             this.pilotoAutomatico = true;
             System.out.println("Piloto automático ligado!");
-        }
-
-        else {
+        } else {
             System.out.println("Altitude insuficiente para ligar o piloto automático!");
         }
     }
@@ -115,9 +107,7 @@ class Aviao extends VeiculoAutoMovel {
         if (altitude >= 5000) {
             wifi = true;
             System.out.println("Wi-fi ligado!");
-        }
-
-        else {
+        } else {
             System.out.println("Wi-fi não conectado! Só será ativado durante o voo!");
         }
     }
@@ -132,9 +122,7 @@ class Aviao extends VeiculoAutoMovel {
 
         if (classeExecutiva) {
             System.out.println("Avião com classe executiva.");
-        }
-
-        else {
+        } else {
             System.out.println("Avião sem classe executiva.");
         }
     }

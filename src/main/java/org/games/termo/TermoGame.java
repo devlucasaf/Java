@@ -11,20 +11,14 @@ public class TermoGame {
     private static final String VERDE_BG = "\u001B[42m\u001B[30m";   // Fundo Verde, Letra Preta
     private static final String AMARELO_BG = "\u001B[43m\u001B[30m"; // Fundo Amarelo, Letra Preta
     private static final String CINZA_BG = "\u001B[40m\u001B[37m";   // Fundo Preto, Letra Branca
-    
-    // Enum para facilitar a lógica das cores
-    enum EstadoCor {
-        VERDE, AMARELO, CINZA
-    }
 
-    private List<String>    dicionarioPalavras;
-    private String          palavraSecreta;
-    private String          secretaLogica;
-    private int             tentativasMaximas;
-    private Scanner         scanner;
+    private List<String>        dicionarioPalavras;
+    private String              palavraSecreta;
+    private String              secretaLogica;
+    private int                 tentativasMaximas;
+    private Scanner             scanner;
 
     public TermoGame() {
-        // 1. Dicionário
         dicionarioPalavras = Arrays.asList(
             "IDEIA", "CHAVE", "CENSO", "FURIA", "TEMPO", "FILHO", "FILHA",
             "QUASE", "FATOR", "LAMBE", "BALDE", "VIRAR", "JOGOS", "LAÇOS",
@@ -44,14 +38,12 @@ public class TermoGame {
         scanner = new Scanner(System.in);
     }
 
-    // Equivalente ao .tr do Ruby, mas usando Normalizer (Padrão do Java)
     private String removerAcentos(String texto) {
         String nfdNormalizedString = Normalizer.normalize(texto, Normalizer.Form.NFD); 
         Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
         return pattern.matcher(nfdNormalizedString).replaceAll("");
     }
 
-    // Lógica das Cores (A mesma lógica de contagem do Ruby)
     private EstadoCor[] calcularCores(String chute) {
         char[] secretaChars = secretaLogica.toCharArray();
         char[] chuteChars = chute.toCharArray();
@@ -61,12 +53,10 @@ public class TermoGame {
         
         Map<Character, Integer> contagemLetras = new HashMap<>();
 
-        // Conta frequência na palavra secreta
         for (char c : secretaChars) {
             contagemLetras.put(c, contagemLetras.getOrDefault(c, 0) + 1);
         }
 
-        // Passo 1: Verdes (Prioridade Máxima)
         for (int i = 0; i < 5; i++) {
             if (chuteChars[i] == secretaChars[i]) {
                 resultadoCores[i] = EstadoCor.VERDE;
@@ -74,7 +64,6 @@ public class TermoGame {
             }
         }
 
-        // Passo 2: Amarelos
         for (int i = 0; i < 5; i++) {
             if (resultadoCores[i] == EstadoCor.VERDE) {
                 continue;
@@ -90,9 +79,7 @@ public class TermoGame {
         return resultadoCores;
     }
 
-    // Animação Puf... Puf...
     private void animacaoTerminal(String palavra, EstadoCor[] cores) {
-        // Limpa a linha atual voltando o cursor e imprimindo espaços
         System.out.print("\r" + " ".repeat(30) + "\r");
 
         char[] letras = palavra.toCharArray();
@@ -112,13 +99,12 @@ public class TermoGame {
             }
 
             System.out.print(corCode + " " + letras[i] + " " + RESET + " ");
-            System.out.flush(); // Importante para forçar a atualização da tela
-            sleep(500); // 0.5 segundos
+            System.out.flush();
+            sleep(500);
         }
         System.out.println();
     }
 
-    // Efeito Matrix de Vitória
     private void animarTextoMatrix(String fraseFinal) {
         String charsPossiveis = "ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%";
         Random rand = new Random();
@@ -127,16 +113,14 @@ public class TermoGame {
 
         for (int i = 0; i < fraseFinal.length(); i++) {
             char letraAlvo = fraseFinal.charAt(i);
-            
-            // Rola as letras aleatórias
+
             for (int j = 0; j < 10; j++) {
                 palavraAtual[i] = charsPossiveis.charAt(rand.nextInt(charsPossiveis.length()));
                 System.out.print("\r" + new String(palavraAtual) + "");
                 System.out.flush();
-                sleep(20); // Mais rápido (0.02s)
+                sleep(20);
             }
-            
-            // Fixa a letra correta
+
             palavraAtual[i] = letraAlvo;
             System.out.print("\r" + new String(palavraAtual) + "");
         }
@@ -144,12 +128,10 @@ public class TermoGame {
     }
 
     private void limparTela() {
-        // Sequência ANSI para limpar terminal (Funciona na maioria dos terminais Unix/Mac/Win moderno)
         System.out.print("\033[H\033[2J");  
         System.out.flush();  
     }
 
-    // Método auxiliar para não poluir o código com try-catch
     private void sleep(int millis) {
         try {
             Thread.sleep(millis);
@@ -171,7 +153,7 @@ public class TermoGame {
 
             if (chute.length() != 5) {
                 System.out.println("A palavra precisa ter 5 letras!");
-                i--; // Decrementa o contador para não gastar a tentativa (redo)
+                i--;
                 continue;
             }
 

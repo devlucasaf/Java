@@ -2,9 +2,9 @@ package org.application.sistemaelevador;
 
 // Classe que representa um Passageiro
 class Passageiro {
-    private int andarOrigem;    // Andar de origem
-    private int andarDestino;   // Andar de destino
-    private boolean noElevador; // Estado: dentro ou fora do elevador
+    private int     andarOrigem;
+    private int     andarDestino;
+    private boolean noElevador;
 
     public Passageiro(int andarOrigem, int andarDestino) {
         this.andarOrigem = andarOrigem;
@@ -12,7 +12,6 @@ class Passageiro {
         this.noElevador = false;
     }
 
-    // Getters e Setters
     public int getAndarOrigem() {
         return andarOrigem;
     }
@@ -31,7 +30,7 @@ class Passageiro {
 
     @Override
     public String toString() {
-        String estado = noElevador ? "🟢" : "⚪"; // Ícone para indicar se está dentro ou fora
+        String estado = noElevador ? "🟢" : "⚪";
         return estado + "👤(" + andarOrigem + "->" + andarDestino + ")";
     }
 }

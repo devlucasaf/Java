@@ -2,9 +2,9 @@ package org.games.ascii;
 
 class Fase {
 
-    public int cameraX = 0;
-    private char[][] mapa;
-    private int altura;
+    public int          cameraX = 0;
+    private char[][]    mapa;
+    private int         altura;
 
     public Fase(int altura) {
         this.altura = altura;

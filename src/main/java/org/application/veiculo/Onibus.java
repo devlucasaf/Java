@@ -1,11 +1,11 @@
 package org.application.veiculo;
 
 class Onibus extends VeiculoAutoMovel {
-    private int quantidadePortas;
-    private int quantidadeAssentos;
-    private int capacidadePassageiros;
-    private int quantidadePassageirosAtuais;
-    private int quantidadeMarchas;
+    private int     quantidadePortas;
+    private int     quantidadeAssentos;
+    private int     capacidadePassageiros;
+    private int     quantidadePassageirosAtuais;
+    private int     quantidadeMarchas;
     private boolean portaAberta;
     private boolean arCondicionado;
     private boolean cobrador;
@@ -56,9 +56,7 @@ class Onibus extends VeiculoAutoMovel {
         if (getVelocidade() == 0) {
             portaAberta = true;
             System.out.println("Portas abertas!");
-        }
-
-        else {
+        } else {
             System.out.println("Ônibus em movimento, não pode abrir as portas!");
         }
     }
@@ -71,9 +69,7 @@ class Onibus extends VeiculoAutoMovel {
     public void embarcarPassageiro() {
         if (quantidadePassageirosAtuais < capacidadePassageiros) {
             quantidadePassageirosAtuais++;
-        }
-
-        else {
+        } else {
             System.out.println("Ônibus lotado!");
         }
     }
@@ -87,9 +83,7 @@ class Onibus extends VeiculoAutoMovel {
         if (quantidadePassageirosAtuais > 0) {
             quantidadePassageirosAtuais--;
             System.out.println("Passageiro desceu! Quantidade de passageiros: " + quantidadePassageirosAtuais);
-        }
-
-        else {
+        } else {
             System.out.println("Não há passageiros para descer.");
         }
     }
