@@ -1,9 +1,9 @@
-package org.games;
+package org.games.jogosbasicos;
 
 import java.util.Random;
 import java.util.Scanner;
 
-public class RockPaperScissors {
+public class PedraPapelTesoura {
 
     public static void main(String[] args) {
 

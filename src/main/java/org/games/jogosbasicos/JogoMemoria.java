@@ -1,4 +1,4 @@
-package org.games;
+package org.games.jogosbasicos;
 
 import java.util.ArrayList;
 import java.util.Random;

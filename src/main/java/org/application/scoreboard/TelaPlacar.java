@@ -10,14 +10,14 @@ import java.awt.event.KeyEvent;
  */
 public class TelaPlacar {
 
-    private final DadosPartida  dados;
+    private final DataBase dados;
     private final JLabel        rotuloSetsJogador1;
     private final JLabel        rotuloSetsJogador2;
     private final JLabel        rotuloPontosJogador1;
     private final JLabel        rotuloPontosJogador2;
     private final JFrame        janela;
 
-    public TelaPlacar(DadosPartida dados) {
+    public TelaPlacar(DataBase dados) {
         this.dados = dados;
 
         janela = new JFrame("Placar - Partida");

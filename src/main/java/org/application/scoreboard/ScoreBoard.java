@@ -1,7 +1,6 @@
 package org.application.scoreboard;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class ScoreBoard {
 
@@ -28,10 +27,10 @@ public class ScoreBoard {
         criarRotulo(painel, "Pontos por set", 10, 356);
 
         // Campos de texto
-        JTextField campoJogador1 = criarCampoTexto(painel, "Jogador 1", 95);
-        JTextField campoJogador2 = criarCampoTexto(painel, "Jogador 2", 195);
-        JTextField campoSets = criarCampoTexto(painel, "3", 295);
-        JTextField campoPontos = criarCampoTexto(painel, "5", 395);
+        JTextField campoJogador1    = criarCampoTexto(painel, "Jogador 1", 95);
+        JTextField campoJogador2    = criarCampoTexto(painel, "Jogador 2", 195);
+        JTextField campoSets        = criarCampoTexto(painel, "3", 295);
+        JTextField campoPontos      = criarCampoTexto(painel, "5", 395);
 
         // Botão começar
         JButton botaoComecar = new JButton("Começar");
@@ -55,7 +54,7 @@ public class ScoreBoard {
                     return;
                 }
 
-                DadosPartida dados = new DadosPartida(nomeJogador1, nomeJogador2, sets, pontos);
+                DataBase dados = new DataBase(nomeJogador1, nomeJogador2, sets, pontos);
                 new TelaPlacar(dados);
                 janela.dispose();
 

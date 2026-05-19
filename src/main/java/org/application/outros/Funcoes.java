@@ -1,4 +1,4 @@
-package org.application;
+package org.application.outros;
 
 public class Funcoes {
     public static void main(String[] args) {

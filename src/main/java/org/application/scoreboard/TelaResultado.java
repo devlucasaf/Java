@@ -5,7 +5,7 @@ import java.awt.*;
 
 public class TelaResultado {
 
-    public TelaResultado(DadosPartida dados) {
+    public TelaResultado(DataBase dados) {
         JFrame janela = new JFrame("Placar - Resultado Final");
         JPanel painel = new JPanel();
 

@@ -1,6 +1,6 @@
 package org.application.scoreboard;
 
-public class DadosPartida {
+public class DataBase {
     private String  nomeJogador1;
     private String  nomeJogador2;
     private int     setsPorPartida;
@@ -10,13 +10,13 @@ public class DadosPartida {
     private int     pontosJogador1;
     private int     pontosJogador2;
 
-    public DadosPartida(String nomeJogador1, String nomeJogador2, int setsPorPartida, int pontosPorSet) {
+    public DataBase(String nomeJogador1, String nomeJogador2, int setsPorPartida, int pontosPorSet) {
         setNomeJogador1(nomeJogador1);
         setNomeJogador2(nomeJogador2);
         setSetsPorPartida(setsPorPartida);
         setPontosPorSet(pontosPorSet);
-        this.setsJogador1 = 0;
-        this.setsJogador2 = 0;
+        this.setsJogador1   = 0;
+        this.setsJogador2   = 0;
         this.pontosJogador1 = 0;
         this.pontosJogador2 = 0;
     }
