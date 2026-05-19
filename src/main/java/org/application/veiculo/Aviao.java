@@ -58,9 +58,7 @@ class Aviao extends VeiculoAutoMovel {
             altitude = 1000;
             tremPousoAbaixado = false;
             System.out.println("Avião decolou!");
-        }
-
-        else {
+        } else {
             System.out.println("Velocidade insuficiente para iniciar a decolagem!");
         }
     }

@@ -53,10 +53,10 @@ public class Votacao {
 
         if (votosTotais.size() != 0) {
             int votosLeanderson = Collections.frequency(votosTotais, 22);
-            int votosMario = Collections.frequency(votosTotais, 13);
-            int votosLucao = Collections.frequency(votosTotais, 14);
-            int votosNulo = Collections.frequency(votosTotais, 0);
-            int totalVotos = votosTotais.size();
+            int votosMario      = Collections.frequency(votosTotais, 13);
+            int votosLucao      = Collections.frequency(votosTotais, 14);
+            int votosNulo       = Collections.frequency(votosTotais, 0);
+            int totalVotos      = votosTotais.size();
 
             Map<String, Integer> resultados = new HashMap<>();
             resultados.put("Leanderson", votosLeanderson);
@@ -99,9 +99,7 @@ public class Votacao {
                     System.out.printf("O candidato %s foi eleito com %d votos!\n", eleito, votosEleito);
                 }
             }
-
-        }
-        else {
+        } else {
             System.out.println("Não se obteve votos.");
         }
     }
