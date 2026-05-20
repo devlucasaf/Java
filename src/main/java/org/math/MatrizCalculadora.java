@@ -18,9 +18,11 @@ public class MatrizCalculadora {
     public static double[][] subtracao(double[][] a, double[][] b) {
         int linhas = a.length, colunas = a[0].length;
         double[][] resultado = new double[linhas][colunas];
-        for (int i = 0; i < linhas; i++)
-            for (int j = 0; j < colunas; j++)
+        for (int i = 0; i < linhas; i++) {
+            for (int j = 0; j < colunas; j++) {
                 resultado[i][j] = a[i][j] - b[i][j];
+            }
+        }
         return resultado;
     }
 
