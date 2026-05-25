@@ -59,7 +59,7 @@ public class AppButton {
     }
 
     private JButton criarBotao(Container container, String texto, int x, int y,
-                               ImageIcon icone, Runnable acao) {
+                                ImageIcon icone, Runnable acao) {
 
         JButton botao = new JButton(texto, icone);
         botao.setBounds(x, y, 150, 90);

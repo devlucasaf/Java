@@ -12,7 +12,7 @@ public class Professor extends Pessoa {
     private boolean             ativo;
 
     public Professor(String nome, String cpf, LocalDate dataNascimento, String telefone, String email,
-                     String registroFuncional, String especializacao, double salario) {
+                        String registroFuncional, String especializacao, double salario) {
         super(nome, cpf, dataNascimento, telefone, email);
         this.registroFuncional = registroFuncional;
         this.especializacao = especializacao;
@@ -25,7 +25,7 @@ public class Professor extends Pessoa {
         if (!disciplinasMinistradas.contains(disciplina)) {
             disciplinasMinistradas.add(disciplina);
             disciplina.setProfessor(this);
-            System.out.println("Professor " + nome + disciplina " + disciplina.getNome());
+            System.out.println("Professor " + nome + " atribuiu a disciplina " + disciplina.getNome());
         }
     }
 

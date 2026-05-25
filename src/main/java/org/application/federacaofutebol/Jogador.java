@@ -8,7 +8,7 @@ public class Jogador extends Pessoa {
     private String          apelido;
     private Posicao         posicaoPrincipal;
     private int             numeroCamisa;
-    private PeDominante     pePreferido;
+    private PeDominante     peDominante;
     private double          altura;
     private double          peso;
     private List<String>    lesoes;
@@ -18,13 +18,13 @@ public class Jogador extends Pessoa {
     private int             cartoesVermelhos;
 
     public Jogador(String nome, String cpf, LocalDate dataNascimento, String nacionalidade,
-                   String apelido, Posicao posicaoPrincipal, int numeroCamisa,
-                   PePreferido pePreferido, double altura, double peso) {
+                    String apelido, Posicao posicaoPrincipal, int numeroCamisa,
+                    PeDominante peDominante, double altura, double peso) {
         super(nome, cpf, dataNascimento, nacionalidade);
         this.apelido = apelido;
         this.posicaoPrincipal = posicaoPrincipal;
         this.numeroCamisa = numeroCamisa;
-        this.pePreferido = pePreferido;
+        this.peDominante = peDominante;
         this.altura = altura;
         this.peso = peso;
         this.lesoes = new ArrayList<>();
@@ -72,7 +72,7 @@ public class Jogador extends Pessoa {
         System.out.println("Apelido: " + apelido);
         System.out.println("Posição: " + posicaoPrincipal);
         System.out.println("Número: " + numeroCamisa);
-        System.out.println("Pé preferido: " + pePreferido);
+        System.out.println("Pé preferido: " + peDominante);
         System.out.println("Altura: " + altura + "m | Peso: " + peso + "kg");
         System.out.println("Idade: " + calcularIdade() + " anos");
         System.out.println("Gols: " + golsMarcados);

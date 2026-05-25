@@ -21,11 +21,11 @@ public class Votacao {
     }
 
     public static void eleicao() {
-        Scanner sc = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
         while (true) {
             System.out.print("Digite seu voto: ");
-            int voto = sc.nextInt();
+            int voto = scanner.nextInt();
 
             if (voto == 9) {
                 System.out.println("Votação encerrada!");
