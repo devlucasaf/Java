@@ -8,43 +8,43 @@ import javax.script.ScriptEngine;
 import javax.script.ScriptException;
 
 public class CalculadoraCientifica extends JFrame {
-    private JTextField      display;
-    private ScriptEngine    engine;
+    private JTextField      visor;
+    private ScriptEngine    motor;
     private double ultimoResultado = 0.0;
 
     // Cores do tema escuro
     private final Color COR_FUNDO = new Color(30, 30, 35);
-    private final Color COR_DISPLAY = new Color(20, 20, 25);
+    private final Color COR_VISOR = new Color(20, 20, 25);
     private final Color COR_TEXTO = Color.WHITE;
     private final Color COR_BOTAO_NORMAL = new Color(45, 45, 50);
-    private final Color COR_BOTAO_HOVER = new Color(0, 120, 215);
+    private final Color COR_BOTAO_DESTAQUE = new Color(0, 120, 215);
     private final Color COR_BOTAO_FUNCAO = new Color(60, 60, 70);
     private final Color COR_BOTAO_OPERADOR = new Color(70, 70, 80);
     private final Color COR_BOTAO_IGUAL = new Color(0, 100, 180);
 
     public CalculadoraCientifica() {
-        initComponents();
-        setupScriptEngine();
+        inicializarComponentes();
+        configurarMotorScript();
     }
 
-    private void setupScriptEngine() {
-        ScriptEngineManager manager = new ScriptEngineManager();
-        engine = manager.getEngineByName("JavaScript");
+    private void configurarMotorScript() {
+        ScriptEngineManager gerenciador = new ScriptEngineManager();
+        motor = gerenciador.getEngineByName("JavaScript");
         try {
-            engine.eval("function fact(n) { " +
+            motor.eval("function fact(n) { " +
                     "if (n < 0 || Math.floor(n) != n) return NaN; " +
                     "var r = 1; for(var i=2; i<=n; i++) r *= i; return r; }");
-            engine.eval("function neg(x) { return -x; }");
-            engine.eval("function pow10(x) { return Math.pow(10, x); }");
-            engine.eval("function recip(x) { return 1/x; }");
-            engine.eval("function cbrt(x) { return Math.pow(x, 1/3); }");
-            engine.put("ans", 0.0);
+            motor.eval("function neg(x) { return -x; }");
+            motor.eval("function pow10(x) { return Math.pow(10, x); }");
+            motor.eval("function recip(x) { return 1/x; }");
+            motor.eval("function cbrt(x) { return Math.pow(x, 1/3); }");
+            motor.put("ans", 0.0);
         } catch (ScriptException e) {
             e.printStackTrace();
         }
     }
 
-    private void initComponents() {
+    private void inicializarComponentes() {
         setTitle("Calculadora Científica");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(550, 680);
@@ -52,24 +52,24 @@ public class CalculadoraCientifica extends JFrame {
         getContentPane().setBackground(COR_FUNDO);
         setLayout(new BorderLayout(10, 10));
 
-        // Display
-        display = new JTextField();
-        display.setFont(new Font("Segoe UI", Font.PLAIN, 28));
-        display.setHorizontalAlignment(JTextField.RIGHT);
-        display.setBackground(COR_DISPLAY);
-        display.setForeground(COR_TEXTO);
-        display.setBorder(BorderFactory.createCompoundBorder(
+        // Visor
+        visor = new JTextField();
+        visor.setFont(new Font("Segoe UI", Font.PLAIN, 28));
+        visor.setHorizontalAlignment(JTextField.RIGHT);
+        visor.setBackground(COR_VISOR);
+        visor.setForeground(COR_TEXTO);
+        visor.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(new Color(60, 60, 70), 1),
                 new EmptyBorder(10, 10, 10, 10)
         ));
-        display.setCaretColor(COR_TEXTO);
-        display.addActionListener(e -> calcular());
-        add(display, BorderLayout.NORTH);
+        visor.setCaretColor(COR_TEXTO);
+        visor.addActionListener(e -> calcular());
+        add(visor, BorderLayout.NORTH);
 
         // Painel de botões
-        JPanel panelBotoes = new JPanel(new GridLayout(8, 6, 8, 8));
-        panelBotoes.setBackground(COR_FUNDO);
-        panelBotoes.setBorder(new EmptyBorder(10, 10, 10, 10));
+        JPanel painelBotoes = new JPanel(new GridLayout(8, 6, 8, 8));
+        painelBotoes.setBackground(COR_FUNDO);
+        painelBotoes.setBorder(new EmptyBorder(10, 10, 10, 10));
 
         String[][] botoes = {
                 {"(", ")", "C", "CE", "DEL", "/"},
@@ -84,42 +84,42 @@ public class CalculadoraCientifica extends JFrame {
 
         for (String[] linha : botoes) {
             for (String texto : linha) {
-                RoundedButton btn = new RoundedButton(texto);
-                btn.setFont(new Font("Segoe UI", Font.BOLD, 16));
+                BotaoArredondado botao = new BotaoArredondado(texto);
+                botao.setFont(new Font("Segoe UI", Font.BOLD, 16));
 
                 if (texto.matches("[0-9]") || texto.equals(".")) {
-                    btn.setBgColor(COR_BOTAO_NORMAL);
+                    botao.setCorFundo(COR_BOTAO_NORMAL);
                 } else if (texto.matches("[+\\-*/^]|mod")) {
-                    btn.setBgColor(COR_BOTAO_OPERADOR);
+                    botao.setCorFundo(COR_BOTAO_OPERADOR);
                 } else if (texto.equals("=")) {
-                    btn.setBgColor(COR_BOTAO_IGUAL);
+                    botao.setCorFundo(COR_BOTAO_IGUAL);
                 } else if (texto.equals("C") || texto.equals("CE") || texto.equals("DEL")) {
-                    btn.setBgColor(new Color(180, 60, 50));
+                    botao.setCorFundo(new Color(180, 60, 50));
                 } else {
-                    btn.setBgColor(COR_BOTAO_FUNCAO);
+                    botao.setCorFundo(COR_BOTAO_FUNCAO);
                 }
 
-                btn.setHoverColor(COR_BOTAO_HOVER);
-                btn.addActionListener(e -> processarBotao(texto));
-                panelBotoes.add(btn);
+                botao.setCorDestaque(COR_BOTAO_DESTAQUE);
+                botao.addActionListener(e -> processarBotao(texto));
+                painelBotoes.add(botao);
             }
         }
 
-        add(panelBotoes, BorderLayout.CENTER);
+        add(painelBotoes, BorderLayout.CENTER);
     }
 
     private void processarBotao(String comando) {
         switch (comando) {
             case "C":
-                display.setText("");
+                visor.setText("");
                 break;
             case "CE":
-                display.setText("");
+                visor.setText("");
                 break;
             case "DEL":
-                String texto = display.getText();
-                if (texto.length() > 0) {
-                    display.setText(texto.substring(0, texto.length() - 1));
+                String texto = visor.getText();
+                if (!texto.isEmpty()) {
+                    visor.setText(texto.substring(0, texto.length() - 1));
                 }
                 break;
             case "=":
@@ -159,57 +159,57 @@ public class CalculadoraCientifica extends JFrame {
     }
 
     private void inserirTexto(String texto) {
-        display.setText(display.getText() + texto);
-        display.requestFocus();
+        visor.setText(visor.getText() + texto);
+        visor.requestFocus();
     }
 
     private void inserirConstante(String constante) {
-        display.setText(display.getText() + constante);
-        display.requestFocus();
+        visor.setText(visor.getText() + constante);
+        visor.requestFocus();
     }
 
     private void inserirFuncao(String funcao) {
-        String textoAtual = display.getText();
-        display.setText(textoAtual + funcao + "(");
+        String textoAtual = visor.getText();
+        visor.setText(textoAtual + funcao + "(");
         SwingUtilities.invokeLater(() -> {
-            display.setCaretPosition(display.getText().length());
-            display.requestFocus();
+            visor.setCaretPosition(visor.getText().length());
+            visor.requestFocus();
         });
     }
 
     private void inverterSinal() {
-        String texto = display.getText();
+        String texto = visor.getText();
         if (texto.isEmpty()) {
             inserirFuncao("neg");
         } else {
-            display.setText("neg(" + texto + ")");
+            visor.setText("neg(" + texto + ")");
         }
     }
 
     private void calcular() {
-        String expressao = display.getText();
+        String expressao = visor.getText();
         if (expressao == null || expressao.trim().isEmpty()) {
             return;
         }
 
         try {
             String processada = preProcessarExpressao(expressao);
-            Object resultado = engine.eval(processada);
+            Object resultado = motor.eval(processada);
             double valor = Double.parseDouble(resultado.toString());
 
-            display.setText(formatarResultado(valor));
-            engine.put("ans", valor);
+            visor.setText(formatarResultado(valor));
+            motor.put("ans", valor);
             ultimoResultado = valor;
 
         } catch (Exception e) {
-            display.setText("Erro");
-            Timer timer = new Timer(1000, ev -> {
-                if (display.getText().equals("Erro")) {
-                    display.setText("");
+            visor.setText("Erro");
+            Timer temporizador = new Timer(1000, ev -> {
+                if (visor.getText().equals("Erro")) {
+                    visor.setText("");
                 }
             });
-            timer.setRepeats(false);
-            timer.start();
+            temporizador.setRepeats(false);
+            temporizador.start();
         }
     }
 

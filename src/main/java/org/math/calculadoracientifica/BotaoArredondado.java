@@ -4,21 +4,21 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class RoundedButton extends JButton {
-    private Color bgColor;
-    private Color hoverColor;
-    private boolean hover = false;
-    private int     radius = 20;
+public class BotaoArredondado extends JButton {
+    private Color corFundo;
+    private Color corDestaque;
+    private boolean destacado = false;
+    private int     raio = 20;
 
     // Cores do tema escuro (referência ao tema)
     private static final Color COR_TEXTO = Color.WHITE;
     private static final Color COR_BOTAO_NORMAL = new Color(45, 45, 50);
-    private static final Color COR_BOTAO_HOVER = new Color(0, 120, 215);
+    private static final Color COR_BOTAO_DESTAQUE = new Color(0, 120, 215);
 
-    public RoundedButton(String text) {
-        super(text);
-        this.bgColor = COR_BOTAO_NORMAL;
-        this.hoverColor = COR_BOTAO_HOVER;
+    public BotaoArredondado(String texto) {
+        super(texto);
+        this.corFundo = COR_BOTAO_NORMAL;
+        this.corDestaque = COR_BOTAO_DESTAQUE;
 
         setContentAreaFilled(false);
         setFocusPainted(false);
@@ -28,23 +28,23 @@ public class RoundedButton extends JButton {
 
         addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent e) {
-                hover = true;
+                destacado = true;
                 repaint();
             }
             public void mouseExited(MouseEvent e) {
-                hover = false;
+                destacado = false;
                 repaint();
             }
         });
     }
 
-    public void setBgColor(Color color) {
-        this.bgColor = color;
+    public void setCorFundo(Color cor) {
+        this.corFundo = cor;
         repaint();
     }
 
-    public void setHoverColor(Color color) {
-        this.hoverColor = color;
+    public void setCorDestaque(Color cor) {
+        this.corDestaque = cor;
     }
 
     @Override
@@ -52,9 +52,9 @@ public class RoundedButton extends JButton {
         Graphics2D grafico = (Graphics2D) g.create();
         grafico.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-        Color corAtual = hover ? hoverColor : bgColor;
+        Color corAtual = destacado ? corDestaque : corFundo;
         grafico.setColor(corAtual);
-        grafico.fillRoundRect(0, 0, getWidth(), getHeight(), radius, radius);
+        grafico.fillRoundRect(0, 0, getWidth(), getHeight(), raio, raio);
 
         super.paintComponent(grafico);
         grafico.dispose();
@@ -62,11 +62,11 @@ public class RoundedButton extends JButton {
 
     @Override
     public Dimension getPreferredSize() {
-        Dimension dimension = super.getPreferredSize();
+        Dimension dimensao = super.getPreferredSize();
 
-        dimension.width = Math.max(dimension.width, 60);
-        dimension.height = Math.max(dimension.height, 50);
+        dimensao.width = Math.max(dimensao.width, 60);
+        dimensao.height = Math.max(dimensao.height, 50);
 
-        return dimension;
+        return dimensao;
     }
 }
