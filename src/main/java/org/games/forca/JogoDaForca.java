@@ -1,4 +1,4 @@
-package org.games.jogosbasicos;
+package org.games.forca;
 
 import java.util.*;
 
