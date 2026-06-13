@@ -1,8 +1,9 @@
-package org.games.termo;
+package org.games.termo.futebol;
+
+import org.games.termo.EstadoCor;
 
 import java.text.Normalizer;
 import java.util.*;
-import java.util.regex.Pattern;
 
 public class TermoGameFutebol {
 
