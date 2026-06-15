@@ -1,4 +1,4 @@
-package org.math;
+package org.math.calculadora;
 
 import javax.swing.*;
 import java.awt.*;

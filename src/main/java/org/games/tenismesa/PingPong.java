@@ -1,4 +1,4 @@
-package org.games.jogosbasicos;
+package org.games.tenismesa;
 
 import java.util.Objects;
 import java.util.Scanner;

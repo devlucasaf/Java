@@ -1,4 +1,4 @@
-package org.math;
+package org.math.verificador;
 
 public class NumerosParImpar {
 

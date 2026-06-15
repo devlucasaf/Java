@@ -1,4 +1,4 @@
-package org.math;
+package org.math.matriz;
 
 import java.util.Scanner;
 

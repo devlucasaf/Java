@@ -1,4 +1,4 @@
-package org.math;
+package org.math.conversor;
 
 import java.util.Scanner;
 

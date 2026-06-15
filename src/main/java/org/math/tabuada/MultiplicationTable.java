@@ -1,4 +1,4 @@
-package org.math;
+package org.math.tabuada;
 
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-package org.games.jogosbasicos;
+package org.games.pedrapapeltesoura;
 
 import java.util.Random;
 import java.util.Scanner;
