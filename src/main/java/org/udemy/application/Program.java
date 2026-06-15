@@ -1,6 +1,6 @@
-package org.application;
+package org.udemy.application;
 
-import org.entities.Triangle;
+import org.udemy.entities.Triangle;
 
 import java.util.Locale;
 import java.util.Scanner;

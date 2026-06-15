@@ -1,4 +1,4 @@
-package org.entities;
+package org.udemy.entities;
 
 public class Triangle {
     public double a;
