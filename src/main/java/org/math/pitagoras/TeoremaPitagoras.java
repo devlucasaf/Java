@@ -1,0 +1,76 @@
+package org.math.pitagoras;
+
+import java.util.Scanner;
+
+public class TeoremaPitagoras {
+    public static double calcularHipotenusa(double catetoA, double catetoB) {
+        return Math.sqrt(Math.pow(catetoA, 2) + Math.pow(catetoB, 2));
+    }
+
+    public static double calcularCateto(double hipotenusa, double catetoConhecido) {
+        if (hipotenusa <= catetoConhecido) {
+            throw new IllegalArgumentException("A hipotenusa deve ser maior que o cateto conhecido.");
+        }
+        return Math.sqrt(Math.pow(hipotenusa, 2) - Math.pow(catetoConhecido, 2));
+    }
+
+    public static void main(String[] args) {
+        Scanner entrada = new Scanner(System.in);
+        int opcao;
+
+        System.out.println("=== TEOREMA DE PITÁGORAS ===");
+
+        do {
+            System.out.println("\nEscolha uma opção:");
+            System.out.println("1 - Calcular a hipotenusa");
+            System.out.println("2 - Calcular um cateto (dado o outro cateto e a hipotenusa)");
+            System.out.println("3 - Sair");
+            System.out.print("Opção: ");
+            opcao = entrada.nextInt();
+
+            switch (opcao) {
+                case 1:
+                    System.out.print("Digite o valor do primeiro cateto: ");
+                    double cateto1 = entrada.nextDouble();
+                    System.out.print("Digite o valor do segundo cateto: ");
+                    double cateto2 = entrada.nextDouble();
+
+                    if (cateto1 <= 0 || cateto2 <= 0) {
+                        System.out.println("Os catetos devem ser valores positivos.");
+                    } else {
+                        double hipotenusa = calcularHipotenusa(cateto1, cateto2);
+                        System.out.printf("A hipotenusa é: %.2f%n", hipotenusa);
+                    }
+                    break;
+
+                case 2:
+                    System.out.print("Digite o valor da hipotenusa: ");
+                    double hip = entrada.nextDouble();
+                    System.out.print("Digite o valor do cateto conhecido: ");
+                    double catetoConhecido = entrada.nextDouble();
+
+                    if (hip <= 0 || catetoConhecido <= 0) {
+                        System.out.println("Os valores devem ser positivos.");
+                    } else {
+                        try {
+                            double catetoDesconhecido = calcularCateto(hip, catetoConhecido);
+                            System.out.printf("O outro cateto mede: %.2f%n", catetoDesconhecido);
+                        } catch (IllegalArgumentException e) {
+                            System.out.println("Erro: " + e.getMessage());
+                        }
+                    }
+                    break;
+
+                case 3:
+                    System.out.println("Encerrando o programa...");
+                    break;
+
+                default:
+                    System.out.println("Opção inválida! Digite 1, 2 ou 3.");
+            }
+
+        } while (opcao != 3);
+
+        entrada.close();
+    }
+}
