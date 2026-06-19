@@ -78,4 +78,8 @@ public class Compra {
     public double getValorTotal() {
         return valorTotal;
     }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
 }
