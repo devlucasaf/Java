@@ -1,4 +1,6 @@
-package application.system.animal.zoologico.mamifero;
+package application.system.animal.zoologico.mamifero.primata;
+
+import application.system.animal.zoologico.mamifero.Mamifero;
 
 public class Macaco extends Mamifero {
 
