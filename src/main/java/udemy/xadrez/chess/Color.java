@@ -1,4 +1,7 @@
 package udemy.xadrez.chess;
 
-public class Color {
+public enum Color {
+    BLACK,
+    WHITE;
+
 }
