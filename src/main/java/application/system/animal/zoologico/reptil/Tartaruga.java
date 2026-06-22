@@ -8,7 +8,7 @@ public class Tartaruga extends Reptil {
 
     @Override
     public void emitirSom() {
-        System.out.println(nome + " faz sons quase imperceptíveis.");
+        System.out.println(getNome() + " faz sons quase imperceptíveis.");
     }
 }
 

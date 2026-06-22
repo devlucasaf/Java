@@ -1,8 +1,6 @@
 package application.system.animal.zoologico.mamifero.felino;
 
-import application.system.animal.zoologico.mamifero.Mamifero;
-
-public class Jaguatirica extends Mamifero {
+public class Jaguatirica extends Felino {
 
     public Jaguatirica(String nome, int idade) {
         super(nome, idade);
@@ -10,6 +8,6 @@ public class Jaguatirica extends Mamifero {
 
     @Override
     public void emitirSom() {
-        System.out.println(nome + " emite um miado forte!");
+        System.out.println(getNome() + " emite um miado forte!");
     }
 }

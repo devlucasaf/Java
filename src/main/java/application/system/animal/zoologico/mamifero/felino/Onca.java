@@ -1,8 +1,6 @@
 package application.system.animal.zoologico.mamifero.felino;
 
-import application.system.animal.zoologico.mamifero.Mamifero;
-
-public class Onca extends Mamifero {
+public class Onca extends Felino {
 
     public Onca(String nome, int idade) {
         super(nome, idade);
@@ -10,6 +8,6 @@ public class Onca extends Mamifero {
 
     @Override
     public void emitirSom() {
-        System.out.println(nome + " ruge fortemente!");
+        System.out.println(getNome() + " ruge fortemente!");
     }
 }

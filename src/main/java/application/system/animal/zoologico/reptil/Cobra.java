@@ -8,7 +8,7 @@ public class Cobra extends Reptil {
 
     @Override
     public void emitirSom() {
-        System.out.println(nome + " sibila!");
+        System.out.println(getNome() + " sibila!");
     }
 }
 

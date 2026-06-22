@@ -8,6 +8,6 @@ public class Elefante extends Mamifero {
 
     @Override
     public void emitirSom() {
-        System.out.println(nome + " faz barulho de trombeta!");
+        System.out.println(getNome() + " faz barulho de trombeta!");
     }
 }

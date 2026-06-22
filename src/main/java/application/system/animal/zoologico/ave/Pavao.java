@@ -7,11 +7,11 @@ public class Pavao extends Ave {
     }
 
     public void abrirCauda() {
-        System.out.println(nome + " abre sua linda cauda colorida.");
+        System.out.println(getNome() + " abre sua linda cauda colorida.");
     }
 
     @Override
     public void emitirSom() {
-        System.out.println(nome + " emite um chamado alto.");
+        System.out.println(getNome() + " emite um chamado alto.");
     }
 }

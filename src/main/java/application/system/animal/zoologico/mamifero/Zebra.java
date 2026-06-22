@@ -8,7 +8,7 @@ public class Zebra extends Mamifero {
 
     @Override
     public void emitirSom() {
-        System.out.println(nome + " relincha!");
+        System.out.println(getNome() + " relincha!");
     }
 }
 

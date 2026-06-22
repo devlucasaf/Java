@@ -8,6 +8,6 @@ public class Pato extends Ave {
 
     @Override
     public void emitirSom() {
-        System.out.println(nome + " faz quack quack!");
+        System.out.println(getNome() + " faz quack quack!");
     }
 }

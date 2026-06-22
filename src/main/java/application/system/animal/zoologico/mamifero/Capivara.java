@@ -8,6 +8,6 @@ public class Capivara extends Mamifero {
 
     @Override
     public void emitirSom() {
-        System.out.println(nome + " faz um som baixo de capivara.");
+        System.out.println(getNome() + " faz um som baixo de capivara.");
     }
 }

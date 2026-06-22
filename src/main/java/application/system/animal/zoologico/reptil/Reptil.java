@@ -1,18 +1,30 @@
 package application.system.animal.zoologico.reptil;
 
 import application.system.animal.zoologico.Animal;
+import application.system.animal.zoologico.Sexo;
 
 public abstract class Reptil extends Animal {
 
+    private final boolean peconhento;
+
     public Reptil(String nome, int idade) {
-        super(nome, idade);
+        this(nome, idade, Sexo.MACHO, false);
+    }
+
+    public Reptil(String nome, int idade, Sexo sexo, boolean peconhento) {
+        super(nome, idade, sexo);
+        this.peconhento = peconhento;
     }
 
     public void trocarPele() {
-        System.out.println(nome + " está trocando de pele.");
+        System.out.println(getNome() + " está trocando de pele.");
     }
 
     public void rastejar() {
-        System.out.println(nome + " está se locomovendo lentamente.");
+        System.out.println(getNome() + " está se locomovendo lentamente.");
+    }
+
+    public boolean isPeconhento() {
+        return peconhento;
     }
 }

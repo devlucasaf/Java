@@ -8,6 +8,6 @@ public class Jacare extends Reptil {
 
     @Override
     public void emitirSom() {
-        System.out.println(nome + " estala a mandíbula!");
+        System.out.println(getNome() + " estala a mandíbula!");
     }
 }

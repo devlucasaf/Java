@@ -7,11 +7,11 @@ public class Lagarto extends Reptil {
     }
 
     public void tomarSol() {
-        System.out.println(nome + " está tomando sol para regular a temperatura do corpo.");
+        System.out.println(getNome() + " está tomando sol para regular a temperatura do corpo.");
     }
 
     @Override
     public void emitirSom() {
-        System.out.println(nome + " emite um som baixo.");
+        System.out.println(getNome() + " emite um som baixo.");
     }
 }

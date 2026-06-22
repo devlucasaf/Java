@@ -7,12 +7,12 @@ public class Camaleao extends Reptil {
     }
 
     public void mudarCor() {
-        System.out.println(nome + " está mudando de cor para se camuflar.");
+        System.out.println(getNome() + " está mudando de cor para se camuflar.");
     }
 
     @Override
     public void emitirSom() {
-        System.out.println(nome + " emite um som sutil.");
+        System.out.println(getNome() + " emite um som sutil.");
     }
 }
 

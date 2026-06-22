@@ -8,6 +8,6 @@ public class Cagado extends Reptil {
 
     @Override
     public void emitirSom() {
-        System.out.println(nome + " faz um som baixo.");
+        System.out.println(getNome() + " faz um som baixo.");
     }
 }

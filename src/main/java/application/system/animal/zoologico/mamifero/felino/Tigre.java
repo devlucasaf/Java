@@ -1,8 +1,6 @@
 package application.system.animal.zoologico.mamifero.felino;
 
-import application.system.animal.zoologico.mamifero.Mamifero;
-
-public class Tigre extends Mamifero {
+public class Tigre extends Felino {
 
     public Tigre(String nome, int idade) {
         super(nome, idade);
@@ -10,7 +8,7 @@ public class Tigre extends Mamifero {
 
     @Override
     public void emitirSom() {
-        System.out.println(nome + " rosna!");
+        System.out.println(getNome() + " rosna!");
     }
 }
 

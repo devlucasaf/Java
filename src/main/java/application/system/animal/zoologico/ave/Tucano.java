@@ -8,6 +8,6 @@ public class Tucano extends Ave {
 
     @Override
     public void emitirSom() {
-        System.out.println(nome + " faz um som alto com o bico!");
+        System.out.println(getNome() + " faz um som alto com o bico!");
     }
 }

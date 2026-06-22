@@ -8,6 +8,6 @@ public class Flamingo extends Ave {
 
     @Override
     public void emitirSom() {
-        System.out.println(nome + " emite sons nasais.");
+        System.out.println(getNome() + " emite sons nasais.");
     }
 }

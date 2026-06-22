@@ -7,11 +7,11 @@ public class Calango extends Reptil {
     }
 
     public void correr() {
-        System.out.println(nome + " corre rapidamente pelas pedras.");
+        System.out.println(getNome() + " corre rapidamente pelas pedras.");
     }
 
     @Override
     public void emitirSom() {
-        System.out.println(nome + " faz um leve chiado.");
+        System.out.println(getNome() + " faz um leve chiado.");
     }
 }

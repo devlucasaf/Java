@@ -7,11 +7,11 @@ public class Iguana extends Reptil {
     }
 
     public void subirArvore() {
-        System.out.println(nome + " está subindo em uma árvore.");
+        System.out.println(getNome() + " está subindo em uma árvore.");
     }
 
     @Override
     public void emitirSom() {
-        System.out.println(nome + " faz um som grave ao se sentir ameaçada.");
+        System.out.println(getNome() + " faz um som grave ao se sentir ameaçada.");
     }
 }

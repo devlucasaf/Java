@@ -8,6 +8,6 @@ public class Arara extends Ave {
 
     @Override
     public void emitirSom() {
-        System.out.println(nome + " grita!");
+        System.out.println(getNome() + " grita!");
     }
 }

@@ -8,6 +8,6 @@ public class Anta extends Mamifero {
 
     @Override
     public void emitirSom() {
-        System.out.println(nome + " resmunga.");
+        System.out.println(getNome() + " resmunga.");
     }
 }

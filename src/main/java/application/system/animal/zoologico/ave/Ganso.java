@@ -7,12 +7,12 @@ public class Ganso extends Ave {
     }
 
     public void nadar() {
-        System.out.println(nome + " está nadando no lago.");
+        System.out.println(getNome() + " está nadando no lago.");
     }
 
     @Override
     public void emitirSom() {
-        System.out.println(nome + " grasna alto!");
+        System.out.println(getNome() + " grasna alto!");
     }
 }
 

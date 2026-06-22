@@ -8,6 +8,6 @@ public class Ema extends Ave {
 
     @Override
     public void emitirSom() {
-        System.out.println(nome + " emite um som grave.");
+        System.out.println(getNome() + " emite um som grave.");
     }
 }

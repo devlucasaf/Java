@@ -8,6 +8,6 @@ public class Girafa extends Mamifero {
 
     @Override
     public void emitirSom() {
-        System.out.println(nome + " emite sons quase inaudíveis.");
+        System.out.println(getNome() + " emite sons quase inaudíveis.");
     }
 }

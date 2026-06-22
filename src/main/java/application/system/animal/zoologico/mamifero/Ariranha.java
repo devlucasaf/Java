@@ -8,6 +8,6 @@ public class Ariranha extends Mamifero {
 
     @Override
     public void emitirSom() {
-        System.out.println(nome + " emite sons agudos!");
+        System.out.println(getNome() + " emite sons agudos!");
     }
 }
