@@ -5,10 +5,10 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-import chess.ChessException;
-import chess.ChessMatch;
-import chess.ChessPiece;
-import chess.ChessPosition;
+import udemy.xadrez.chess.ChessException;
+import udemy.xadrez.chess.ChessMatch;
+import udemy.xadrez.chess.ChessPiece;
+import udemy.xadrez.chess.ChessPosition;
 
 
 public class Program {

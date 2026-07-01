@@ -3,6 +3,7 @@ package games.bestminds.supermario;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.net.URL;
 
 public class Game {
     private int     x = 0;
@@ -11,69 +12,72 @@ public class Game {
 
     public Game() {
 
-        // Criação da janela principal (JFrame)
-        JFrame frame = new JFrame("Movimentar Mario");
-        frame.setSize(750, 480); // Define o tamanho da janela
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Fecha a aplicação ao clicar em "X"
-        frame.setLocationRelativeTo(null); // Centraliza a janela na tela
-        frame.setLayout(null); // Layout absoluto (permite usar setBounds)
-        frame.setResizable(false); // Impede redimensionamento
-        frame.setVisible(true); // Torna a janela visível
+        JFrame frame = new JFrame("Super Mario Bros");
+        frame.setSize(750, 480);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLocationRelativeTo(null);
+        frame.setLayout(null);
+        frame.setResizable(false);
 
-        // Criação do painel principal (JPanel)
-        JPanel panel = new JPanel(null); // Layout absoluto
-        panel.setBounds(0, 0, 750, 480); // Ocupa toda a janela
-        panel.setBackground(Color.BLACK); // Cor de fundo preta
-        frame.add(panel); // Adiciona o painel à janela
+        Image fundo = carregarImagem("resources/fundo-mario-bros.png");
+        JPanel panel = new JPanel(null) {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                if (fundo != null) {
+                    g.drawImage(fundo, 0, 0, getWidth(), getHeight(), this);
+                }
+            }
+        };
 
-        // Criação e redimensionamento da imagem do Mario
-        ImageIcon imageIcon = new ImageIcon("resources/mario bros.png");
+        panel.setBounds(0, 0, 750, 480);
+        panel.setBackground(Color.BLACK);
+        frame.add(panel);
+
+        ImageIcon imageIcon = new ImageIcon(carregarImagem("resources/mario-bros.png"));
         ImageIcon resizedImage = new ImageIcon(imageIcon.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH));
-        JButton buttonImageMario = new JButton(resizedImage); // Cria um botão com imagem
-        buttonImageMario.setBorder(null); // Remove a borda do botão
-        buttonImageMario.setBackground(Color.BLACK); // Cor de fundo igual à do painel
-        buttonImageMario.setBounds(0, 0, 60, 60); // Posição inicial de Mario
-        panel.add(buttonImageMario); // Adiciona Mario ao painel
+        JButton buttonImageMario = new JButton(resizedImage);
+        buttonImageMario.setBorder(null);
+        buttonImageMario.setContentAreaFilled(false);
+        buttonImageMario.setOpaque(false);
+        buttonImageMario.setBounds(0, 0, 60, 60);
+        panel.add(buttonImageMario);
 
-        // Criação e redimensionamento da imagem do cogumelo
-        ImageIcon mushroomImage = new ImageIcon("resources/cogumelo.png");
+        ImageIcon mushroomImage = new ImageIcon(carregarImagem("resources/cogumelo.png"));
         ImageIcon resizedImageMushroom = new ImageIcon(mushroomImage.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH));
         JButton buttonImageMushroom = new JButton(resizedImageMushroom);
-        buttonImageMushroom.setBounds(680, 150, 60, 60); // Posição do cogumelo
-        buttonImageMushroom.setBackground(Color.BLACK);
+        buttonImageMushroom.setBounds(680, 150, 60, 60);
+        buttonImageMushroom.setContentAreaFilled(false);
+        buttonImageMushroom.setOpaque(false);
         buttonImageMushroom.setBorder(null);
-        panel.add(buttonImageMushroom); // Adiciona o cogumelo ao painel
+        panel.add(buttonImageMushroom);
 
-        // Adiciona um ouvinte de teclado ao frame para detectar as teclas pressionadas
+
         frame.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
-                int keyCode = e.getKeyCode(); // Pega o código da tecla pressionada
+                int keyCode = e.getKeyCode();
 
-                // Verifica qual tecla foi pressionada e ajusta a posição (x, y) do Mario
                 if (keyCode == KeyEvent.VK_W || keyCode == KeyEvent.VK_UP) {
-                    y -= 10; // Move para cima
+                    y -= 10;
                 } else if (keyCode == KeyEvent.VK_S || keyCode == KeyEvent.VK_DOWN) {
-                    y += 10; // Move para baixo
+                    y += 10;
                 } else if (keyCode == KeyEvent.VK_A || keyCode == KeyEvent.VK_LEFT) {
-                    x -= 10; // Move para a esquerda
+                    x -= 10;
                 } else if (keyCode == KeyEvent.VK_D || keyCode == KeyEvent.VK_RIGHT) {
-                    x += 10; // Move para a direita
+                    x += 10;
                 }
 
-                // Atualiza a posição do botão do Mario na tela
                 buttonImageMario.setBounds(x, y, 60, 60);
 
-                // Verifica colisão entre o Mario e o cogumelo
                 Rectangle marioBounds = buttonImageMario.getBounds();
                 Rectangle mushroomBounds = buttonImageMushroom.getBounds();
 
                 if (marioBounds.intersects(mushroomBounds)) {
-                    frame.dispose(); // Fecha a janela atual
-                    new GamePageTwo(); // Chama a próxima página do jogo
+                    frame.dispose();
+                    new GamePageTwo();
                 }
 
-                // Impede que o Mario ultrapasse os limites da tela
                 if (x < 0) {
                     x = 0;
                 }
@@ -92,13 +96,27 @@ public class Game {
             }
         });
 
-        // Garante que o frame receba os eventos do teclado
         frame.setFocusable(true);
         frame.requestFocusInWindow();
+        frame.setVisible(true);
     }
 
-    // Método principal: inicia o jogo
+    private Image carregarImagem(String caminho) {
+        URL url = getClass().getResource(caminho);
+        if (url != null) {
+            return new ImageIcon(url).getImage();
+        }
+
+        java.io.File arquivo = new java.io.File("src/main/java/games/bestminds/supermario/" + caminho);
+        if (arquivo.exists()) {
+            return new ImageIcon(arquivo.getAbsolutePath()).getImage();
+        }
+
+        System.err.println("Imagem nao encontrada: " + caminho);
+        return null;
+    }
+
     public static void main(String[] args) {
-        new Game(); // Cria uma nova instância do jogo
+        new Game();
     }
 }

@@ -6,10 +6,10 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-import chess.ChessMatch;
-import chess.ChessPiece;
-import chess.ChessPosition;
-import chess.Color;
+import udemy.xadrez.chess.ChessMatch;
+import udemy.xadrez.chess.ChessPiece;
+import udemy.xadrez.chess.ChessPosition;
+import udemy.xadrez.chess.Color;
 
 public class UI {
 
