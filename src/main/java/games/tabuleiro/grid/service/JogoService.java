@@ -43,9 +43,7 @@ public class JogoService {
                     System.out.println("Jogador adicionado");
                     grade.setRespostas(i, j, resposta);
                     pontuacao++;
-                }
-
-                else {
+                } else {
                     System.out.println("Resposta incorreta");
                     grade.setRespostas(i, j, "X");
                 }
