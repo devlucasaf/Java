@@ -11,9 +11,9 @@ public class CacaNiquel {
     private double saldo;
     private double jackpot = 1000.0;
 
-    private int rodadas;
-    private int vitorias;
-    private double maiorPremio;
+    private int     rodadas;
+    private int     vitorias;
+    private double  maiorPremio;
 
     public static void main(String[] args) {
         new CacaNiquel().iniciar();
