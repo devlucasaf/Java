@@ -32,7 +32,8 @@ public class DisplayGrafico implements Display {
                 painel = new Painel(estado);
                 painel.setPreferredSize(new Dimension(
                         layout.getLargura() * TAMANHO_CELULA,
-                        layout.getAltura() * TAMANHO_CELULA + 30));
+                        layout.getAltura() * TAMANHO_CELULA + 30
+                ));
                 janela.add(painel);
                 janela.pack();
                 janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -47,7 +48,10 @@ public class DisplayGrafico implements Display {
 
     @Override
     public void atualizar(EstadoJogo estado) {
-        if (painel == null) return;
+        if (painel == null) {
+            return;
+        }
+
         SwingUtilities.invokeLater(() -> {
             painel.estado = estado;
             painel.repaint();

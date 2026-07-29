@@ -38,9 +38,14 @@ public class Main {
         try (Scanner sc = new Scanner(System.in)) {
             while (true) {
                 System.out.print("> ");
-                if (!sc.hasNextLine()) break;
+                if (!sc.hasNextLine()) {
+                    break;
+                }
+
                 String consulta = sc.nextLine().trim();
-                if (consulta.equalsIgnoreCase("sair") || consulta.isEmpty()) break;
+                if (consulta.equalsIgnoreCase("sair") || consulta.isEmpty()) {
+                    break;
+                }
                 executarBusca(motor, consulta);
             }
         }
@@ -48,12 +53,13 @@ public class Main {
 
     private static void executarBusca(MotorBusca motor, String consulta) {
         System.out.println("\nBuscando: \"" + consulta + "\"");
-        List<MotorBusca.Resultado> res = motor.buscar(consulta, 5);
+        List<Resultado> res = motor.buscar(consulta, 5);
         if (res.isEmpty()) {
             System.out.println("  (sem resultados)");
             return;
         }
-        for (MotorBusca.Resultado r : res) {
+
+        for (Resultado r : res) {
             System.out.printf("  [%.4f] %s: %s%n", r.score, r.doc.getId(), r.doc.getTitulo());
         }
     }

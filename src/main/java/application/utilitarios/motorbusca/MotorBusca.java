@@ -20,7 +20,9 @@ public class MotorBusca {
 
     public double idf(String termo) {
         int ocorrencias = ocorrenciasPorTermo.getOrDefault(termo, 0);
-        if (ocorrencias == 0) return 0;
+        if (ocorrencias == 0) {
+            return 0;
+        }
         return Math.log((double) documentos.size() / ocorrencias);
     }
 
@@ -34,10 +36,14 @@ public class MotorBusca {
         for (Documento doc : documentos) {
             double score = 0;
             for (String t : termos) {
-                if (t.isBlank()) continue;
+                if (t.isBlank()) {
+                    continue;
+                }
                 score += tfIdf(doc, t);
             }
-            if (score > 0) resultados.add(new Resultado(doc, score));
+            if (score > 0) {
+                resultados.add(new Resultado(doc, score));
+            }
         }
         resultados.sort(Comparator.comparingDouble((Resultado r) -> r.score).reversed());
         return resultados.subList(0, Math.min(topN, resultados.size()));
@@ -49,16 +55,6 @@ public class MotorBusca {
 
     public int getTamanhoIndice() {
         return ocorrenciasPorTermo.size();
-    }
-
-    public static class Resultado {
-        public final Documento doc;
-        public final double score;
-
-        public Resultado(Documento doc, double score) {
-            this.doc = doc;
-            this.score = score;
-        }
     }
 }
 

@@ -73,6 +73,7 @@ public class Mastermind {
             System.out.println("Digite exatamente " + TAMANHO_SENHA + " cores.");
             return null;
         }
+
         for (String c : partes) {
             boolean valida = false;
             for (String disponivel : CORES) {
@@ -105,6 +106,7 @@ public class Mastermind {
             if (usadoPalpite[i]) {
                 continue;
             }
+
             for (int j = 0; j < TAMANHO_SENHA; j++) {
                 if (!usadoSegredo[j] && palpite[i].equals(segredo[j])) {
                     parciais++;

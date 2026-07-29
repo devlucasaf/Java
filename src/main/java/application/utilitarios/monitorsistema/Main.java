@@ -11,7 +11,9 @@ public class Main {
             System.out.print("\033[H\033[2J");
             System.out.println("Snapshot " + i + "/" + iteracoes + "\n");
             System.out.println(monitor.snapshot());
-            if (i < iteracoes) Thread.sleep(intervaloMs);
+            if (i < iteracoes) {
+                Thread.sleep(intervaloMs);
+            }
         }
     }
 }

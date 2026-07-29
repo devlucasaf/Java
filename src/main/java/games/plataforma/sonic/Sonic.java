@@ -14,11 +14,11 @@ public class Sonic {
     private static final int FORCA_PULO = 4;
     private static final int GRAVIDADE = 1;
 
-    private final Random sorteador = new Random();
-    private final Scanner entrada = new Scanner(System.in);
-    private final List<int[]> aneis = new ArrayList<>();
-    private final List<int[]> inimigos = new ArrayList<>();
-    private final List<int[]> rampas = new ArrayList<>();
+    private final Random        sorteador = new Random();
+    private final Scanner       entrada = new Scanner(System.in);
+    private final List<int[]>   aneis = new ArrayList<>();
+    private final List<int[]>   inimigos = new ArrayList<>();
+    private final List<int[]>   rampas = new ArrayList<>();
 
     private int     jogadorX = 4;
     private int     jogadorY = CHAO;

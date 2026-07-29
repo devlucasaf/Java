@@ -15,9 +15,9 @@ import java.net.Socket;
 
 public class ServidorControle {
 
-    private final int porta;
-    private final Robot robot;
-    private volatile boolean rodando = true;
+    private final int           porta;
+    private final Robot         robot;
+    private volatile boolean    rodando = true;
 
     public ServidorControle(int porta) throws AWTException {
         this.porta = porta;
@@ -25,7 +25,9 @@ public class ServidorControle {
     }
 
     public void iniciar() throws IOException {
-        try (ServerSocket servidor = new ServerSocket(porta)) {
+        ServerSocket servidor = new ServerSocket(porta);
+
+        try {
             System.out.println("Servidor de controle na porta " + porta);
             System.out.println("Comandos: SCREEN | KEY <codigo> | MOUSE <x> <y> | CLICK | SAIR");
             while (rodando) {
@@ -33,14 +35,20 @@ public class ServidorControle {
                 System.out.println("Cliente conectado: " + cliente.getInetAddress());
                 new Thread(() -> tratar(cliente)).start();
             }
+        } finally {
+            servidor.close();
         }
     }
 
     private void tratar(Socket cliente) {
-        try (Socket s = cliente;
-             DataInputStream in = new DataInputStream(s.getInputStream());
-             DataOutputStream out = new DataOutputStream(s.getOutputStream())) {
-            while (!s.isClosed()) {
+        DataInputStream in = null;
+        DataOutputStream out = null;
+
+        try {
+            in = new DataInputStream(cliente.getInputStream());
+            out = new DataOutputStream(cliente.getOutputStream());
+
+            while (!cliente.isClosed()) {
                 String comando = in.readUTF();
                 System.out.println("<- " + comando);
                 String[] partes = comando.split("\\s+");
@@ -71,6 +79,23 @@ public class ServidorControle {
             }
         } catch (IOException e) {
             System.out.println("Cliente desconectou: " + e.getMessage());
+        } finally {
+            if (out != null) {
+                try {
+                    out.close();
+                } catch (IOException ignorado) {
+                }
+            }
+            if (in != null) {
+                try {
+                    in.close();
+                } catch (IOException ignorado) {
+                }
+            }
+            try {
+                cliente.close();
+            } catch (IOException ignorado) {
+            }
         }
     }
 

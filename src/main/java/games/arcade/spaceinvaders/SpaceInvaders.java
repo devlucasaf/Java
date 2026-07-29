@@ -17,23 +17,22 @@ import java.util.List;
 import java.util.Random;
 
 public class SpaceInvaders extends JPanel {
-
     private static final int LARGURA = 800;
     private static final int ALTURA = 600;
     private static final int FPS = 60;
 
-    private final Nave jogador = new Nave(LARGURA / 2.0 - 20, ALTURA - 60);
+    private final Nave          jogador = new Nave(LARGURA / 2.0 - 20, ALTURA - 60);
     private final List<Inimigo> inimigos = new ArrayList<>();
-    private final List<Tiro> tiros = new ArrayList<>();
-    private final Random random = new Random();
+    private final List<Tiro>    tiros = new ArrayList<>();
+    private final Random        random = new Random();
 
-    private int pontuacao = 0;
-    private int onda = 1;
-    private double dirInimigos = 60;
-    private long ultimoTiroInimigo = 0;
-    private long ultimoTiroJogador = 0;
+    private int     pontuacao = 0;
+    private int     onda = 1;
+    private double  dirInimigos = 60;
+    private long    ultimoTiroInimigo = 0;
+    private long    ultimoTiroJogador = 0;
     private boolean fimDeJogo = false;
-    private long tempoAnterior = System.nanoTime();
+    private long    tempoAnterior = System.nanoTime();
 
     public SpaceInvaders() {
         setPreferredSize(new Dimension(LARGURA, ALTURA));
@@ -44,10 +43,21 @@ public class SpaceInvaders extends JPanel {
         addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
-                if (fimDeJogo && e.getKeyCode() == KeyEvent.VK_R) reiniciar();
-                if (e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A) jogador.moverEsquerda();
-                if (e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D) jogador.moverDireita();
-                if (e.getKeyCode() == KeyEvent.VK_SPACE) tentarAtirar();
+                if (fimDeJogo && e.getKeyCode() == KeyEvent.VK_R) {
+                    reiniciar();
+                }
+
+                if (e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A) {
+                    jogador.moverEsquerda();
+                }
+
+                if (e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D) {
+                    jogador.moverDireita();
+                }
+
+                if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+                    tentarAtirar();
+                }
             }
 
             @Override
@@ -93,7 +103,9 @@ public class SpaceInvaders extends JPanel {
         long agora = System.nanoTime();
         double dt = (agora - tempoAnterior) / 1_000_000_000.0;
         tempoAnterior = agora;
-        if (!fimDeJogo) atualizar(dt);
+        if (!fimDeJogo) {
+            atualizar(dt);
+        }
         repaint();
     }
 
@@ -104,25 +116,37 @@ public class SpaceInvaders extends JPanel {
         double maxX = Double.NEGATIVE_INFINITY;
         double maxY = Double.NEGATIVE_INFINITY;
         for (Inimigo i : inimigos) {
-            if (!i.isAtivo()) continue;
+            if (!i.isAtivo()) {
+                continue;
+            }
             i.velocidadeX = dirInimigos;
             i.atualizar(dt);
             minX = Math.min(minX, i.getX());
             maxX = Math.max(maxX, i.getX() + i.getLargura());
             maxY = Math.max(maxY, i.getY() + i.getAltura());
         }
+
         if (maxX > LARGURA - 20 && dirInimigos > 0) {
             dirInimigos = -Math.abs(dirInimigos);
-            for (Inimigo i : inimigos) i.y += 20;
+            for (Inimigo i : inimigos) {
+                i.y += 20;
+            }
         } else if (minX < 20 && dirInimigos < 0) {
             dirInimigos = Math.abs(dirInimigos);
-            for (Inimigo i : inimigos) i.y += 20;
+            for (Inimigo i : inimigos) {
+                i.y += 20;
+            }
         }
 
         long agora = System.currentTimeMillis();
         if (agora - ultimoTiroInimigo > 800 - onda * 50 && !inimigos.isEmpty()) {
             List<Inimigo> ativos = new ArrayList<>();
-            for (Inimigo i : inimigos) if (i.isAtivo()) ativos.add(i);
+            for (Inimigo i : inimigos) {
+                if (i.isAtivo()) {
+                    ativos.add(i);
+                }
+            }
+
             if (!ativos.isEmpty()) {
                 tiros.add(ativos.get(random.nextInt(ativos.size())).atirar());
                 ultimoTiroInimigo = agora;
@@ -136,6 +160,7 @@ public class SpaceInvaders extends JPanel {
                 it.remove();
                 continue;
             }
+
             if (t.isDoJogador()) {
                 for (Inimigo i : inimigos) {
                     if (i.isAtivo() && t.colideCom(i)) {
@@ -148,7 +173,9 @@ public class SpaceInvaders extends JPanel {
             } else if (t.colideCom(jogador)) {
                 jogador.perderVida();
                 t.destruir();
-                if (!jogador.isAtivo()) fimDeJogo = true;
+                if (!jogador.isAtivo()) {
+                    fimDeJogo = true;
+                }
             }
         }
 
@@ -157,7 +184,10 @@ public class SpaceInvaders extends JPanel {
             onda++;
             criarOnda();
         }
-        if (maxY > jogador.getY()) fimDeJogo = true;
+
+        if (maxY > jogador.getY()) {
+            fimDeJogo = true;
+        }
     }
 
     @Override
@@ -175,23 +205,21 @@ public class SpaceInvaders extends JPanel {
 
         if (jogador.isAtivo()) {
             g2.setColor(Color.GREEN);
-            g2.fillRect((int) jogador.getX(), (int) jogador.getY(),
-                    (int) jogador.getLargura(), (int) jogador.getAltura());
+            g2.fillRect((int) jogador.getX(), (int) jogador.getY(), (int) jogador.getLargura(), (int) jogador.getAltura());
             g2.fillRect((int) jogador.getX() + 17, (int) jogador.getY() - 6, 6, 6);
         }
 
         for (Inimigo i : inimigos) {
-            if (!i.isAtivo()) continue;
-            g2.setColor(i.getPontos() >= 40 ? Color.MAGENTA
-                    : i.getPontos() >= 20 ? Color.CYAN : Color.YELLOW);
-            g2.fillRect((int) i.getX(), (int) i.getY(),
-                    (int) i.getLargura(), (int) i.getAltura());
+            if (!i.isAtivo()) {
+                continue;
+            }
+            g2.setColor(i.getPontos() >= 40 ? Color.MAGENTA : i.getPontos() >= 20 ? Color.CYAN : Color.YELLOW);
+            g2.fillRect((int) i.getX(), (int) i.getY(), (int) i.getLargura(), (int) i.getAltura());
         }
 
         for (Tiro t : tiros) {
             g2.setColor(t.isDoJogador() ? Color.WHITE : Color.RED);
-            g2.fillRect((int) t.getX(), (int) t.getY(),
-                    (int) t.getLargura(), (int) t.getAltura());
+            g2.fillRect((int) t.getX(), (int) t.getY(), (int) t.getLargura(), (int) t.getAltura());
         }
 
         g2.setColor(Color.WHITE);
@@ -213,6 +241,7 @@ public class SpaceInvaders extends JPanel {
     public static void main(String[] args) {
         JFrame janela = new JFrame("Space Invaders");
         SpaceInvaders jogo = new SpaceInvaders();
+
         janela.add(jogo);
         janela.pack();
         janela.setResizable(false);

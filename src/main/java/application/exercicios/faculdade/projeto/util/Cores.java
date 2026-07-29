@@ -1,4 +1,4 @@
-package application.exercicios.faculdade.projetofaculdade.util;
+package application.exercicios.faculdade.projeto.util;
 
 import java.awt.Color;
 

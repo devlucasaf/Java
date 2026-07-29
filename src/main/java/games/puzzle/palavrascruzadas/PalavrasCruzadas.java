@@ -6,10 +6,10 @@ import java.util.Scanner;
 
 public class PalavrasCruzadas {
 
-    private static final int LINHAS = 7;
-    private static final int COLUNAS = 9;
-    private static final char BLOQUEADO = '#';
-    private static final char VAZIO = '.';
+    private static final int    LINHAS = 7;
+    private static final int    COLUNAS = 9;
+    private static final char   BLOQUEADO = '#';
+    private static final char   VAZIO = '.';
 
     private final char[][] solucao = {
             {BLOQUEADO, 'J', BLOQUEADO, BLOQUEADO, BLOQUEADO, 'C', BLOQUEADO, BLOQUEADO, BLOQUEADO},
@@ -95,7 +95,9 @@ public class PalavrasCruzadas {
     private boolean resolvido() {
         for (int i = 0; i < LINHAS; i++) {
             for (int j = 0; j < COLUNAS; j++) {
-                if (tabuleiro[i][j] != solucao[i][j]) return false;
+                if (tabuleiro[i][j] != solucao[i][j]) {
+                    return false;
+                }
             }
         }
         return true;

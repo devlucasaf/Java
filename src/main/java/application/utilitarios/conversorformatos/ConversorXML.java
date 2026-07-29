@@ -15,20 +15,25 @@ public final class ConversorXML {
     }
 
     public static void escrever(List<Registro> registros, Path arquivo) throws IOException {
-        StringBuilder sb = new StringBuilder("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
-        sb.append("<registros>\n");
+        StringBuilder stringBuilder = new StringBuilder("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
+        stringBuilder.append("<registros>\n");
         for (Registro r : registros) {
-            sb.append("  <registro>\n");
+            stringBuilder.append("  <registro>\n");
             for (Map.Entry<String, String> e : r.getCampos().entrySet()) {
                 String chave = sanitizarTag(e.getKey());
-                sb.append("    <").append(chave).append(">")
+                stringBuilder
+                        .append("    <")
+                        .append(chave)
+                        .append(">")
                         .append(escapar(e.getValue()))
-                        .append("</").append(chave).append(">\n");
+                        .append("</")
+                        .append(chave)
+                        .append(">\n");
             }
-            sb.append("  </registro>\n");
+            stringBuilder.append("  </registro>\n");
         }
-        sb.append("</registros>\n");
-        Files.writeString(arquivo, sb.toString());
+        stringBuilder.append("</registros>\n");
+        Files.writeString(arquivo, stringBuilder.toString());
     }
 
     public static List<Registro> ler(Path arquivo) throws IOException {
@@ -53,7 +58,9 @@ public final class ConversorXML {
     }
 
     private static String escapar(String s) {
-        if (s == null) return "";
+        if (s == null) {
+            return "";
+        }
         return s.replace("&", "&amp;").replace("<", "&lt;")
                 .replace(">", "&gt;").replace("\"", "&quot;");
     }

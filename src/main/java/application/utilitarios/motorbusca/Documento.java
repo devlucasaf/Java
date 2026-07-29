@@ -5,11 +5,11 @@ import java.util.Map;
 
 public class Documento {
 
-    private final String id;
-    private final String titulo;
-    private final String conteudo;
-    private final Map<String, Integer> frequencias = new HashMap<>();
-    private int totalTermos;
+    private final String                id;
+    private final String                titulo;
+    private final String                conteudo;
+    private final Map<String, Integer>  frequencias = new HashMap<>();
+    private int                         totalTermos;
 
     public Documento(String id, String titulo, String conteudo) {
         this.id = id;
@@ -20,7 +20,9 @@ public class Documento {
 
     private void indexar() {
         for (String palavra : conteudo.toLowerCase().split("[^\\p{L}0-9]+")) {
-            if (palavra.isBlank() || palavra.length() < 2) continue;
+            if (palavra.isBlank() || palavra.length() < 2) {
+                continue;
+            }
             frequencias.merge(palavra, 1, Integer::sum);
             totalTermos++;
         }

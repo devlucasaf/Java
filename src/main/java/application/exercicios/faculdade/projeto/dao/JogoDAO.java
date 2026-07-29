@@ -1,6 +1,6 @@
-package application.exercicios.faculdade.projetofaculdade.dao;
+package application.exercicios.faculdade.projeto.dao;
 
-import application.exercicios.faculdade.projetofaculdade.model.Jogo;
+import application.exercicios.faculdade.projeto.model.Jogo;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,7 +14,7 @@ public class JogoDAO {
 
     private final Connection conexao;
 
-    public JogoDAO(ConexaoBanco banco) {
+    public JogoDAO(DataBase banco) {
         this.conexao = banco.getConexao();
     }
 

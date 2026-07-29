@@ -5,13 +5,13 @@ import java.util.Map;
 
 public class Resultado {
 
-    public final long totalLinhas;
-    public final long linhasValidas;
-    public final long linhasCasadas;
-    public final Map<String, Integer> porNivel;
-    public final Map<Integer, Integer> porHora;
-    public final LocalDateTime primeira;
-    public final LocalDateTime ultima;
+    public final long                   totalLinhas;
+    public final long                   linhasValidas;
+    public final long                   linhasCasadas;
+    public final Map<String, Integer>   porNivel;
+    public final Map<Integer, Integer>  porHora;
+    public final LocalDateTime          primeira;
+    public final LocalDateTime          ultima;
 
     public Resultado(long totalLinhas, long linhasValidas, long linhasCasadas,
                      Map<String, Integer> porNivel, Map<Integer, Integer> porHora,

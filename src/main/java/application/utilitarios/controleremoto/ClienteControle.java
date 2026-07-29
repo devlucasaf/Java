@@ -17,19 +17,29 @@ public class ClienteControle {
         String host = args.length > 0 ? args[0] : "localhost";
         int porta = args.length > 1 ? Integer.parseInt(args[1]) : 5555;
 
-        try (Socket s = new Socket(host, porta);
-             DataInputStream in = new DataInputStream(s.getInputStream());
-             DataOutputStream out = new DataOutputStream(s.getOutputStream());
-             Scanner sc = new Scanner(System.in)) {
+        Socket s = new Socket(host, porta);
+        DataInputStream in = null;
+        DataOutputStream out = null;
+        Scanner scanner = null;
+
+        try {
+            in = new DataInputStream(s.getInputStream());
+            out = new DataOutputStream(s.getOutputStream());
+            scanner = new Scanner(System.in);
 
             System.out.println("Conectado a " + host + ":" + porta);
             System.out.println("Comandos: SCREEN | KEY <cod> | MOUSE <x> <y> | CLICK | SAIR");
 
             while (true) {
                 System.out.print("> ");
-                if (!sc.hasNextLine()) break;
-                String cmd = sc.nextLine().trim();
-                if (cmd.isEmpty()) continue;
+                if (!scanner.hasNextLine()) {
+                    break;
+                }
+
+                String cmd = scanner.nextLine().trim();
+                if (cmd.isEmpty()) {
+                    continue;
+                }
                 out.writeUTF(cmd);
 
                 if (cmd.equalsIgnoreCase("SCREEN")) {
@@ -44,9 +54,24 @@ public class ClienteControle {
                 } else {
                     String resposta = in.readUTF();
                     System.out.println("<- " + resposta);
-                    if (resposta.equals("BYE")) break;
+                    if (resposta.equals("BYE")) {
+                        break;
+                    }
                 }
             }
+        } finally {
+            if (scanner != null) {
+                scanner.close();
+            }
+
+            if (out != null) {
+                out.close();
+            }
+
+            if (in != null) {
+                in.close();
+            }
+            s.close();
         }
     }
 }

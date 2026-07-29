@@ -18,27 +18,32 @@ public class Main {
         String nivel = args.length > 2 ? args[2] : null;
 
         System.out.println("Analisando: " + arquivo.toAbsolutePath());
-        if (filtro != null) System.out.println("Filtro regex: " + filtro);
-        if (nivel != null) System.out.println("Filtro nivel: " + nivel);
+        if (filtro != null) {
+            System.out.println("Filtro regex: " + filtro);
+        }
+
+        if (nivel != null) {
+            System.out.println("Filtro nivel: " + nivel);
+        }
         System.out.println();
 
         AnalisadorLogs analisador = new AnalisadorLogs(arquivo);
-        AnalisadorLogs.Resultado r = analisador.analisar(filtro, nivel);
+        Resultado resultado = analisador.analisar(filtro, nivel);
 
         System.out.println("=== ESTATISTICAS ===");
-        System.out.println("Linhas totais:   " + r.totalLinhas);
-        System.out.println("Linhas validas:  " + r.linhasValidas);
-        System.out.println("Linhas casadas:  " + r.linhasCasadas);
-        System.out.println("Primeira:        " + r.primeira);
-        System.out.println("Ultima:          " + r.ultima);
+        System.out.println("Linhas totais: " + resultado.totalLinhas);
+        System.out.println("Linhas validas: " + resultado.linhasValidas);
+        System.out.println("Linhas casadas: " + resultado.linhasCasadas);
+        System.out.println("Primeira: " + resultado.primeira);
+        System.out.println("Ultima: " + resultado.ultima);
         System.out.println();
 
         System.out.println("=== POR NIVEL ===");
-        r.porNivel.forEach((k, v) -> System.out.printf("%-8s %d%n", k, v));
+        resultado.porNivel.forEach((k, v) -> System.out.printf("%-8s %d%n", k, v));
         System.out.println();
 
         System.out.println("=== POR HORA ===");
-        r.porHora.forEach((k, v) -> System.out.printf("%02dh  %s (%d)%n",
+        resultado.porHora.forEach((k, v) -> System.out.printf("%02dh  %s (%d)%n",
                 k, "#".repeat(Math.min(60, v)), v));
     }
 

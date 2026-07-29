@@ -26,7 +26,9 @@ public class AgenteDirecional implements Agente {
     @Override
     public Direcao getAcao(EstadoJogo estado, int indice) {
         List<Direcao> acoes = estado.getAcoesLegais(indice);
-        if (acoes.isEmpty()) return Direcao.PARADO;
+        if (acoes.isEmpty()) {
+            return Direcao.PARADO;
+        }
 
         EstadoAgente agente = estado.getAgente(indice);
         Posicao pacman = estado.getPosicaoPacman();

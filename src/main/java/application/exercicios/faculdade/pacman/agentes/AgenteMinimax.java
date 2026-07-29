@@ -9,8 +9,8 @@ import java.util.Random;
 
 public class AgenteMinimax implements Agente {
 
-    private final int profundidade;
-    private final Random random;
+    private final int       profundidade;
+    private final Random    random;
 
     public AgenteMinimax() {
         this(2);
@@ -28,7 +28,9 @@ public class AgenteMinimax implements Agente {
     @Override
     public Direcao getAcao(EstadoJogo estado, int indice) {
         List<Direcao> acoes = estado.getAcoesLegais(indice);
-        if (acoes.isEmpty()) return Direcao.PARADO;
+        if (acoes.isEmpty()) {
+            return Direcao.PARADO;
+        }
 
         double melhorValor = Double.NEGATIVE_INFINITY;
         List<Direcao> melhores = new ArrayList<>();
@@ -52,7 +54,9 @@ public class AgenteMinimax implements Agente {
         }
 
         List<Direcao> acoes = estado.getAcoesLegais(indiceAgente);
-        if (acoes.isEmpty()) return FuncaoAvaliacao.avaliar(estado);
+        if (acoes.isEmpty()) {
+            return FuncaoAvaliacao.avaliar(estado);
+        }
 
         int numAgentes = estado.getNumAgentes();
         int proxAgente = (indiceAgente + 1) % numAgentes;
@@ -64,9 +68,13 @@ public class AgenteMinimax implements Agente {
             EstadoJogo sucessor = estado.gerarSucessor(indiceAgente, a);
             double v = minimax(sucessor, proxProfundidade, proxAgente);
             if (ehMax) {
-                if (v > melhor) melhor = v;
+                if (v > melhor) {
+                    melhor = v;
+                }
             } else {
-                if (v < melhor) melhor = v;
+                if (v < melhor) {
+                    melhor = v;
+                }
             }
         }
         return melhor;

@@ -30,14 +30,21 @@ public class Nave extends Entidade {
 
     public void perderVida() {
         vidas--;
-        if (vidas <= 0) destruir();
+        if (vidas <= 0) {
+            destruir();
+        }
     }
 
     @Override
     public void atualizar(double dt) {
         super.atualizar(dt);
-        if (x < 0) x = 0;
-        if (x + largura > 800) x = 800 - largura;
+        if (x < 0) {
+            x = 0;
+        }
+
+        if (x + largura > 800) {
+            x = 800 - largura;
+        }
     }
 }
 

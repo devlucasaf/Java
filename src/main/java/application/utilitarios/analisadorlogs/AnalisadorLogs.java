@@ -33,17 +33,29 @@ public class AnalisadorLogs {
             while ((linha = br.readLine()) != null) {
                 totalLinhas++;
                 EntradaLog e = EntradaLog.parse(linha);
-                if (e == null) continue;
+                if (e == null) {
+                    continue;
+                }
                 linhasValidas++;
 
-                if (nivelFiltro != null && !nivelFiltro.equalsIgnoreCase(e.getNivel())) continue;
-                if (filtro != null && !filtro.matcher(e.getLinhaOriginal()).find()) continue;
+                if (nivelFiltro != null && !nivelFiltro.equalsIgnoreCase(e.getNivel())) {
+                    continue;
+                }
+                
+                if (filtro != null && !filtro.matcher(e.getLinhaOriginal()).find()) {
+                    continue;
+                }
 
                 linhasCasadas++;
                 porNivel.merge(e.getNivel(), 1, Integer::sum);
                 porHora.merge(e.getInstante().getHour(), 1, Integer::sum);
-                if (primeira == null || e.getInstante().isBefore(primeira)) primeira = e.getInstante();
-                if (ultima == null || e.getInstante().isAfter(ultima)) ultima = e.getInstante();
+                if (primeira == null || e.getInstante().isBefore(primeira)) {
+                    primeira = e.getInstante();
+                }
+                
+                if (ultima == null || e.getInstante().isAfter(ultima)) {
+                    ultima = e.getInstante();
+                }
             }
         }
 
@@ -63,30 +75,10 @@ public class AnalisadorLogs {
         return map.entrySet().stream()
                 .sorted(Map.Entry.comparingByKey())
                 .collect(Collectors.toMap(
-                        Map.Entry::getKey, Map.Entry::getValue,
+                        Map.Entry::getKey,
+                        Map.Entry::getValue,
                         (a, b) -> a, LinkedHashMap::new));
     }
 
-    public static class Resultado {
-        public final long totalLinhas;
-        public final long linhasValidas;
-        public final long linhasCasadas;
-        public final Map<String, Integer> porNivel;
-        public final Map<Integer, Integer> porHora;
-        public final LocalDateTime primeira;
-        public final LocalDateTime ultima;
-
-        public Resultado(long totalLinhas, long linhasValidas, long linhasCasadas,
-                         Map<String, Integer> porNivel, Map<Integer, Integer> porHora,
-                         LocalDateTime primeira, LocalDateTime ultima) {
-            this.totalLinhas = totalLinhas;
-            this.linhasValidas = linhasValidas;
-            this.linhasCasadas = linhasCasadas;
-            this.porNivel = porNivel;
-            this.porHora = porHora;
-            this.primeira = primeira;
-            this.ultima = ultima;
-        }
-    }
 }
 

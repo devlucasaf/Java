@@ -8,12 +8,12 @@ import java.util.Set;
 
 public class Boggle {
 
-    private static final int TAMANHO = 4;
-    private static final long TEMPO_LIMITE_MS = 180_000;
+    private static final int    TAMANHO = 4;
+    private static final long   TEMPO_LIMITE_MS = 180_000;
 
-    private final char[][] grade = new char[TAMANHO][TAMANHO];
-    private final Random sorteador = new Random();
-    private final Scanner entrada = new Scanner(System.in);
+    private final char[][]  grade = new char[TAMANHO][TAMANHO];
+    private final Random    sorteador = new Random();
+    private final Scanner   entrada = new Scanner(System.in);
 
     private final Set<String> dicionario = new HashSet<>(Arrays.asList(
             "JAVA", "RIO", "MAR", "SOL", "PAR", "LUA", "CASA", "BOLA", "VIDA",

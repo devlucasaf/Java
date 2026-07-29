@@ -2,12 +2,12 @@ package games.puzzle.palavrascruzadas;
 
 public class Pista {
 
-    private final int numero;
-    private final String direcao;
-    private final String dica;
-    private final int linhaInicial;
-    private final int colunaInicial;
-    private final int tamanho;
+    private final int       numero;
+    private final String    direcao;
+    private final String    dica;
+    private final int       linhaInicial;
+    private final int       colunaInicial;
+    private final int       tamanho;
 
     public Pista(int numero, String direcao, String dica, int linhaInicial, int colunaInicial, int tamanho) {
         this.numero = numero;

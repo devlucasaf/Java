@@ -17,7 +17,9 @@ public class Tiro extends Entidade {
     @Override
     public void atualizar(double dt) {
         super.atualizar(dt);
-        if (y < -20 || y > 700) destruir();
+        if (y < -20 || y > 700) {
+            destruir();
+        }
     }
 }
 

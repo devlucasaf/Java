@@ -2,13 +2,13 @@ package games.arcade.spaceinvaders;
 
 public class Entidade {
 
-    protected double x;
-    protected double y;
-    protected double largura;
-    protected double altura;
-    protected double velocidadeX;
-    protected double velocidadeY;
-    protected boolean ativo = true;
+    protected double    x;
+    protected double    y;
+    protected double    largura;
+    protected double    altura;
+    protected double    velocidadeX;
+    protected double    velocidadeY;
+    protected boolean   ativo = true;
 
     public Entidade(double x, double y, double largura, double altura) {
         this.x = x;
@@ -30,11 +30,28 @@ public class Entidade {
                 && y + altura > outra.y;
     }
 
-    public double getX() { return x; }
-    public double getY() { return y; }
-    public double getLargura() { return largura; }
-    public double getAltura() { return altura; }
-    public boolean isAtivo() { return ativo; }
-    public void destruir() { this.ativo = false; }
+    public double getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
+    public double getLargura() {
+        return largura;
+    }
+
+    public double getAltura() {
+        return altura;
+    }
+
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void destruir() {
+        this.ativo = false;
+    }
 }
 

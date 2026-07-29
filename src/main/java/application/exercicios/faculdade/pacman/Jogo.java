@@ -7,9 +7,9 @@ import java.util.List;
 
 public class Jogo {
 
-    private final List<Agente> agentes;
-    private final Display display;
-    private final int atrasoMs;
+    private final List<Agente>  agentes;
+    private final Display       display;
+    private final int           atrasoMs;
 
     public Jogo(List<Agente> agentes, Display display, int atrasoMs) {
         this.agentes = agentes;
@@ -28,6 +28,7 @@ public class Jogo {
                 }
                 estado = estado.gerarSucessor(i, acao);
             }
+
             display.atualizar(estado);
             if (atrasoMs > 0) {
                 try {

@@ -2,9 +2,9 @@ package application.exercicios.faculdade.pacman;
 
 public final class EstadoAgente {
 
-    private final Posicao posicao;
-    private final Direcao direcao;
-    private final int tempoAssustado;
+    private final Posicao   posicao;
+    private final Direcao   direcao;
+    private final int       tempoAssustado;
 
     public EstadoAgente(Posicao posicao, Direcao direcao, int tempoAssustado) {
         this.posicao = posicao;

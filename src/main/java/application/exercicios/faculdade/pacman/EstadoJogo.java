@@ -14,14 +14,14 @@ public final class EstadoJogo {
     private static final int PENALIDADE_TEMPO = -1;
     private static final int TEMPO_ASSUSTADO = 40;
 
-    private final Layout layout;
-    private final boolean[][] comidas;
-    private final List<Posicao> capsulas;
-    private final List<EstadoAgente> agentes;
-    private final int comidaRestante;
-    private final int pontuacao;
-    private final boolean venceu;
-    private final boolean perdeu;
+    private final Layout                layout;
+    private final boolean[][]           comidas;
+    private final List<Posicao>         capsulas;
+    private final List<EstadoAgente>    agentes;
+    private final int                   comidaRestante;
+    private final int                   pontuacao;
+    private final boolean               venceu;
+    private final boolean               perdeu;
 
     private EstadoJogo(Layout layout, boolean[][] comidas, List<Posicao> capsulas,
                        List<EstadoAgente> agentes, int comidaRestante, int pontuacao,
@@ -104,16 +104,21 @@ public final class EstadoJogo {
     }
 
     public List<Direcao> getAcoesLegais(int indiceAgente) {
-        if (terminou()) return Collections.emptyList();
+        if (terminou()) {
+            return Collections.emptyList();
+        }
+
         EstadoAgente agente = agentes.get(indiceAgente);
         Posicao pos = agente.getPosicao();
         List<Direcao> acoes = new ArrayList<>();
+
         for (Direcao d : new Direcao[]{Direcao.NORTE, Direcao.SUL, Direcao.LESTE, Direcao.OESTE}) {
             Posicao nova = pos.mover(d);
             if (!layout.ehParede(nova.getX(), nova.getY())) {
                 acoes.add(d);
             }
         }
+
         if (indiceAgente == 0) {
             acoes.add(Direcao.PARADO);
         } else if (acoes.isEmpty()) {
@@ -146,8 +151,7 @@ public final class EstadoJogo {
 
             int x = proxPos.getX();
             int y = proxPos.getY();
-            if (x >= 0 && y >= 0 && x < novasComidas.length && y < novasComidas[0].length
-                    && novasComidas[x][y]) {
+            if (x >= 0 && y >= 0 && x < novasComidas.length && y < novasComidas[0].length && novasComidas[x][y]) {
                 novasComidas = copiarMatriz(novasComidas);
                 novasComidas[x][y] = false;
                 novaComidaRestante--;

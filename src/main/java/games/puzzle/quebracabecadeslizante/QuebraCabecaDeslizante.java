@@ -6,9 +6,11 @@ import java.util.Scanner;
 public class QuebraCabecaDeslizante {
 
     private static final int TAMANHO = 4;
-    private final int[][] tabuleiro = new int[TAMANHO][TAMANHO];
-    private final Random sorteador = new Random();
-    private final Scanner entrada = new Scanner(System.in);
+
+    private final int[][]   tabuleiro = new int[TAMANHO][TAMANHO];
+    private final Random    sorteador = new Random();
+    private final Scanner   entrada = new Scanner(System.in);
+
     private int vazioLinha;
     private int vazioColuna;
     private int movimentos;
@@ -59,6 +61,7 @@ public class QuebraCabecaDeslizante {
                 System.out.println("PARABENS! Voce resolveu em " + movimentos + " movimentos!");
                 return;
             }
+
             System.out.print("Acao: ");
             String comando = entrada.nextLine().trim().toLowerCase();
             if (comando.equals("q")) {

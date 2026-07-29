@@ -15,10 +15,10 @@ public class PacMan {
     private static final char   PAC = 'C';
     private static final char   FANTASMA = 'G';
 
-    private final Scanner entrada = new Scanner(System.in);
-    private final Random sorteador = new Random();
-    private final char[][] mapa = new char[ALTURA][LARGURA];
-    private final List<int[]> fantasmas = new ArrayList<>();
+    private final Scanner       entrada = new Scanner(System.in);
+    private final Random        sorteador = new Random();
+    private final char[][]      mapa = new char[ALTURA][LARGURA];
+    private final List<int[]>   fantasmas = new ArrayList<>();
 
     private int pacX;
     private int pacY;
@@ -35,7 +35,7 @@ public class PacMan {
         System.out.println("=== PAC-MAN ===");
         System.out.println("Coma todas as pastilhas. Pegue o poder para comer fantasmas.");
         System.out.println("Comandos: a/d (lateral) | w/s (escada) | enter (parado)");
-        System.out.print("Pressione ENTER para comecar...");
+        System.out.print("Pressione ENTER para começar...");
         entrada.nextLine();
 
         construirMapa();
@@ -63,11 +63,11 @@ public class PacMan {
 
         desenhar();
         if (totalPastilhas == 0) {
-            System.out.println("VITORIA! Voce comeu todas as pastilhas!");
+            System.out.println("VITÓRIA! Você comeu todas as pastilhas!");
         } else {
             System.out.println("GAME OVER!");
         }
-        System.out.println("Pontuacao final: " + pontuacao);
+        System.out.println("Pontuação final: " + pontuacao);
     }
 
     private void construirMapa() {
@@ -91,6 +91,7 @@ public class PacMan {
                 }
             }
         }
+
         criarEscada(5, ALTURA - 5, ALTURA - 1);
         criarEscada(LARGURA - 6, ALTURA - 5, ALTURA - 1);
         criarEscada(LARGURA / 2, ALTURA - 9, ALTURA - 5);
@@ -114,8 +115,16 @@ public class PacMan {
         switch (comando) {
             case "a" -> novoX--;
             case "d" -> novoX++;
-            case "w" -> { if (mapa[pacY][pacX] == ESCADA) novoY--; }
-            case "s" -> { if (pacY + 1 < ALTURA && mapa[pacY + 1][pacX] == ESCADA) novoY++; }
+            case "w" -> {
+                if (mapa[pacY][pacX] == ESCADA) {
+                    novoY--;
+                }
+            }
+            case "s" -> {
+                if (pacY + 1 < ALTURA && mapa[pacY + 1][pacX] == ESCADA) {
+                    novoY++;
+                }
+            }
         }
 
         if (novoX >= 0 && novoX < LARGURA && novoY >= 0 && novoY < ALTURA && mapa[novoY][novoX] != PAREDE) {
@@ -150,8 +159,16 @@ public class PacMan {
             switch (direcao) {
                 case 0 -> nx--;
                 case 1 -> nx++;
-                case 2 -> { if (mapa[f[1]][f[0]] == ESCADA) ny--; }
-                case 3 -> { if (f[1] + 1 < ALTURA && mapa[f[1] + 1][f[0]] == ESCADA) ny++; }
+                case 2 -> {
+                    if (mapa[f[1]][f[0]] == ESCADA) {
+                        ny--;
+                    }
+                }
+                case 3 -> {
+                    if (f[1] + 1 < ALTURA && mapa[f[1] + 1][f[0]] == ESCADA) {
+                        ny++;
+                    }
+                }
             }
 
             if (nx >= 0 && nx < LARGURA && ny >= 0 && ny < ALTURA && mapa[ny][nx] != PAREDE) {
@@ -174,7 +191,7 @@ public class PacMan {
                     f[1] = 6;
                 } else {
                     vidas--;
-                    System.out.println("Voce foi pego! Vidas: " + vidas);
+                    System.out.println("Você foi pego! Vidas: " + vidas);
                     pacX = 1;
                     pacY = ALTURA - 2;
                     return;

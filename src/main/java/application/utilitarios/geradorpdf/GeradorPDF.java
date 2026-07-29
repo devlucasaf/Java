@@ -72,9 +72,11 @@ public class GeradorPDF {
 
         int xrefPos = pdf.length();
         pdf.append("xref\n0 6\n0000000000 65535 f \n");
+
         for (int off : offsets) {
             pdf.append(String.format("%010d 00000 n %n", off));
         }
+
         pdf.append("trailer\n<< /Size 6 /Root 1 0 R >>\nstartxref\n")
                 .append(xrefPos).append("\n%%EOF\n");
 
@@ -82,7 +84,9 @@ public class GeradorPDF {
     }
 
     private static String escapar(String s) {
-        return s.replace("\\", "\\\\").replace("(", "\\(").replace(")", "\\)");
+        return s.replace("\\", "\\\\")
+                .replace("(", "\\(")
+                .replace(")", "\\)");
     }
 }
 

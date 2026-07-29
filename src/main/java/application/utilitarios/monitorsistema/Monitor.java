@@ -12,8 +12,8 @@ import java.time.Duration;
 public class Monitor {
 
     private final OperatingSystemMXBean os;
-    private final MemoryMXBean memoria;
-    private final RuntimeMXBean runtime;
+    private final MemoryMXBean          memoria;
+    private final RuntimeMXBean         runtime;
 
     public Monitor() {
         this.os = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
@@ -22,47 +22,88 @@ public class Monitor {
     }
 
     public String snapshot() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("=== SISTEMA ===\n");
-        sb.append("SO:            ").append(os.getName()).append(" ")
-                .append(os.getVersion()).append(" (").append(os.getArch()).append(")\n");
-        sb.append("Processadores: ").append(os.getAvailableProcessors()).append("\n");
-        sb.append("Load medio:    ").append(String.format("%.2f", os.getSystemLoadAverage())).append("\n");
-        sb.append("CPU sistema:   ").append(pct(os.getCpuLoad())).append("\n");
-        sb.append("CPU JVM:       ").append(pct(os.getProcessCpuLoad())).append("\n");
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("=== SISTEMA ===\n");
+        stringBuilder.append("SO:            ")
+                .append(os.getName())
+                .append(" ")
+                .append(os.getVersion())
+                .append(" (")
+                .append(os.getArch())
+                .append(")\n");
 
-        sb.append("\n=== MEMORIA (fisica) ===\n");
+        stringBuilder.append("Processadores: ")
+                .append(os.getAvailableProcessors())
+                .append("\n");
+
+        stringBuilder.append("Load medio:    ")
+                .append(String.format("%.2f", os.getSystemLoadAverage()))
+                .append("\n");
+
+        stringBuilder.append("CPU sistema:   ")
+                .append(pct(os.getCpuLoad()))
+                .append("\n");
+
+        stringBuilder.append("CPU JVM:       ")
+                .append(pct(os.getProcessCpuLoad()))
+                .append("\n");
+
+        stringBuilder.append("\n=== MEMORIA (fisica) ===\n");
         long totalFisica = os.getTotalMemorySize();
         long livreFisica = os.getFreeMemorySize();
         long usadaFisica = totalFisica - livreFisica;
-        sb.append("Total: ").append(mb(totalFisica)).append("\n");
-        sb.append("Usada: ").append(mb(usadaFisica)).append(" (")
-                .append(String.format("%.1f%%", 100.0 * usadaFisica / totalFisica)).append(")\n");
-        sb.append("Livre: ").append(mb(livreFisica)).append("\n");
 
-        sb.append("\n=== HEAP JVM ===\n");
+        stringBuilder.append("Total: ")
+                .append(mb(totalFisica))
+                .append("\n");
+
+        stringBuilder.append("Usada: ")
+                .append(mb(usadaFisica))
+                .append(" (")
+                .append(String.format("%.1f%%", 100.0 * usadaFisica / totalFisica))
+                .append(")\n");
+
+        stringBuilder.append("Livre: ")
+                .append(mb(livreFisica))
+                .append("\n");
+
+        stringBuilder.append("\n=== HEAP JVM ===\n");
         MemoryUsage heap = memoria.getHeapMemoryUsage();
-        sb.append("Usada:  ").append(mb(heap.getUsed())).append("\n");
-        sb.append("Commit: ").append(mb(heap.getCommitted())).append("\n");
-        sb.append("Max:    ").append(mb(heap.getMax())).append("\n");
+        stringBuilder.append("Usada:  ").append(mb(heap.getUsed())).append("\n");
+        stringBuilder.append("Commit: ").append(mb(heap.getCommitted())).append("\n");
+        stringBuilder.append("Max:    ").append(mb(heap.getMax())).append("\n");
 
-        sb.append("\n=== DISCOS ===\n");
+        stringBuilder.append("\n=== DISCOS ===\n");
         for (File raiz : File.listRoots()) {
             long total = raiz.getTotalSpace();
             long livre = raiz.getFreeSpace();
             long usado = total - livre;
-            if (total == 0) continue;
-            sb.append(raiz.getAbsolutePath()).append("  ").append(gb(usado))
-                    .append(" / ").append(gb(total)).append(" (")
+            if (total == 0) {
+                continue;
+            }
+
+            stringBuilder.append(raiz.getAbsolutePath())
+                    .append("  ")
+                    .append(gb(usado))
+                    .append(" / ")
+                    .append(gb(total))
+                    .append(" (")
                     .append(String.format("%.1f%%", 100.0 * usado / total))
                     .append(" usado)\n");
         }
 
-        sb.append("\n=== JVM ===\n");
-        sb.append("Java:     ").append(runtime.getVmName()).append(" ")
-                .append(System.getProperty("java.version")).append("\n");
-        sb.append("Uptime:   ").append(Duration.ofMillis(runtime.getUptime())).append("\n");
-        return sb.toString();
+        stringBuilder.append("\n=== JVM ===\n");
+        stringBuilder.append("Java:     ")
+                .append(runtime.getVmName())
+                .append(" ")
+                .append(System.getProperty("java.version"))
+                .append("\n");
+
+        stringBuilder.append("Uptime:   ")
+                .append(Duration.ofMillis(runtime.getUptime()))
+                .append("\n");
+
+        return stringBuilder.toString();
     }
 
     private static String pct(double v) {

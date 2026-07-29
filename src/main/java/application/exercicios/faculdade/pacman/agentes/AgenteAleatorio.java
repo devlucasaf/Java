@@ -25,7 +25,9 @@ public class AgenteAleatorio implements Agente {
     @Override
     public Direcao getAcao(EstadoJogo estado, int indice) {
         List<Direcao> acoes = estado.getAcoesLegais(indice);
-        if (acoes.isEmpty()) return Direcao.PARADO;
+        if (acoes.isEmpty()) {
+            return Direcao.PARADO;
+        }
         return acoes.get(random.nextInt(acoes.size()));
     }
 }

@@ -1,6 +1,6 @@
-package application.exercicios.faculdade.projetofaculdade.view;
+package application.exercicios.faculdade.projeto.view;
 
-import application.exercicios.faculdade.projetofaculdade.util.Cores;
+import application.exercicios.faculdade.projeto.util.Cores;
 
 import javax.swing.*;
 import java.awt.*;

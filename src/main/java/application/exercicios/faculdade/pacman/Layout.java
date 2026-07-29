@@ -9,14 +9,14 @@ import java.util.List;
 
 public class Layout {
 
-    private final int largura;
-    private final int altura;
-    private final boolean[][] paredes;
-    private final boolean[][] comidas;
+    private final int           largura;
+    private final int           altura;
+    private final boolean[][]   paredes;
+    private final boolean[][]   comidas;
     private final List<Posicao> capsulas;
-    private final Posicao posicaoPacman;
+    private final Posicao       posicaoPacman;
     private final List<Posicao> posicoesFantasmas;
-    private final int totalComida;
+    private final int           totalComida;
 
     private Layout(int largura, int altura, boolean[][] paredes, boolean[][] comidas,
                    List<Posicao> capsulas, Posicao posicaoPacman,
@@ -40,7 +40,9 @@ public class Layout {
     }
 
     public boolean ehParede(int x, int y) {
-        if (x < 0 || y < 0 || x >= largura || y >= altura) return true;
+        if (x < 0 || y < 0 || x >= largura || y >= altura) {
+            return true;
+        }
         return paredes[x][y];
     }
 
@@ -74,6 +76,7 @@ public class Layout {
         while (!linhas.isEmpty() && linhas.get(linhas.size() - 1).trim().isEmpty()) {
             linhas.remove(linhas.size() - 1);
         }
+
         int altura = linhas.size();
         int largura = linhas.get(0).length();
 
@@ -130,7 +133,9 @@ public class Layout {
                         "faculdade", "pacman", "layouts", arquivo)
         };
         for (Path p : candidatos) {
-            if (Files.exists(p)) return p;
+            if (Files.exists(p)) {
+                return p;
+            }
         }
         return candidatos[candidatos.length - 1];
     }

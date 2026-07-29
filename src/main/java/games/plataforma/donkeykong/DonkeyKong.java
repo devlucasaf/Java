@@ -17,10 +17,10 @@ public class DonkeyKong {
     private static final char   PRINCESA = 'P';
     private static final char   MACACO = '&';
 
-    private final Scanner entrada = new Scanner(System.in);
-    private final Random sorteador = new Random();
-    private final char[][] mapa = new char[ALTURA][LARGURA];
-    private final List<Barril> barris = new ArrayList<>();
+    private final Scanner       entrada = new Scanner(System.in);
+    private final Random        sorteador = new Random();
+    private final char[][]      mapa = new char[ALTURA][LARGURA];
+    private final List<Barril>  barris = new ArrayList<>();
 
     private int     jogadorX;
     private int     jogadorY;

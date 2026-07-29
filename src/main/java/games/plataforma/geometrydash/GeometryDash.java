@@ -14,9 +14,9 @@ public class GeometryDash {
     private static final int FORCA_PULO = 3;
     private static final int GRAVIDADE = 1;
 
-    private final Random sorteador = new Random();
-    private final Scanner entrada = new Scanner(System.in);
-    private final List<int[]> obstaculos = new ArrayList<>();
+    private final Random        sorteador = new Random();
+    private final Scanner       entrada = new Scanner(System.in);
+    private final List<int[]>   obstaculos = new ArrayList<>();
 
     private int     cuboY = CHAO;
     private int     velocidadeY = 0;

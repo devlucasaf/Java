@@ -1,10 +1,10 @@
-package application.exercicios.faculdade.projetofaculdade;
+package application.exercicios.faculdade.projeto;
 
-import application.exercicios.faculdade.projetofaculdade.components.AppButton;
-import application.exercicios.faculdade.projetofaculdade.util.Cores;
-import application.exercicios.faculdade.projetofaculdade.view.FrameCart;
-import application.exercicios.faculdade.projetofaculdade.view.FrameDelete;
-import application.exercicios.faculdade.projetofaculdade.view.FrameInsert;
+import application.exercicios.faculdade.projeto.components.AppButton;
+import application.exercicios.faculdade.projeto.util.Cores;
+import application.exercicios.faculdade.projeto.view.FrameCart;
+import application.exercicios.faculdade.projeto.view.FrameDelete;
+import application.exercicios.faculdade.projeto.view.FrameInsert;
 
 import javax.swing.*;
 

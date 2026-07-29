@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class Sorteador {
 
-    private final List<Participante> participantes = new ArrayList<>();
+    private final List<Participante>        participantes = new ArrayList<>();
     private final Map<String, List<String>> restricoes = new HashMap<>();
 
     public void adicionar(Participante p) {

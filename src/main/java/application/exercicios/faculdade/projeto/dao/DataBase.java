@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class ConexaoBanco {
+public class DataBase {
 
     private static final String URL      = "jdbc:mysql://localhost:3306/db_wixus";
     private static final String USUARIO  = "root";

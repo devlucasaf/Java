@@ -30,8 +30,13 @@ public final class Posicao {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Posicao)) return false;
+        if (this == o) {
+            return true;
+        }
+
+        if (!(o instanceof Posicao)) {
+            return false;
+        }
         Posicao p = (Posicao) o;
         return x == p.x && y == p.y;
     }

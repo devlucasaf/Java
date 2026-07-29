@@ -1,4 +1,4 @@
-package application.exercicios.faculdade.projetofaculdade.model;
+package application.exercicios.faculdade.projeto.model;
 
 public class Jogo {
 

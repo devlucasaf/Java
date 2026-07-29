@@ -6,9 +6,11 @@ import java.util.Scanner;
 public class Jogo2048 {
 
     private static final int TAMANHO = 4;
-    private final int[][] tabuleiro = new int[TAMANHO][TAMANHO];
-    private final Random sorteador = new Random();
-    private final Scanner entrada = new Scanner(System.in);
+
+    private final int[][]   tabuleiro = new int[TAMANHO][TAMANHO];
+    private final Random    sorteador = new Random();
+    private final Scanner   entrada = new Scanner(System.in);
+
     private int pontuacao;
     private int recorde;
 

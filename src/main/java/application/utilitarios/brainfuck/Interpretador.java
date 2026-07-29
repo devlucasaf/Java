@@ -10,8 +10,8 @@ public class Interpretador {
 
     private static final int TAMANHO_FITA = 30_000;
 
-    private final byte[] fita = new byte[TAMANHO_FITA];
-    private int ponteiro = 0;
+    private final byte[]                fita = new byte[TAMANHO_FITA];
+    private int                         ponteiro = 0;
     private final Map<Integer, Integer> pares = new HashMap<>();
 
     public String executar(String programa) throws IOException {
@@ -41,10 +41,14 @@ public class Interpretador {
                     fita[ponteiro] = (byte) (lido == -1 ? 0 : lido);
                     break;
                 case '[':
-                    if (fita[ponteiro] == 0) i = pares.get(i);
+                    if (fita[ponteiro] == 0) {
+                        i = pares.get(i);
+                    }
                     break;
                 case ']':
-                    if (fita[ponteiro] != 0) i = pares.get(i);
+                    if (fita[ponteiro] != 0) {
+                        i = pares.get(i);
+                    }
                     break;
                 default:
                     break;
@@ -59,8 +63,9 @@ public class Interpretador {
         Deque<Integer> pilha = new ArrayDeque<>();
         for (int i = 0; i < programa.length(); i++) {
             char c = programa.charAt(i);
-            if (c == '[') pilha.push(i);
-            else if (c == ']') {
+            if (c == '[') {
+                pilha.push(i);
+            } else if (c == ']') {
                 if (pilha.isEmpty()) {
                     throw new IllegalArgumentException("] sem [ correspondente na posicao " + i);
                 }
@@ -69,13 +74,16 @@ public class Interpretador {
                 pares.put(i, inicio);
             }
         }
+
         if (!pilha.isEmpty()) {
             throw new IllegalArgumentException("[ sem ] correspondente na posicao " + pilha.pop());
         }
     }
 
     public void reset() {
-        for (int i = 0; i < fita.length; i++) fita[i] = 0;
+        for (int i = 0; i < fita.length; i++) {
+            fita[i] = 0;
+        }
         ponteiro = 0;
         pares.clear();
     }

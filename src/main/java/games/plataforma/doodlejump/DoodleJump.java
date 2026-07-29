@@ -13,9 +13,9 @@ public class DoodleJump {
     private static final int FORCA_PULO = 4;
     private static final int LIMITE_SUBIDA = 6;
 
-    private final Random sorteador = new Random();
-    private final Scanner entrada = new Scanner(System.in);
-    private final List<Plataforma> plataformas = new ArrayList<>();
+    private final Random            sorteador = new Random();
+    private final Scanner           entrada = new Scanner(System.in);
+    private final List<Plataforma>  plataformas = new ArrayList<>();
 
     private int     posicaoX;
     private int     posicaoY;
@@ -155,7 +155,9 @@ public class DoodleJump {
         System.out.println("Pontuacao: " + pontuacao + "   Recorde: " + recorde);
         StringBuilder borda = new StringBuilder("+");
 
-        for (int i = 0; i < LARGURA; i++) borda.append('-');
+        for (int i = 0; i < LARGURA; i++) {
+            borda.append('-');
+        }
         borda.append('+');
         System.out.println(borda);
         for (int y = 0; y < ALTURA; y++) {

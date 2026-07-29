@@ -25,8 +25,11 @@ public class DisplayTexto implements Display {
         desenhar(estado);
         System.out.println("=== FIM DO JOGO ===");
         System.out.println("Pontuacao final: " + estado.getPontuacao());
-        if (estado.venceu()) System.out.println("VITORIA!");
-        else if (estado.perdeu()) System.out.println("DERROTA");
+        if (estado.venceu()) {
+            System.out.println("VITORIA!");
+        } else if (estado.perdeu()) {
+            System.out.println("DERROTA");
+        }
     }
 
     private void desenhar(EstadoJogo estado) {
@@ -40,11 +43,20 @@ public class DisplayTexto implements Display {
         for (int y = layout.getAltura() - 1; y >= 0; y--) {
             for (int x = 0; x < layout.getLargura(); x++) {
                 char c = ' ';
-                if (layout.ehParede(x, y)) c = '%';
-                else if (comidas[x][y]) c = '.';
+                if (layout.ehParede(x, y)) {
+                    c = '%';
+                } else if (comidas[x][y]) {
+                    c = '.';
+                }
+
                 Posicao p = new Posicao(x, y);
-                if (capsulas.contains(p)) c = 'o';
-                if (pacman.equals(p)) c = 'P';
+                if (capsulas.contains(p)) {
+                    c = 'o';
+                }
+
+                if (pacman.equals(p)) {
+                    c = 'P';
+                }
                 for (EstadoAgente f : fantasmas) {
                     if (f.getPosicao().equals(p)) {
                         c = f.estaAssustado() ? 'g' : 'G';
@@ -54,8 +66,10 @@ public class DisplayTexto implements Display {
             }
             sb.append('\n');
         }
-        sb.append("Pontuacao: ").append(estado.getPontuacao())
-                .append(" | Comida restante: ").append(estado.getComidaRestante())
+        sb.append("Pontuacao: ")
+                .append(estado.getPontuacao())
+                .append(" | Comida restante: ")
+                .append(estado.getComidaRestante())
                 .append('\n');
         System.out.println(sb);
     }
