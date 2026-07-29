@@ -1,7 +1,12 @@
 package application.exercicios.faculdade.projetofaculdade;
 
+import application.exercicios.faculdade.projetofaculdade.components.AppButton;
+import application.exercicios.faculdade.projetofaculdade.util.Cores;
+import application.exercicios.faculdade.projetofaculdade.view.FrameCart;
+import application.exercicios.faculdade.projetofaculdade.view.FrameDelete;
+import application.exercicios.faculdade.projetofaculdade.view.FrameInsert;
+
 import javax.swing.*;
-import java.awt.*;
 
 public class Main {
 
@@ -10,15 +15,10 @@ public class Main {
         JFrame janela = new JFrame("Plataforma de Jogos");
         janela.setSize(1600, 700);
         janela.setLayout(null);
-        janela.getContentPane().setBackground(new Color(0x442e73));
+        janela.getContentPane().setBackground(Cores.FUNDO_JANELA);
         janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         janela.setResizable(false);
 
-        // Cores
-        Color roxoClaro = new Color(0x664983);
-        Color lilasMedio = new Color(0xa676b0);
-
-        // Frames
         JPanel frameSelect = new JPanel();
         frameSelect.setBounds(250, 15, 1300, 600);
         frameSelect.setVisible(false);
@@ -45,7 +45,6 @@ public class Main {
         janela.add(frameDelete);
         janela.add(frameCart);
 
-        // CONTROLE DE VISIBILIDADE
         Runnable mostrarSelect = () -> {
             frameSelect.setVisible(true);
             frameInsert.setVisible(false);
@@ -78,11 +77,10 @@ public class Main {
             frameCart.setVisible(false);
         };
 
-        // BOTÕES
         new AppButton(
                 janela,
-                roxoClaro,
-                lilasMedio,
+                Cores.ROXO_CLARO,
+                Cores.LILAS_MEDIO,
                 frameSelect,
                 frameInsert,
                 frameCart,
