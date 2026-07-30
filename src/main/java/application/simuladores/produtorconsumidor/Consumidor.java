@@ -6,12 +6,12 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Consumidor implements Runnable {
 
-    private final String nome;
-    private final BlockingQueue<Item> fila;
-    private final AtomicBoolean executando;
-    private final int atrasoMinMs;
-    private final int atrasoMaxMs;
-    private int consumidos = 0;
+    private final String                nome;
+    private final BlockingQueue<Item>   fila;
+    private final AtomicBoolean         executando;
+    private final int                   atrasoMinMs;
+    private final int                   atrasoMaxMs;
+    private int                         consumidos = 0;
 
     public Consumidor(String nome, BlockingQueue<Item> fila, AtomicBoolean executando,
                       int atrasoMinMs, int atrasoMaxMs) {
@@ -31,7 +31,9 @@ public class Consumidor implements Runnable {
         try {
             while (executando.get() || !fila.isEmpty()) {
                 Item item = fila.poll(500, java.util.concurrent.TimeUnit.MILLISECONDS);
-                if (item == null) continue;
+                if (item == null) {
+                    continue;
+                }
                 consumidos++;
                 System.out.println("  [CONSUMIDOR " + nome + "] consumiu " + item
                         + " | latencia="

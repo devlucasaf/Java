@@ -25,14 +25,24 @@ public class Shell {
 
         while (true) {
             System.out.print(atual + " > ");
-            if (!sc.hasNextLine()) break;
+            if (!sc.hasNextLine()) {
+                break;
+            }
+
             String linha = sc.nextLine().trim();
-            if (linha.isEmpty()) continue;
-            if (linha.equalsIgnoreCase("exit")) break;
+            if (linha.isEmpty()) {
+                continue;
+            }
+
+            if (linha.equalsIgnoreCase("exit")) {
+                break;
+            }
 
             try {
                 String saida = executarLinha(linha);
-                if (!saida.isEmpty()) System.out.println(saida);
+                if (!saida.isEmpty()) {
+                    System.out.println(saida);
+                }
             } catch (Exception e) {
                 System.out.println("erro: " + e.getMessage());
             }
@@ -55,31 +65,50 @@ public class Shell {
             case "pwd":
                 return atual.toString();
             case "cd":
-                if (tokens.length < 2) return "";
+                if (tokens.length < 2) {
+                    return "";
+                }
+
                 Path novo = atual.resolve(tokens[1]).normalize();
-                if (!Files.isDirectory(novo)) return "diretorio invalido: " + novo;
+                if (!Files.isDirectory(novo)) {
+                    return "diretorio invalido: " + novo;
+                }
+
                 atual = novo;
                 return "";
             case "ls":
                 StringBuilder sb = new StringBuilder();
                 try (DirectoryStream<Path> ds = Files.newDirectoryStream(atual)) {
-                    for (Path p : ds) sb.append(p.getFileName()).append('\n');
+                    for (Path p : ds) {
+                        sb.append(p.getFileName()).append('\n');
+                    }
                 }
                 return sb.toString().stripTrailing();
             case "cat":
-                if (tokens.length < 2) return "";
+                if (tokens.length < 2) {
+                    return "";
+                }
+
                 Path arq = atual.resolve(tokens[1]);
-                if (!Files.isRegularFile(arq)) return "arquivo nao encontrado: " + arq;
+                if (!Files.isRegularFile(arq)) {
+                    return "arquivo nao encontrado: " + arq;
+                }
+
                 StringBuilder texto = new StringBuilder();
                 try (BufferedReader br = Files.newBufferedReader(arq)) {
                     String l;
-                    while ((l = br.readLine()) != null) texto.append(l).append('\n');
+                    while ((l = br.readLine()) != null) {
+                        texto.append(l).append('\n');
+                    }
                 }
                 return texto.toString().stripTrailing();
             case "echo":
                 return comando.substring(cmd.length()).trim();
             case "grep":
-                if (tokens.length < 2) return "";
+                if (tokens.length < 2) {
+                    return "";
+                }
+
                 String padrao = tokens[1];
                 String conteudo;
                 if (entradaAnterior != null) {
@@ -89,13 +118,18 @@ public class Shell {
                 } else {
                     return "grep precisa de arquivo ou entrada de pipe";
                 }
+
                 StringBuilder filtrado = new StringBuilder();
                 for (String l : conteudo.split("\n")) {
-                    if (l.contains(padrao)) filtrado.append(l).append('\n');
+                    if (l.contains(padrao)) {
+                        filtrado.append(l).append('\n');
+                    }
                 }
                 return filtrado.toString().stripTrailing();
             case "wc":
-                if (entradaAnterior == null) return "wc precisa de entrada via pipe";
+                if (entradaAnterior == null) {
+                    return "wc precisa de entrada via pipe";
+                }
                 return "linhas=" + entradaAnterior.split("\n").length
                         + " palavras=" + entradaAnterior.split("\\s+").length
                         + " chars=" + entradaAnterior.length();

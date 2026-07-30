@@ -1,4 +1,4 @@
-package application.calculadoras.investimentos;
+package math.calculadora.investimentos;
 
 import java.text.NumberFormat;
 import java.util.Locale;
@@ -21,9 +21,9 @@ public class Main {
         double selic = lerDouble(sc, 10.5);
 
         System.out.println();
-        Investimentos.Resultado cdb = Investimentos.calcularCDB(capital, 100, cdi, dias);
-        Investimentos.Resultado lci = Investimentos.calcularLCI(capital, 95, cdi, dias);
-        Investimentos.Resultado tsl = Investimentos.calcularTesouroSelic(capital, selic, dias);
+        Resultado cdb = Investimentos.calcularCDB(capital, 100, cdi, dias);
+        Resultado lci = Investimentos.calcularLCI(capital, 95, cdi, dias);
+        Resultado tsl = Investimentos.calcularTesouroSelic(capital, selic, dias);
 
         imprimir("CDB (100% CDI)", cdb);
         imprimir("LCI (95% CDI, isenta de IR)", lci);
@@ -31,31 +31,49 @@ public class Main {
 
         System.out.println("\n=== MELHOR OPCAO LIQUIDA ===");
         double melhor = Math.max(cdb.montanteLiquido, Math.max(lci.montanteLiquido, tsl.montanteLiquido));
-        if (melhor == cdb.montanteLiquido) System.out.println("-> CDB");
-        else if (melhor == lci.montanteLiquido) System.out.println("-> LCI");
-        else System.out.println("-> Tesouro Selic");
+        if (melhor == cdb.montanteLiquido) {
+            System.out.println("-> CDB");
+        } else if (melhor == lci.montanteLiquido) {
+            System.out.println("-> LCI");
+        } else {
+            System.out.println("-> Tesouro Selic");
+        }
     }
 
-    private static void imprimir(String nome, Investimentos.Resultado r) {
+    private static void imprimir(String nome, Resultado r) {
         System.out.println("---- " + nome + " ----");
-        System.out.println("  Montante bruto:      " + BRL.format(r.montanteBruto));
-        System.out.println("  Lucro:               " + BRL.format(r.lucro));
-        System.out.println("  IOF:                 " + BRL.format(r.iof));
-        System.out.println("  IR:                  " + BRL.format(r.ir));
-        System.out.println("  Montante liquido:    " + BRL.format(r.montanteLiquido));
-        System.out.printf ("  Rentabilidade liq.:  %.2f%%%n", r.rentabilidadeLiquida);
+        System.out.println("Montante bruto: " + BRL.format(r.montanteBruto));
+        System.out.println("Lucro: " + BRL.format(r.lucro));
+        System.out.println("IOF: " + BRL.format(r.iof));
+        System.out.println("Imposto de Renda: " + BRL.format(r.impostoRenda));
+        System.out.println("Montante liquido: " + BRL.format(r.montanteLiquido));
+        System.out.printf ("Rentabilidade liq.: %.2f%%%n", r.rentabilidadeLiquida);
     }
 
     private static double lerDouble(Scanner sc, double padrao) {
         String s = sc.nextLine().replace(",", ".").trim();
-        if (s.isEmpty()) return padrao;
-        try { return Double.parseDouble(s); } catch (Exception e) { return padrao; }
+        if (s.isEmpty()) {
+            return padrao;
+        }
+
+        try {
+            return Double.parseDouble(s);
+        } catch (Exception e) {
+            return padrao;
+        }
     }
 
     private static int lerInt(Scanner sc, int padrao) {
         String s = sc.nextLine().trim();
-        if (s.isEmpty()) return padrao;
-        try { return Integer.parseInt(s); } catch (Exception e) { return padrao; }
+        if (s.isEmpty()) {
+            return padrao;
+        }
+
+        try {
+            return Integer.parseInt(s);
+        } catch (Exception e) {
+            return padrao;
+        }
     }
 }
 

@@ -2,9 +2,9 @@ package application.simuladores.produtorconsumidor;
 
 public class Item {
 
-    private final int id;
-    private final String conteudo;
-    private final long timestamp;
+    private final int       id;
+    private final String    conteudo;
+    private final long      timestamp;
 
     public Item(int id, String conteudo) {
         this.id = id;

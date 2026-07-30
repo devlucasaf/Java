@@ -29,14 +29,27 @@ public class SistemaParticulas extends JPanel {
         setFocusable(true);
 
         addMouseMotionListener(new MouseAdapter() {
-            @Override public void mouseMoved(MouseEvent e) { mx = e.getX(); my = e.getY(); }
-            @Override public void mouseDragged(MouseEvent e) { mx = e.getX(); my = e.getY(); }
-        });
-        addMouseListener(new MouseAdapter() {
-            @Override public void mousePressed(MouseEvent e) {
-                if (modo.equals("explosao")) explosao(e.getX(), e.getY());
+            @Override
+            public void mouseMoved(MouseEvent e) {
+                mx = e.getX();
+                my = e.getY();
+            }
+
+            @Override
+            public void mouseDragged(MouseEvent e) {
+                mx = e.getX();
+                my = e.getY();
             }
         });
+
+        addMouseListener(new MouseAdapter() {
+            @Override public void mousePressed(MouseEvent e) {
+                if (modo.equals("explosao")) {
+                    explosao(e.getX(), e.getY());
+                }
+            }
+        });
+
         addKeyListener(new KeyAdapter() {
             @Override public void keyPressed(KeyEvent e) {
                 switch (e.getKeyChar()) {
@@ -49,7 +62,11 @@ public class SistemaParticulas extends JPanel {
             }
         });
 
-        Timer t = new Timer(16, e -> { emitir(); atualizar(); repaint(); });
+        Timer t = new Timer(16, e -> {
+            emitir();
+            atualizar();
+            repaint();
+        });
         t.start();
     }
 
@@ -96,10 +113,16 @@ public class SistemaParticulas extends JPanel {
             Particula p = it.next();
             p.x += p.vx;
             p.y += p.vy;
-            if (modo.equals("fumaca")) p.vy -= 0.02;
-            else p.vy += 0.05;
+            if (modo.equals("fumaca")) {
+                p.vy -= 0.02;
+            } else {
+                p.vy += 0.05;
+            }
+
             p.vida--;
-            if (p.vida <= 0) it.remove();
+            if (p.vida <= 0) {
+                it.remove();
+            }
         }
     }
 
@@ -120,14 +143,15 @@ public class SistemaParticulas extends JPanel {
 
     public static void main(String[] args) {
         javax.swing.SwingUtilities.invokeLater(() -> {
-            JFrame f = new JFrame("Sistema de Particulas");
-            f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            SistemaParticulas s = new SistemaParticulas();
-            f.add(s);
-            f.pack();
-            f.setLocationRelativeTo(null);
-            f.setVisible(true);
-            s.requestFocus();
+            JFrame frame = new JFrame("Sistema de Particulas");
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            SistemaParticulas sistemaParticulas = new SistemaParticulas();
+
+            frame.add(sistemaParticulas);
+            frame.pack();
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+            sistemaParticulas.requestFocus();
         });
     }
 }

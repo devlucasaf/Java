@@ -20,7 +20,9 @@ public interface Algoritmo {
                 int faults = 0;
                 for (int p : referencias) {
                     if (!fila.contains(p)) {
-                        if (fila.size() == numeroFrames) fila.removeFirst();
+                        if (fila.size() == numeroFrames) {
+                            fila.removeFirst();
+                        }
                         fila.addLast(p);
                         faults++;
                     }
@@ -33,7 +35,9 @@ public interface Algoritmo {
     static Algoritmo lru() {
         return new Algoritmo() {
             @Override
-            public String getNome() { return "LRU"; }
+            public String getNome() {
+                return "LRU";
+            }
 
             @Override
             public int simular(List<Integer> referencias, int numeroFrames) {
@@ -43,7 +47,9 @@ public interface Algoritmo {
                     if (ordem.contains(p)) {
                         ordem.remove((Integer) p);
                     } else {
-                        if (ordem.size() == numeroFrames) ordem.removeFirst();
+                        if (ordem.size() == numeroFrames) {
+                            ordem.removeFirst();
+                        }
                         faults++;
                     }
                     ordem.addLast(p);
@@ -64,7 +70,10 @@ public interface Algoritmo {
                 int faults = 0;
                 for (int i = 0; i < referencias.size(); i++) {
                     int p = referencias.get(i);
-                    if (frames.contains(p)) continue;
+                    if (frames.contains(p)) {
+                        continue;
+                    }
+
                     if (frames.size() < numeroFrames) {
                         frames.add(p);
                     } else {
@@ -73,10 +82,21 @@ public interface Algoritmo {
                         for (int f = 0; f < frames.size(); f++) {
                             int prox = -1;
                             for (int j = i + 1; j < referencias.size(); j++) {
-                                if (referencias.get(j).equals(frames.get(f))) { prox = j; break; }
+                                if (referencias.get(j).equals(frames.get(f))) {
+                                    prox = j;
+                                    break;
+                                }
                             }
-                            if (prox == -1) { indiceRemocao = f; break; }
-                            if (prox > maiorFuturo) { maiorFuturo = prox; indiceRemocao = f; }
+
+                            if (prox == -1) {
+                                indiceRemocao = f;
+                                break;
+                            }
+
+                            if (prox > maiorFuturo) {
+                                maiorFuturo = prox;
+                                indiceRemocao = f;
+                            }
                         }
                         frames.set(indiceRemocao, p);
                     }

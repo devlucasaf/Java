@@ -1,18 +1,9 @@
 package application.utilitarios.trie;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Trie {
-
-    private static class No {
-        Map<Character, No>  filhos = new HashMap<>();
-        boolean             fimDePalavra;
-        int                 frequencia;
-    }
-
     private final No raiz = new No();
 
     public void inserir(String palavra) {
@@ -37,7 +28,9 @@ public class Trie {
         No atual = raiz;
         for (char c : s.toCharArray()) {
             atual = atual.filhos.get(c);
-            if (atual == null) return null;
+            if (atual == null) {
+                return null;
+            }
         }
         return atual;
     }
@@ -45,15 +38,24 @@ public class Trie {
     public List<String> autocomplete(String prefixo, int limite) {
         List<String> resultado = new ArrayList<>();
         No no = buscarNo(prefixo.toLowerCase());
-        if (no == null) return resultado;
+        if (no == null) {
+            return resultado;
+        }
+        
         coletar(no, new StringBuilder(prefixo.toLowerCase()), resultado, limite);
         resultado.sort((a, b) -> Integer.compare(freq(b), freq(a)));
         return resultado;
     }
 
     private void coletar(No no, StringBuilder atual, List<String> saida, int limite) {
-        if (saida.size() >= limite) return;
-        if (no.fimDePalavra) saida.add(atual.toString());
+        if (saida.size() >= limite) {
+            return;
+        }
+        
+        if (no.fimDePalavra) {
+            saida.add(atual.toString());
+        }
+        
         for (var e : no.filhos.entrySet()) {
             atual.append(e.getKey());
             coletar(e.getValue(), atual, saida, limite);
@@ -72,7 +74,9 @@ public class Trie {
 
     private int contar(No no) {
         int c = no.fimDePalavra ? 1 : 0;
-        for (No f : no.filhos.values()) c += contar(f);
+        for (No f : no.filhos.values()) {
+            c += contar(f);
+        }
         return c;
     }
 }

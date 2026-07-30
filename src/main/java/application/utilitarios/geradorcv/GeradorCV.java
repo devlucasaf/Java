@@ -85,12 +85,17 @@ public class GeradorCV extends JFrame {
         try {
             JFileChooser chooser = new JFileChooser();
             chooser.setSelectedFile(new java.io.File("curriculo.pdf"));
-            if (chooser.showSaveDialog(this) != JFileChooser.APPROVE_OPTION) return;
+            if (chooser.showSaveDialog(this) != JFileChooser.APPROVE_OPTION) {
+                return;
+            }
             Path destino = chooser.getSelectedFile().toPath();
 
             GeradorPDF pdf = new GeradorPDF().titulo(nome.getText().isBlank() ? "Curriculo" : nome.getText());
 
-            if (!cargo.getText().isBlank()) pdf.adicionar(cargo.getText());
+            if (!cargo.getText().isBlank()) {
+                pdf.adicionar(cargo.getText());
+            }
+
             pdf.adicionar("Email: " + email.getText())
                .adicionar("Telefone: " + telefone.getText())
                .adicionar("Endereco: " + endereco.getText())
@@ -110,9 +115,13 @@ public class GeradorCV extends JFrame {
     }
 
     private void secao(GeradorPDF pdf, String titulo, String texto) {
-        if (texto.isBlank()) return;
+        if (texto.isBlank()) {
+            return;
+        }
         pdf.cabecalho(titulo);
-        for (String linha : texto.split("\n")) pdf.adicionar(linha);
+        for (String linha : texto.split("\n")) {
+            pdf.adicionar(linha);
+        }
         pdf.pular();
     }
 

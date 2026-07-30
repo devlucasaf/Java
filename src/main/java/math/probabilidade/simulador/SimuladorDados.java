@@ -1,4 +1,4 @@
-package math.probabilidade;
+package math.probabilidade.simulador;
 
 import java.util.Random;
 import java.util.Scanner;

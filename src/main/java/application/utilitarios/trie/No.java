@@ -3,7 +3,7 @@ package application.utilitarios.trie;
 import java.util.HashMap;
 import java.util.Map;
 
-class No {
+public class No {
 
     Map<Character, No>  filhos = new HashMap<>();
     boolean             fimDePalavra;

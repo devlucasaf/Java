@@ -13,12 +13,19 @@ public class Main {
             "programa", "programacao", "programador", "projeto", "professor", "profissao",
             "java", "javascript", "python", "javali", "javalina"
         };
-        for (String p : palavras) trie.inserir(p);
+        for (String p : palavras) {
+            trie.inserir(p);
+        }
 
-        for (int i = 0; i < 5; i++) trie.inserir("casa");
-        for (int i = 0; i < 3; i++) trie.inserir("programa");
+        for (int i = 0; i < 5; i++) {
+            trie.inserir("casa");
+        }
 
-        System.out.println("=== TRIE (autocomplete) ===");
+        for (int i = 0; i < 3; i++) {
+            trie.inserir("programa");
+        }
+
+        System.out.println("=== TRIE ===");
         System.out.println("Total de palavras unicas: " + trie.contarPalavras());
         System.out.println();
 
@@ -36,10 +43,18 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         while (true) {
             System.out.print("prefixo> ");
-            if (!sc.hasNextLine()) break;
+            if (!sc.hasNextLine()) {
+                break;
+            }
+
             String s = sc.nextLine().trim();
-            if (s.equalsIgnoreCase("sair")) break;
-            if (s.isEmpty()) continue;
+            if (s.equalsIgnoreCase("sair")) {
+                break;
+            }
+
+            if (s.isEmpty()) {
+                continue;
+            }
             System.out.println("  -> " + trie.autocomplete(s, 10));
         }
     }

@@ -33,7 +33,9 @@ public class ConversorMoedas {
         int i = 0;
         while (i < json.length()) {
             int codeStart = json.indexOf("\"code\":\"", i);
-            if (codeStart == -1) break;
+            if (codeStart == -1) {
+                break;
+            }
             codeStart += 8;
             int codeEnd = json.indexOf('"', codeStart);
             String code = json.substring(codeStart, codeEnd);

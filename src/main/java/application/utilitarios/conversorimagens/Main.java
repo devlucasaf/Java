@@ -45,18 +45,21 @@ public class Main {
     }
 
     private static BufferedImage gerarDemo() {
-        BufferedImage img = new BufferedImage(800, 600, BufferedImage.TYPE_INT_RGB);
-        Graphics2D g = img.createGraphics();
-        Random r = new Random(1);
+        BufferedImage imagem = new BufferedImage(800, 600, BufferedImage.TYPE_INT_RGB);
+        Graphics2D graphics2D = imagem.createGraphics();
+        Random random = new Random(1);
+
         for (int y = 0; y < 600; y += 20) {
-            g.setColor(new Color(r.nextInt(255), r.nextInt(255), r.nextInt(255)));
-            g.fillRect(0, y, 800, 20);
+            graphics2D.setColor(new Color(random.nextInt(255), random.nextInt(255), random.nextInt(255)));
+            graphics2D.fillRect(0, y, 800, 20);
         }
-        g.setColor(Color.WHITE);
-        g.setFont(g.getFont().deriveFont(48f));
-        g.drawString("CONVERSOR", 200, 300);
-        g.dispose();
-        return img;
+
+        graphics2D.setColor(Color.WHITE);
+        graphics2D.setFont(graphics2D.getFont().deriveFont(48f));
+        graphics2D.drawString("CONVERSOR", 200, 300);
+        graphics2D.dispose();
+
+        return imagem;
     }
 }
 

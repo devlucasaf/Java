@@ -15,7 +15,9 @@ public class SimuladorEvolucao {
 
         Random r = new Random();
         List<Individuo> pop = new ArrayList<>();
-        for (int i = 0; i < populacao; i++) pop.add(Individuo.aleatorio(alvo, r));
+        for (int i = 0; i < populacao; i++) {
+            pop.add(Individuo.aleatorio(alvo, r));
+        }
 
         System.out.println("=== SIMULADOR DE EVOLUCAO GENETICA ===");
         System.out.println("Alvo: \"" + alvo + "\"");
@@ -30,6 +32,7 @@ public class SimuladorEvolucao {
                 System.out.printf("Ger %4d | fitness %d/%d | \"%s\"%n",
                         geracao, melhor.fitness, alvo.length(), melhor.gene);
             }
+
             if (melhor.fitness == alvo.length()) {
                 System.out.println("\nAlvo atingido em " + geracao + " geracoes.");
                 break;

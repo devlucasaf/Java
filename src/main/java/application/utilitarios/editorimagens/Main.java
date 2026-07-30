@@ -42,13 +42,16 @@ public class Main {
         g.setColor(new Color(80, 130, 200));
         g.fillRect(0, 0, 400, 300);
         Random r = new Random(1);
+
         for (int i = 0; i < 30; i++) {
             g.setColor(new Color(r.nextInt(255), r.nextInt(255), r.nextInt(255)));
             g.fillOval(r.nextInt(400), r.nextInt(300), 40, 40);
         }
+
         g.setColor(Color.WHITE);
         g.drawString("DEMO IMAGEM", 150, 150);
         g.dispose();
+
         return img;
     }
 }

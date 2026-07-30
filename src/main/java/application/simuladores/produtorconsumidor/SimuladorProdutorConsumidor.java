@@ -35,14 +35,19 @@ public class SimuladorProdutorConsumidor {
             consumidores.add(c);
         }
 
-        for (Thread t : threadsProdutores) t.join();
+        for (Thread t : threadsProdutores) {
+            t.join();
+        }
         System.out.println("\n=== Todos produtores terminaram ===\n");
         produtoresAtivos.set(false);
 
         for (Thread t : threadsConsumidores) t.join();
 
         int totalConsumido = 0;
-        for (Consumidor c : consumidores) totalConsumido += c.getConsumidos();
+
+        for (Consumidor c : consumidores) {
+            totalConsumido += c.getConsumidos();
+        }
         int totalProduzido = numProdutores * itensPorProdutor;
 
         System.out.println("\n=== RESUMO ===");

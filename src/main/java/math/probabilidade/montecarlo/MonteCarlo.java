@@ -5,22 +5,24 @@ import java.util.function.DoubleUnaryOperator;
 
 public class MonteCarlo {
 
-    private final Random r;
+    private final Random random;
 
     public MonteCarlo() {
-        this.r = new Random();
+        this.random = new Random();
     }
 
     public MonteCarlo(long seed) {
-        this.r = new Random(seed);
+        this.random = new Random(seed);
     }
 
     public double estimarPi(int amostras) {
         int dentro = 0;
         for (int i = 0; i < amostras; i++) {
-            double x = r.nextDouble();
-            double y = r.nextDouble();
-            if (x * x + y * y <= 1.0) dentro++;
+            double x = random.nextDouble();
+            double y = random.nextDouble();
+            if (x * x + y * y <= 1.0) {
+                dentro++;
+            }
         }
         return 4.0 * dentro / amostras;
     }
@@ -28,7 +30,7 @@ public class MonteCarlo {
     public double integrar(DoubleUnaryOperator f, double a, double b, int amostras) {
         double soma = 0;
         for (int i = 0; i < amostras; i++) {
-            double x = a + r.nextDouble() * (b - a);
+            double x = a + random.nextDouble() * (b - a);
             soma += f.applyAsDouble(x);
         }
         return (b - a) * soma / amostras;
@@ -38,8 +40,13 @@ public class MonteCarlo {
         int sucessos = 0;
         for (int i = 0; i < amostras; i++) {
             int total = 0;
-            for (int d = 0; d < nDados; d++) total += r.nextInt(6) + 1;
-            if (total == somaAlvo) sucessos++;
+            for (int d = 0; d < nDados; d++) {
+                total += random.nextInt(6) + 1;
+            }
+
+            if (total == somaAlvo) {
+                sucessos++;
+            }
         }
         return (double) sucessos / amostras;
     }

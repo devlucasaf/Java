@@ -32,21 +32,31 @@ public class Carteira {
     }
 
     public String getEndereco() {
-        return Base64.getEncoder().encodeToString(chaves.getPublic().getEncoded()).substring(0, 32);
+        try {
+            java.security.MessageDigest md = java.security.MessageDigest.getInstance("SHA-256");
+            byte[] hash = md.digest(chaves.getPublic().getEncoded());
+            return Base64.getEncoder().encodeToString(hash).substring(0, 32);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public byte[] assinar(String dados) throws Exception {
-        Signature sig = Signature.getInstance("SHA256withRSA");
-        sig.initSign(chaves.getPrivate());
-        sig.update(dados.getBytes());
-        return sig.sign();
+        Signature signature = Signature.getInstance("SHA256withRSA");
+
+        signature.initSign(chaves.getPrivate());
+        signature.update(dados.getBytes());
+
+        return signature.sign();
     }
 
     public static boolean verificar(String dados, byte[] assinatura, PublicKey chavePublica) throws Exception {
-        Signature sig = Signature.getInstance("SHA256withRSA");
-        sig.initVerify(chavePublica);
-        sig.update(dados.getBytes());
-        return sig.verify(assinatura);
+        Signature signature = Signature.getInstance("SHA256withRSA");
+
+        signature.initVerify(chavePublica);
+        signature.update(dados.getBytes());
+
+        return signature.verify(assinatura);
     }
 }
 

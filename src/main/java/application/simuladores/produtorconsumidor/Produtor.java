@@ -8,11 +8,11 @@ public class Produtor implements Runnable {
 
     private static final AtomicInteger CONTADOR = new AtomicInteger(0);
 
-    private final String nome;
-    private final BlockingQueue<Item> fila;
-    private final int quantidade;
-    private final int atrasoMinMs;
-    private final int atrasoMaxMs;
+    private final String                nome;
+    private final BlockingQueue<Item>   fila;
+    private final int                   quantidade;
+    private final int                   atrasoMinMs;
+    private final int                   atrasoMaxMs;
 
     public Produtor(String nome, BlockingQueue<Item> fila, int quantidade,
                     int atrasoMinMs, int atrasoMaxMs) {

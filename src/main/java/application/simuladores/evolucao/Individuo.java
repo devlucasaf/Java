@@ -12,7 +12,9 @@ public class Individuo implements Comparable<Individuo> {
         int f = 0;
         int len = Math.min(gene.length(), alvo.length());
         for (int i = 0; i < len; i++) {
-            if (gene.charAt(i) == alvo.charAt(i)) f++;
+            if (gene.charAt(i) == alvo.charAt(i)) {
+                f++;
+            }
         }
         this.fitness = f;
     }
@@ -29,7 +31,9 @@ public class Individuo implements Comparable<Individuo> {
         StringBuilder sb = new StringBuilder(gene.length());
         for (int i = 0; i < gene.length(); i++) {
             char c = r.nextBoolean() ? gene.charAt(i) : outro.gene.charAt(i);
-            if (r.nextDouble() < taxaMutacao) c = alfabeto(r);
+            if (r.nextDouble() < taxaMutacao) {
+                c = alfabeto(r);
+            }
             sb.append(c);
         }
         return new Individuo(sb.toString(), alvo);

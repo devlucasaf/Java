@@ -1,6 +1,7 @@
 package application.system.restaurante.cardapio;
 
 import application.system.restaurante.*;
+
 import javafx.application.Application;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.collections.FXCollections;
@@ -17,17 +18,8 @@ import javafx.stage.Stage;
 
 import java.util.List;
 
-/**
- * Cardápio Digital com interface JavaFX (tema escuro).
- *
- * Executar (via Maven):
- *   mvn -q -e exec:java "-Dexec.mainClass=application.system.restaurante.cardapio.CardapioApp"
- *
- * Ou configurar a IDE para executar esta classe como Application do JavaFX.
- */
 public class CardapioApp extends Application {
 
-    // Paleta de cores (tema escuro)
     private static final String BG_APP        = "#121417";
     private static final String BG_PANEL      = "#1B1F24";
     private static final String BG_CARD       = "#232A31";
@@ -40,10 +32,10 @@ public class CardapioApp extends Application {
 
     private final Cardapio cardapio = new Cardapio();
 
-    // Pedido (carrinho)
     private final ObservableList<ItemPedido> pedido = FXCollections.observableArrayList();
     private final SimpleDoubleProperty total = new SimpleDoubleProperty(0.0);
 
+    // --- INÍCIO DA APLICAÇÃO ---
     @Override
     public void start(Stage stage) {
         popularCardapio();
@@ -64,9 +56,7 @@ public class CardapioApp extends Application {
         stage.show();
     }
 
-    // ============================================================
-    // HEADER
-    // ============================================================
+    // --- CABEÇALHO ---
     private HBox criarHeader() {
         Label titulo = new Label("🍽  Cardápio Digital");
         titulo.setFont(Font.font("Segoe UI", FontWeight.BOLD, 26));
@@ -87,9 +77,7 @@ public class CardapioApp extends Application {
         return header;
     }
 
-    // ============================================================
-    // CENTRO - abas por categoria
-    // ============================================================
+    // --- PAINEL CENTRAL COM TABS DE CATEGORIAS ---
     private TabPane criarCentro() {
         TabPane tabPane = new TabPane();
         tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
@@ -110,7 +98,6 @@ public class CardapioApp extends Application {
             }
         }
 
-        // Estilo das abas
         tabPane.getStylesheets().add("data:text/css," + String.join("",
                 ".tab-pane { -fx-background-color: " + BG_PANEL + "; }",
                 ".tab-pane .tab-header-area .tab-header-background { -fx-background-color: " + BG_APP + "; }",
@@ -123,6 +110,7 @@ public class CardapioApp extends Application {
         return tabPane;
     }
 
+    // --- GRID DE ITENS DO CARDÁPIO ---
     private ScrollPane criarGridItens(List<ItemCardapio> itens) {
         TilePane tile = new TilePane();
         tile.setHgap(14);
@@ -145,34 +133,41 @@ public class CardapioApp extends Application {
         return sp;
     }
 
+    // --- CARD DE ITEM DO CARDÁPIO ---
     private VBox criarCardItem(ItemCardapio item) {
         Label nome = new Label(item.getNome());
+
         nome.setFont(Font.font("Segoe UI", FontWeight.BOLD, 16));
         nome.setTextFill(Color.web(TEXT_PRIMARY));
         nome.setWrapText(true);
 
         Label categoria = new Label(item.getCategoria().getDescricao().toUpperCase());
+
         categoria.setFont(Font.font("Segoe UI", FontWeight.BOLD, 10));
         categoria.setTextFill(Color.web(ACCENT));
 
         Label descricao = new Label(item.getDescricao().isBlank()
                 ? "Sem descrição disponível."
                 : item.getDescricao());
+
         descricao.setFont(Font.font("Segoe UI", 12));
         descricao.setTextFill(Color.web(TEXT_MUTED));
         descricao.setWrapText(true);
         descricao.setMaxHeight(60);
 
         Label detalhes = new Label(detalhesCurto(item));
+
         detalhes.setFont(Font.font("Segoe UI", FontWeight.NORMAL, 11));
         detalhes.setTextFill(Color.web(TEXT_MUTED));
         detalhes.setWrapText(true);
 
         Label preco = new Label(String.format("R$ %.2f", item.calcularPrecoFinal()));
+
         preco.setFont(Font.font("Segoe UI", FontWeight.BOLD, 18));
         preco.setTextFill(Color.web(ACCENT));
 
         Label tempo = new Label("⏱ " + item.getTempoPreparo() + " min");
+
         tempo.setFont(Font.font("Segoe UI", 11));
         tempo.setTextFill(Color.web(TEXT_MUTED));
 
@@ -180,6 +175,7 @@ public class CardapioApp extends Application {
         rodape.setAlignment(Pos.CENTER_LEFT);
 
         Button adicionar = new Button("+ Adicionar");
+
         adicionar.setMaxWidth(Double.MAX_VALUE);
         adicionar.setStyle(estiloBotaoAccent());
         adicionar.setOnMouseEntered(e -> adicionar.setStyle(estiloBotaoAccentHover()));
@@ -187,6 +183,7 @@ public class CardapioApp extends Application {
         adicionar.setOnAction(e -> adicionarAoPedido(item));
 
         VBox card = new VBox(6, categoria, nome, descricao, detalhes, rodape, adicionar);
+
         card.setPadding(new Insets(14));
         card.setPrefWidth(260);
         card.setPrefHeight(260);
@@ -197,6 +194,7 @@ public class CardapioApp extends Application {
         return card;
     }
 
+    // --- DETALHES CURTOS PARA EXIBIÇÃO NO CARD ---
     private String detalhesCurto(ItemCardapio item) {
         if (item instanceof Prato p) {
             return "Ingrediente: " + p.getIngredientePrincipal()
@@ -220,11 +218,9 @@ public class CardapioApp extends Application {
         return "";
     }
 
-    // ============================================================
-    // PAINEL DE PEDIDO (direita)
-    // ============================================================
+    // --- PAINEL DE PEDIDO ---
     private VBox criarPainelPedido() {
-        Label titulo = new Label("🧾  Seu Pedido");
+        Label titulo = new Label("  Seu Pedido");
         titulo.setFont(Font.font("Segoe UI", FontWeight.BOLD, 18));
         titulo.setTextFill(Color.web(TEXT_PRIMARY));
 
@@ -276,6 +272,7 @@ public class CardapioApp extends Application {
                     });
 
                     Button remover = pequenoBotao("✕");
+
                     remover.setStyle(estiloBotaoPequeno(DANGER));
                     remover.setOnAction(e -> {
                         pedido.remove(ip);
@@ -286,9 +283,11 @@ public class CardapioApp extends Application {
                     controles.setAlignment(Pos.CENTER_RIGHT);
 
                     HBox linha = new HBox(10, info, spacerH(), controles);
+
                     linha.setAlignment(Pos.CENTER_LEFT);
                     linha.setPadding(new Insets(8, 10, 8, 10));
                     linha.setStyle("-fx-background-color: " + BG_PANEL + "; -fx-background-radius: 6;");
+
                     setGraphic(linha);
                     setText(null);
                     setStyle("-fx-background-color: " + BG_CARD + "; -fx-padding: 4 0;");
@@ -297,11 +296,13 @@ public class CardapioApp extends Application {
         });
 
         Label totalLabel = new Label();
+
         totalLabel.setFont(Font.font("Segoe UI", FontWeight.BOLD, 22));
         totalLabel.setTextFill(Color.web(ACCENT));
         totalLabel.textProperty().bind(total.asString("Total: R$ %.2f"));
 
         Button finalizar = new Button("Finalizar Pedido");
+
         finalizar.setMaxWidth(Double.MAX_VALUE);
         finalizar.setStyle(estiloBotaoAccent());
         finalizar.setOnMouseEntered(e -> finalizar.setStyle(estiloBotaoAccentHover()));
@@ -309,6 +310,7 @@ public class CardapioApp extends Application {
         finalizar.setOnAction(e -> finalizarPedido());
 
         Button limpar = new Button("Limpar");
+
         limpar.setMaxWidth(Double.MAX_VALUE);
         limpar.setStyle(estiloBotaoSecundario());
         limpar.setOnAction(e -> {
@@ -331,9 +333,7 @@ public class CardapioApp extends Application {
         return painel;
     }
 
-    // ============================================================
-    // Ações
-    // ============================================================
+    // --- AÇÕES ---
     private void adicionarAoPedido(ItemCardapio item) {
         for (ItemPedido ip : pedido) {
             if (ip.item.getId() == item.getId()) {
@@ -391,9 +391,7 @@ public class CardapioApp extends Application {
         a.showAndWait();
     }
 
-    // ============================================================
-    // Estilos utilitários
-    // ============================================================
+    // --- ESTILOS UTILITÁRIOS ---
     private String estiloCard(String cor) {
         return "-fx-background-color: " + cor + ";" +
                 "-fx-background-radius: 10;" +
@@ -403,6 +401,7 @@ public class CardapioApp extends Application {
                 "-fx-cursor: hand;";
     }
 
+    // --- ESTILOS DE BOTÕES ---
     private String estiloBotaoAccent() {
         return "-fx-background-color: " + ACCENT + ";" +
                 "-fx-text-fill: #121417;" +
@@ -412,10 +411,12 @@ public class CardapioApp extends Application {
                 "-fx-padding: 8 14;";
     }
 
+    // --- ESTILO DE BOTÃO ACCENT HOVER ---
     private String estiloBotaoAccentHover() {
         return estiloBotaoAccent().replace(ACCENT, ACCENT_HOVER);
     }
 
+    // --- ESTILO DE BOTÃO SECUNDÁRIO ---
     private String estiloBotaoSecundario() {
         return "-fx-background-color: transparent;" +
                 "-fx-text-fill: " + TEXT_MUTED + ";" +
@@ -426,6 +427,7 @@ public class CardapioApp extends Application {
                 "-fx-padding: 6 14;";
     }
 
+    // --- ESTILO DE BOTÃO PEQUENO ---
     private String estiloBotaoPequeno(String cor) {
         return "-fx-background-color: " + cor + ";" +
                 "-fx-text-fill: #121417;" +
@@ -435,21 +437,21 @@ public class CardapioApp extends Application {
                 "-fx-cursor: hand;";
     }
 
+    // --- BOTÃO PEQUENO COM TEXTO ---
     private Button pequenoBotao(String txt) {
         Button b = new Button(txt);
         b.setStyle(estiloBotaoPequeno(ACCENT));
         return b;
     }
 
+    // --- ESPAÇADOR HORIZONTAL ---
     private Region spacerH() {
         Region r = new Region();
         HBox.setHgrow(r, Priority.ALWAYS);
         return r;
     }
 
-    // ============================================================
-    // População do cardápio (dados de exemplo)
-    // ============================================================
+    // --- POPULAÇÃO DO CARDÁPIO ---
     private void popularCardapio() {
         // Entradas
         cardapio.adicionarItem(new Entrada(1, "Bruschetta",
@@ -509,9 +511,7 @@ public class CardapioApp extends Application {
                 "Cachaça, limão, açúcar e gelo.", 22.00, 5, 300, true, true, 15.0));
     }
 
-    // ============================================================
-    // Modelo interno
-    // ============================================================
+    // --- MODELO INTERNO ---
     private static class ItemPedido {
         final ItemCardapio item;
         int quantidade;

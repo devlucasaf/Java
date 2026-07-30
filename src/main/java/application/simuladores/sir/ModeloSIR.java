@@ -16,12 +16,12 @@ public class ModeloSIR extends JPanel {
     private static final int ALTURA = 600;
     private static final int GRAFICO_TOP = 400;
 
-    private double  S = 0.99;
-    private double  I = 0.01;
-    private double  R = 0.0;
-    private final double beta = 0.35;
-    private final double gamma = 0.05;
-    private final double dt = 0.5;
+    private double          S = 0.99;
+    private double          I = 0.01;
+    private double          R = 0.0;
+    private final double    beta = 0.35;
+    private final double    gamma = 0.05;
+    private final double    dt = 0.5;
 
     private final List<double[]> historico = new ArrayList<>();
 
@@ -39,9 +39,14 @@ public class ModeloSIR extends JPanel {
         double dI = (beta * S * I - gamma * I) * dt;
         double dR = gamma * I * dt;
         S += dS; I += dI; R += dR;
-        if (S < 0) S = 0;
+        if (S < 0) {
+            S = 0;
+        }
+
         historico.add(new double[]{S, I, R});
-        if (historico.size() > LARGURA) historico.remove(0);
+        if (historico.size() > LARGURA) {
+            historico.remove(0);
+        }
     }
 
     @Override
