@@ -43,6 +43,16 @@ public class CalculadoraCompletaGUI extends JFrame {
         tabbedPane.addTab("Regra de 3", new CalculadoraPainelRegraTres());
         tabbedPane.addTab("IMC", new CalculadoraPainelIMC());
         tabbedPane.addTab("Bit a Bit", new CalculadoraPainelBitwise());
+        tabbedPane.addTab("Histórico", new CalculadoraPainelHistorico());
+        tabbedPane.addTab("Romanos", new CalculadoraPainelRomanos());
+        tabbedPane.addTab("Tabela Verdade", new CalculadoraPainelTabelaVerdade());
+        tabbedPane.addTab("Cores", new CalculadoraPainelCores());
+        tabbedPane.addTab("Idade", new CalculadoraPainelIdade());
+        tabbedPane.addTab("Estatística", new CalculadoraPainelEstatistica());
+        tabbedPane.addTab("Bhaskara", new CalculadoraPainelBhaskara());
+        tabbedPane.addTab("Fatorial", new CalculadoraPainelFatorial());
+        tabbedPane.addTab("Logaritmo", new CalculadoraPainelLogaritmo());
+        tabbedPane.addTab("Primos", new CalculadoraPainelPrimos());
 
         add(tabbedPane);
         setVisible(true);
