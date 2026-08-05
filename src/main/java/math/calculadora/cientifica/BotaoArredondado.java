@@ -5,12 +5,11 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class BotaoArredondado extends JButton {
-    private Color corFundo;
-    private Color corDestaque;
+    private Color   corFundo;
+    private Color   corDestaque;
     private boolean destacado = false;
     private int     raio = 20;
 
-    // Cores do tema escuro (referência ao tema)
     private static final Color COR_TEXTO = Color.WHITE;
     private static final Color COR_BOTAO_NORMAL = new Color(45, 45, 50);
     private static final Color COR_BOTAO_DESTAQUE = new Color(0, 120, 215);
@@ -31,6 +30,7 @@ public class BotaoArredondado extends JButton {
                 destacado = true;
                 repaint();
             }
+
             public void mouseExited(MouseEvent e) {
                 destacado = false;
                 repaint();

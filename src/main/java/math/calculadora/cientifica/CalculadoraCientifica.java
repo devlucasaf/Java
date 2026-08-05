@@ -10,9 +10,8 @@ import javax.script.ScriptException;
 public class CalculadoraCientifica extends JFrame {
     private JTextField      visor;
     private ScriptEngine    motor;
-    private double ultimoResultado = 0.0;
+    private double          ultimoResultado = 0.0;
 
-    // Cores do tema escuro
     private final Color COR_FUNDO = new Color(30, 30, 35);
     private final Color COR_VISOR = new Color(20, 20, 25);
     private final Color COR_TEXTO = Color.WHITE;
@@ -200,7 +199,6 @@ public class CalculadoraCientifica extends JFrame {
             visor.setText(formatarResultado(valor));
             motor.put("ans", valor);
             ultimoResultado = valor;
-
         } catch (Exception e) {
             visor.setText("Erro");
             Timer temporizador = new Timer(1000, ev -> {
@@ -243,6 +241,7 @@ public class CalculadoraCientifica extends JFrame {
         if (Double.isNaN(valor) || Double.isInfinite(valor)) {
             return "Erro";
         }
+
         if (valor == (long) valor) {
             return String.valueOf((long) valor);
         }
