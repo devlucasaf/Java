@@ -12,52 +12,61 @@ public class CalculadoraRomanosPainel extends JPanel {
         super(new GridBagLayout());
         setBackground(TemaEscuro.FUNDO);
         setBorder(new EmptyBorder(10, 10, 10, 10));
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(5, 5, 5, 5);
-        gbc.fill = GridBagConstraints.HORIZONTAL;
+        GridBagConstraints gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.insets = new Insets(5, 5, 5, 5);
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
 
         JLabel lblNumero = new JLabel("Número (1-3999):");
         lblNumero.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 0; gbc.gridy = 0;
-        add(lblNumero, gbc);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        add(lblNumero, gridBagConstraints);
+
         JTextField txtNumero = new JTextField("2024", 10);
         txtNumero.setBackground(TemaEscuro.CAMPO);
         txtNumero.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 1; gbc.gridy = 0;
-        add(txtNumero, gbc);
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        add(txtNumero, gridBagConstraints);
 
         JLabel lblRomano = new JLabel("Romano:");
         lblRomano.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 0; gbc.gridy = 1;
-        add(lblRomano, gbc);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        add(lblRomano, gridBagConstraints);
+
         JTextField txtRomano = new JTextField("MMXXIV", 10);
         txtRomano.setBackground(TemaEscuro.CAMPO);
         txtRomano.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 1; gbc.gridy = 1;
-        add(txtRomano, gbc);
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        add(txtRomano, gridBagConstraints);
 
         JButton btnParaRomano = new JButton("→ Romano");
         btnParaRomano.setBackground(TemaEscuro.BOTAO);
         btnParaRomano.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 0; gbc.gridy = 2;
-        add(btnParaRomano, gbc);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        add(btnParaRomano, gridBagConstraints);
 
         JButton btnParaNumero = new JButton("→ Número");
         btnParaNumero.setBackground(TemaEscuro.BOTAO);
         btnParaNumero.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 1; gbc.gridy = 2;
-        add(btnParaNumero, gbc);
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        add(btnParaNumero, gridBagConstraints);
 
         JLabel lblResultado = new JLabel("Resultado: ");
         lblResultado.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 0; gbc.gridy = 3;
-        gbc.gridwidth = 2;
-        add(lblResultado, gbc);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 2;
+        add(lblResultado, gridBagConstraints);
 
         btnParaRomano.addActionListener(e -> {
             try {
                 int num = Integer.parseInt(txtNumero.getText().trim());
-                String romano = ConversorRomanos.toRoman(num);
+                String romano = ConversorRomanos.paraRomano(num);
                 txtRomano.setText(romano);
                 lblResultado.setText("Resultado: " + romano);
             } catch (Exception ex) {
@@ -68,7 +77,7 @@ public class CalculadoraRomanosPainel extends JPanel {
         btnParaNumero.addActionListener(e -> {
             try {
                 String romano = txtRomano.getText().trim().toUpperCase();
-                int num = ConversorRomanos.fromRoman(romano);
+                int num = ConversorRomanos.deRomano(romano);
                 txtNumero.setText(String.valueOf(num));
                 lblResultado.setText("Resultado: " + num);
             } catch (Exception ex) {

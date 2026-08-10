@@ -12,67 +12,74 @@ public class CalculadoraHorasPainel extends JPanel {
         super(new GridBagLayout());
         setBackground(TemaEscuro.FUNDO);
         setBorder(new EmptyBorder(10, 10, 10, 10));
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(5, 5, 5, 5);
-        gbc.fill = GridBagConstraints.HORIZONTAL;
+        GridBagConstraints gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.insets = new Insets(5, 5, 5, 5);
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
 
         JLabel lblHora1 = new JLabel("Hora 1 (HH:MM):");
         lblHora1.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 0; gbc.gridy = 0;
-        add(lblHora1, gbc);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        add(lblHora1, gridBagConstraints);
 
         JTextField txtHora1 = new JTextField("10:30", 10);
         txtHora1.setBackground(TemaEscuro.CAMPO);
         txtHora1.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 1; gbc.gridy = 0;
-        add(txtHora1, gbc);
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        add(txtHora1, gridBagConstraints);
 
         JLabel lblHora2 = new JLabel("Hora 2 (HH:MM):");
         lblHora2.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 0; gbc.gridy = 1;
-        add(lblHora2, gbc);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        add(lblHora2, gridBagConstraints);
 
         JTextField txtHora2 = new JTextField("02:45", 10);
         txtHora2.setBackground(TemaEscuro.CAMPO);
         txtHora2.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 1; gbc.gridy = 1;
-        add(txtHora2, gbc);
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        add(txtHora2, gridBagConstraints);
 
         JComboBox<String> cbOperacao = new JComboBox<>(new String[]{"Somar", "Subtrair"});
         cbOperacao.setBackground(TemaEscuro.BOTAO);
         cbOperacao.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 0; gbc.gridy = 2;
-        gbc.gridwidth = 2;
-        add(cbOperacao, gbc);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 2;
+        add(cbOperacao, gridBagConstraints);
 
         JButton btnCalcular = new JButton("Calcular");
         btnCalcular.setBackground(TemaEscuro.BOTAO);
         btnCalcular.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 0; gbc.gridy = 3;
-        gbc.gridwidth = 2;
-        add(btnCalcular, gbc);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 2;
+        add(btnCalcular, gridBagConstraints);
 
         JLabel lblResultado = new JLabel("Resultado: ");
         lblResultado.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 0; gbc.gridy = 4;
-        gbc.gridwidth = 2;
-        add(lblResultado, gbc);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 2;
+        add(lblResultado, gridBagConstraints);
 
         btnCalcular.addActionListener(e -> {
             try {
                 String[] p1 = txtHora1.getText().split(":");
                 String[] p2 = txtHora2.getText().split(":");
-                int h1 = Integer.parseInt(p1[0]);
-                int m1 = Integer.parseInt(p1[1]);
-                int h2 = Integer.parseInt(p2[0]);
-                int m2 = Integer.parseInt(p2[1]);
-                int totalMin1 = h1 * 60 + m1;
-                int totalMin2 = h2 * 60 + m2;
+                int hora1 = Integer.parseInt(p1[0]);
+                int minuto1 = Integer.parseInt(p1[1]);
+                int hora2 = Integer.parseInt(p2[0]);
+                int minuto2 = Integer.parseInt(p2[1]);
+                int totalMinuto1 = hora1 * 60 + minuto1;
+                int totalMinuto2 = hora2 * 60 + minuto2;
                 int resultadoMin;
                 if (cbOperacao.getSelectedItem().equals("Somar")) {
-                    resultadoMin = totalMin1 + totalMin2;
+                    resultadoMin = totalMinuto1 + totalMinuto2;
                 } else {
-                    resultadoMin = Math.abs(totalMin1 - totalMin2);
+                    resultadoMin = Math.abs(totalMinuto1 - totalMinuto2);
                 }
                 lblResultado.setText("Resultado: " + Formatador.formatarMinutosParaHora(resultadoMin));
             } catch (Exception ex) {

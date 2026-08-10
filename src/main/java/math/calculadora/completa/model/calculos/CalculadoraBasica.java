@@ -12,12 +12,12 @@ public class CalculadoraBasica {
         novoNumero = true;
     }
 
-    public double calcular(double operando, String op) {
-        if (op == null || op.isEmpty()) {
+    public double calcular(double operando, String operador) {
+        if (operador == null || operador.isEmpty()) {
             return operando;
         }
 
-        switch (op) {
+        switch (operador) {
             case "+":
                 valorAtual += operando;
                 break;
@@ -34,7 +34,7 @@ public class CalculadoraBasica {
                 valorAtual /= operando;
                 break;
             default:
-                throw new IllegalArgumentException("Operador inválido: " + op);
+                throw new IllegalArgumentException("Operador inválido: " + operador);
         }
         return valorAtual;
     }
@@ -43,23 +43,23 @@ public class CalculadoraBasica {
         return operador;
     }
 
-    public void setOperador(String op) {
-        this.operador = op;
+    public void setOperador(String operador) {
+        this.operador = operador;
     }
 
     public double getValorAtual() {
         return valorAtual;
     }
 
-    public void setValorAtual(double v) {
-        this.valorAtual = v;
+    public void setValorAtual(double valorAtual) {
+        this.valorAtual = valorAtual;
     }
 
     public boolean isNovoNumero() {
         return novoNumero;
     }
 
-    public void setNovoNumero(boolean b) {
-        this.novoNumero = b;
+    public void setNovoNumero(boolean novoNumero) {
+        this.novoNumero = novoNumero;
     }
 }

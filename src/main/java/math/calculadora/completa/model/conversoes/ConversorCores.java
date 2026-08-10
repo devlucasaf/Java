@@ -4,29 +4,34 @@ import java.awt.Color;
 
 public class ConversorCores {
 
-    public static int[] hexToRgb(String hex) {
-        if (hex.startsWith("#")) {
-            hex = hex.substring(1);
+    public static int[] hexadecimalParaRGB(String hexadecimal) {
+        if (hexadecimal.startsWith("#")) {
+            hexadecimal = hexadecimal.substring(1);
         }
 
-        if (hex.length() != 6) {
+        if (hexadecimal.length() != 6) {
             throw new IllegalArgumentException("HEX deve ter 6 caracteres");
         }
-        int r = Integer.parseInt(hex.substring(0, 2), 16);
-        int g = Integer.parseInt(hex.substring(2, 4), 16);
-        int b = Integer.parseInt(hex.substring(4, 6), 16);
+        int r = Integer.parseInt(hexadecimal.substring(0, 2), 16);
+        int g = Integer.parseInt(hexadecimal.substring(2, 4), 16);
+        int b = Integer.parseInt(hexadecimal.substring(4, 6), 16);
         return new int[]{r, g, b};
     }
 
-    public static String rgbToHex(int r, int g, int b) {
+    public static String rgbParaHexadecimal(int r, int g, int b) {
         return String.format("#%02X%02X%02X", clamp(r), clamp(g), clamp(b));
     }
 
-    public static float[] rgbToHsl(int r, int g, int b) {
-        float fr = r / 255f, fg = g / 255f, fb = b / 255f;
+    public static float[] rgbParaHsl(int r, int g, int b) {
+        float fr = r / 255f;
+        float fg = g / 255f;
+        float fb = b / 255f;
         float max = Math.max(fr, Math.max(fg, fb));
         float min = Math.min(fr, Math.min(fg, fb));
-        float h, s, l = (max + min) / 2;
+        float h = (max + min) / 2;
+        float s = (max + min) / 2;
+        float l = (max + min) / 2;
+
         if (max == min) {
             h = 0;
             s = 0;
@@ -45,11 +50,14 @@ public class ConversorCores {
         return new float[]{h * 360, s, l};
     }
 
-    public static Color hslToRgb(double h, double s, double l) {
+    public static Color hslParaRgb(double h, double s, double l) {
         double c = (1 - Math.abs(2 * l - 1)) * s;
         double x = c * (1 - Math.abs((h / 60) % 2 - 1));
         double m = l - c / 2;
-        double r, g, b;
+        double r;
+        double g;
+        double b;
+
         if (h < 60) {
             r = c;
             g = x;
@@ -79,7 +87,9 @@ public class ConversorCores {
     }
 
     public static float[] rgbToCmyk(int r, int g, int b) {
-        float fr = r / 255f, fg = g / 255f, fb = b / 255f;
+        float fr = r / 255f;
+        float fg = g / 255f;
+        float fb = b / 255f;
         float k = 1 - Math.max(fr, Math.max(fg, fb));
         if (k == 1) {
             return new float[]{0, 0, 0, 1};
@@ -91,7 +101,7 @@ public class ConversorCores {
         return new float[]{c, m, y, k};
     }
 
-    public static Color cmykToRgb(double c, double m, double y, double k) {
+    public static Color cmykParaRgb(double c, double m, double y, double k) {
         int r = (int)(255 * (1 - c) * (1 - k));
         int g = (int)(255 * (1 - m) * (1 - k));
         int b = (int)(255 * (1 - y) * (1 - k));

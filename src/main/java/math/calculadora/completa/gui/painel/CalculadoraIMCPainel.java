@@ -12,48 +12,57 @@ public class CalculadoraIMCPainel extends JPanel {
         super(new GridBagLayout());
         setBackground(TemaEscuro.FUNDO);
         setBorder(new EmptyBorder(10, 10, 10, 10));
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(5, 5, 5, 5);
-        gbc.fill = GridBagConstraints.HORIZONTAL;
+        GridBagConstraints gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.insets = new Insets(5, 5, 5, 5);
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
 
         JLabel lblPeso = new JLabel("Peso (kg):");
         lblPeso.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 0; gbc.gridy = 0;
-        add(lblPeso, gbc);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        add(lblPeso, gridBagConstraints);
+
         JTextField txtPeso = new JTextField("70", 10);
         txtPeso.setBackground(TemaEscuro.CAMPO);
         txtPeso.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 1; gbc.gridy = 0;
-        add(txtPeso, gbc);
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        add(txtPeso, gridBagConstraints);
 
-        JLabel lblAltura = new JLabel("Altura (m):");
+        JLabel lblAltura = new JLabel("Altura:");
         lblAltura.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 0; gbc.gridy = 1;
-        add(lblAltura, gbc);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        add(lblAltura, gridBagConstraints);
+
         JTextField txtAltura = new JTextField("1.75", 10);
         txtAltura.setBackground(TemaEscuro.CAMPO);
         txtAltura.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 1; gbc.gridy = 1;
-        add(txtAltura, gbc);
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        add(txtAltura, gridBagConstraints);
 
         JButton btnCalcular = new JButton("Calcular IMC");
         btnCalcular.setBackground(TemaEscuro.BOTAO);
         btnCalcular.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 0; gbc.gridy = 2;
-        gbc.gridwidth = 2;
-        add(btnCalcular, gbc);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 2;
+        add(btnCalcular, gridBagConstraints);
 
         JLabel lblResultado = new JLabel("IMC: ");
         lblResultado.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 0; gbc.gridy = 3;
-        gbc.gridwidth = 2;
-        add(lblResultado, gbc);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 2;
+        add(lblResultado, gridBagConstraints);
 
         JLabel lblClassificacao = new JLabel("Classificação: ");
         lblClassificacao.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 0; gbc.gridy = 4;
-        gbc.gridwidth = 2;
-        add(lblClassificacao, gbc);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 2;
+        add(lblClassificacao, gridBagConstraints);
 
         btnCalcular.addActionListener(e -> {
             try {

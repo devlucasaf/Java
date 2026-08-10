@@ -20,39 +20,43 @@ public class CalculadoraHistoricoPainel extends JPanel {
 
         JPanel topPanel = new JPanel(new GridBagLayout());
         topPanel.setBackground(TemaEscuro.FUNDO);
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(5, 5, 5, 5);
-        gbc.fill = GridBagConstraints.HORIZONTAL;
+        GridBagConstraints gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.insets = new Insets(5, 5, 5, 5);
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
 
         JLabel lblExpressao = new JLabel("Expressão:");
         lblExpressao.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 0; gbc.gridy = 0;
-        topPanel.add(lblExpressao, gbc);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        topPanel.add(lblExpressao, gridBagConstraints);
 
         JTextField txtExpressao = new JTextField(15);
         txtExpressao.setBackground(TemaEscuro.CAMPO);
         txtExpressao.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 1; gbc.gridy = 0;
-        topPanel.add(txtExpressao, gbc);
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        topPanel.add(txtExpressao, gridBagConstraints);
 
         JLabel lblResultado = new JLabel("Resultado:");
         lblResultado.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 0; gbc.gridy = 1;
-        topPanel.add(lblResultado, gbc);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        topPanel.add(lblResultado, gridBagConstraints);
 
         JTextField txtResultado = new JTextField(15);
         txtResultado.setBackground(TemaEscuro.CAMPO);
         txtResultado.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 1; gbc.gridy = 1;
-        topPanel.add(txtResultado, gbc);
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        topPanel.add(txtResultado, gridBagConstraints);
 
         JButton btnAdicionar = new JButton("Adicionar");
         btnAdicionar.setBackground(TemaEscuro.BOTAO);
         btnAdicionar.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 0; gbc.gridy = 2;
-        gbc.gridwidth = 2;
-        topPanel.add(btnAdicionar, gbc);
-
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 2;
+        topPanel.add(btnAdicionar, gridBagConstraints);
         add(topPanel, BorderLayout.NORTH);
 
         lista.setBackground(TemaEscuro.CAMPO);
@@ -70,10 +74,10 @@ public class CalculadoraHistoricoPainel extends JPanel {
         carregarHistorico();
 
         btnAdicionar.addActionListener(e -> {
-            String expr = txtExpressao.getText().trim();
-            String res = txtResultado.getText().trim();
-            if (!expr.isEmpty() && !res.isEmpty()) {
-                String entrada = expr + " = " + res;
+            String expressao = txtExpressao.getText().trim();
+            String resultado = txtResultado.getText().trim();
+            if (!expressao.isEmpty() && !resultado.isEmpty()) {
+                String entrada = expressao + " = " + resultado;
                 modelo.addElement(entrada);
                 try {
                     service.adicionarEntrada(entrada);

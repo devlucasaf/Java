@@ -16,9 +16,9 @@ public class CalculadoraTabelaVerdadePainel extends JPanel {
 
         JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         topPanel.setBackground(TemaEscuro.FUNDO);
-        JLabel lblOp = new JLabel("Operação:");
-        lblOp.setForeground(TemaEscuro.TEXTO);
-        topPanel.add(lblOp);
+        JLabel lblOperacao = new JLabel("Operação:");
+        lblOperacao.setForeground(TemaEscuro.TEXTO);
+        topPanel.add(lblOperacao);
 
         JComboBox<String> cbOperacao = new JComboBox<>(Constantes.OPERACOES_TABELA_VERDADE);
         cbOperacao.setBackground(TemaEscuro.BOTAO);
@@ -42,8 +42,8 @@ public class CalculadoraTabelaVerdadePainel extends JPanel {
         add(scroll, BorderLayout.CENTER);
 
         btnGerar.addActionListener(e -> {
-            String op = (String) cbOperacao.getSelectedItem();
-            area.setText(TabelaVerdade.gerarTabela(op));
+            String operacao = (String) cbOperacao.getSelectedItem();
+            area.setText(TabelaVerdade.gerarTabela(operacao));
         });
 
         area.setText(TabelaVerdade.gerarTabela("A AND B"));

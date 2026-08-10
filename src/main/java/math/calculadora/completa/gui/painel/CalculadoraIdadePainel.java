@@ -13,39 +13,43 @@ public class CalculadoraIdadePainel extends JPanel {
         super(new GridBagLayout());
         setBackground(TemaEscuro.FUNDO);
         setBorder(new EmptyBorder(10, 10, 10, 10));
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(5, 5, 5, 5);
-        gbc.fill = GridBagConstraints.HORIZONTAL;
+        GridBagConstraints gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.insets = new Insets(5, 5, 5, 5);
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
 
         JLabel lblData = new JLabel("Data de Nascimento (dd/MM/yyyy):");
         lblData.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 0; gbc.gridy = 0;
-        add(lblData, gbc);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        add(lblData, gridBagConstraints);
 
         JTextField txtData = new JTextField("01/01/2000", 10);
         txtData.setBackground(TemaEscuro.CAMPO);
         txtData.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 1; gbc.gridy = 0;
-        add(txtData, gbc);
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        add(txtData, gridBagConstraints);
 
         JButton btnCalcular = new JButton("Calcular Idade");
         btnCalcular.setBackground(TemaEscuro.BOTAO);
         btnCalcular.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 0; gbc.gridy = 1;
-        gbc.gridwidth = 2;
-        add(btnCalcular, gbc);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
+        add(btnCalcular, gridBagConstraints);
 
         JLabel lblResultado = new JLabel("Idade: ");
         lblResultado.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 0; gbc.gridy = 2;
-        gbc.gridwidth = 2;
-        add(lblResultado, gbc);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 2;
+        add(lblResultado, gridBagConstraints);
 
         btnCalcular.addActionListener(e -> {
             try {
-                Period p = CalculadoraIdade.calcularIdade(txtData.getText());
+                Period periodo = CalculadoraIdade.calcularIdade(txtData.getText());
                 lblResultado.setText(String.format("Idade: %d anos, %d meses, %d dias",
-                        p.getYears(), p.getMonths(), p.getDays()));
+                        periodo.getYears(), periodo.getMonths(), periodo.getDays()));
             } catch (Exception ex) {
                 lblResultado.setText("Formato inválido! Use dd/MM/yyyy");
             }

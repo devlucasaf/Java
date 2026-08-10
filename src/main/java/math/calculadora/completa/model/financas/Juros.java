@@ -1,5 +1,7 @@
 package math.calculadora.completa.model.financas;
 
+import math.calculadora.completa.model.financas.resultados.ResultadoJuros;
+
 public class Juros {
 
     public static ResultadoJuros calcular(double capital, double taxaPercentual, double periodos, String tipo) {

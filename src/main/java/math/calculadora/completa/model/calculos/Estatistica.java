@@ -1,10 +1,12 @@
 package math.calculadora.completa.model.calculos;
 
+import math.calculadora.completa.model.calculos.resultados.ResultadoEstatistica;
+
 import java.util.*;
 
 public class Estatistica {
 
-    public static ResultadoEstatistico calcular(List<Double> valores) {
+    public static ResultadoEstatistica calcular(List<Double> valores) {
         if (valores == null || valores.isEmpty()) {
             throw new IllegalArgumentException("Lista de valores vazia");
         }
@@ -46,6 +48,6 @@ public class Estatistica {
         var /= n;
         double dp = Math.sqrt(var);
 
-        return new ResultadoEstatistico(media, mediana, var, dp, modas);
+        return new ResultadoEstatistica(media, mediana, var, dp, modas);
     }
 }

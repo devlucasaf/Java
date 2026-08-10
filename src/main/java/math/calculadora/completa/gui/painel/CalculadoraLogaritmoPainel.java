@@ -12,44 +12,50 @@ public class CalculadoraLogaritmoPainel extends JPanel {
         super(new GridBagLayout());
         setBackground(TemaEscuro.FUNDO);
         setBorder(new EmptyBorder(10, 10, 10, 10));
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(5, 5, 5, 5);
-        gbc.fill = GridBagConstraints.HORIZONTAL;
+        GridBagConstraints gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.insets = new Insets(5, 5, 5, 5);
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
 
         JLabel lblBase = new JLabel("Base (a):");
         lblBase.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 0; gbc.gridy = 0;
-        add(lblBase, gbc);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        add(lblBase, gridBagConstraints);
 
         JTextField txtBase = new JTextField("2", 8);
         txtBase.setBackground(TemaEscuro.CAMPO);
         txtBase.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 1; gbc.gridy = 0;
-        add(txtBase, gbc);
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        add(txtBase, gridBagConstraints);
 
         JLabel lblValor = new JLabel("Valor (b):");
         lblValor.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 0; gbc.gridy = 1;
-        add(lblValor, gbc);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        add(lblValor, gridBagConstraints);
 
         JTextField txtValor = new JTextField("8", 8);
         txtValor.setBackground(TemaEscuro.CAMPO);
         txtValor.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 1; gbc.gridy = 1;
-        add(txtValor, gbc);
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        add(txtValor, gridBagConstraints);
 
         JButton btnCalcular = new JButton("Calcular logₐ(b)");
         btnCalcular.setBackground(TemaEscuro.BOTAO);
         btnCalcular.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 0; gbc.gridy = 2;
-        gbc.gridwidth = 2;
-        add(btnCalcular, gbc);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 2;
+        add(btnCalcular, gridBagConstraints);
 
         JLabel lblResultado = new JLabel("Resultado: ");
         lblResultado.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 0; gbc.gridy = 3;
-        gbc.gridwidth = 2;
-        add(lblResultado, gbc);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 2;
+        add(lblResultado, gridBagConstraints);
 
         btnCalcular.addActionListener(e -> {
             try {

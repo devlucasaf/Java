@@ -5,7 +5,7 @@ import java.util.List;
 
 public class NumerosPrimos {
 
-    public static boolean isPrime(long n) {
+    public static boolean isNumeroPrimo(long n) {
         if (n < 2) {
             return false;
         }
@@ -25,7 +25,7 @@ public class NumerosPrimos {
     public static List<Long> listarPrimosAte(long n) {
         List<Long> lista = new ArrayList<>();
         for (long i = 2; i <= n; i++) {
-            if (isPrime(i)) {
+            if (isNumeroPrimo(i)) {
                 lista.add(i);
             }
         }

@@ -16,47 +16,54 @@ public class CalculadoraPrimosPainel extends JPanel {
         super(new GridBagLayout());
         setBackground(TemaEscuro.FUNDO);
         setBorder(new EmptyBorder(10, 10, 10, 10));
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(5, 5, 5, 5);
-        gbc.fill = GridBagConstraints.HORIZONTAL;
+        GridBagConstraints gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.insets = new Insets(5, 5, 5, 5);
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
 
         JLabel lblNumero = new JLabel("Número (N):");
         lblNumero.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 0; gbc.gridy = 0;
-        add(lblNumero, gbc);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        add(lblNumero, gridBagConstraints);
 
         txtNumero = new JTextField("100", 10);
         txtNumero.setBackground(TemaEscuro.CAMPO);
         txtNumero.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 1; gbc.gridy = 0;
-        add(txtNumero, gbc);
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        add(txtNumero, gridBagConstraints);
 
-        JLabel lblOp = new JLabel("Operação:");
-        lblOp.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 0; gbc.gridy = 1;
-        add(lblOp, gbc);
+        JLabel lblOperacao = new JLabel("Operação:");
+        lblOperacao.setForeground(TemaEscuro.TEXTO);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        add(lblOperacao, gridBagConstraints);
 
         cbOperacao = new JComboBox<>(new String[]{"Verificar se é primo", "Listar primos até N", "Fatorar N"});
         cbOperacao.setBackground(TemaEscuro.BOTAO);
         cbOperacao.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 1; gbc.gridy = 1;
-        add(cbOperacao, gbc);
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        add(cbOperacao, gridBagConstraints);
 
         JButton btnExecutar = new JButton("Executar");
         btnExecutar.setBackground(TemaEscuro.BOTAO);
         btnExecutar.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 0; gbc.gridy = 2;
-        gbc.gridwidth = 2;
-        add(btnExecutar, gbc);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 2;
+        add(btnExecutar, gridBagConstraints);
 
         areaResultado = new JTextArea(10, 30);
         areaResultado.setBackground(TemaEscuro.CAMPO);
         areaResultado.setForeground(TemaEscuro.TEXTO);
         areaResultado.setEditable(false);
+
         JScrollPane scroll = new JScrollPane(areaResultado);
-        gbc.gridx = 0; gbc.gridy = 3;
-        gbc.gridwidth = 2;
-        add(scroll, gbc);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 2;
+        add(scroll, gridBagConstraints);
 
         btnExecutar.addActionListener(e -> executar());
     }
@@ -72,7 +79,7 @@ public class CalculadoraPrimosPainel extends JPanel {
             int op = cbOperacao.getSelectedIndex();
             switch (op) {
                 case 0:
-                    areaResultado.setText(NumerosPrimos.isPrime(n) ? "É primo." : "Não é primo.");
+                    areaResultado.setText(NumerosPrimos.isNumeroPrimo(n) ? "É primo." : "Não é primo.");
                     break;
                 case 1:
                     areaResultado.setText("Primos até " + n + ":\n" + NumerosPrimos.listarPrimosAte(n).toString());

@@ -13,64 +13,74 @@ public class CalculadoraBitwisePainel extends JPanel {
         super(new GridBagLayout());
         setBackground(TemaEscuro.FUNDO);
         setBorder(new EmptyBorder(10, 10, 10, 10));
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(5, 5, 5, 5);
-        gbc.fill = GridBagConstraints.HORIZONTAL;
+        GridBagConstraints gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.insets = new Insets(5, 5, 5, 5);
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
 
-        JLabel lblA = new JLabel("A (decimal):");
-        lblA.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 0; gbc.gridy = 0;
-        add(lblA, gbc);
+        JLabel lblAValorDecimal = new JLabel("A (decimal):");
+        lblAValorDecimal.setForeground(TemaEscuro.TEXTO);
+        gridBagConstraints.gridx = 0; gridBagConstraints.gridy = 0;
+        add(lblAValorDecimal, gridBagConstraints);
         JTextField txtA = new JTextField("12", 10);
         txtA.setBackground(TemaEscuro.CAMPO);
         txtA.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 1; gbc.gridy = 0;
-        add(txtA, gbc);
+        gridBagConstraints.gridx = 1; gridBagConstraints.gridy = 0;
+        add(txtA, gridBagConstraints);
 
-        JLabel lblB = new JLabel("B (decimal):");
-        lblB.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 0; gbc.gridy = 1;
-        add(lblB, gbc);
+        JLabel lblBValorDecimal = new JLabel("B (decimal):");
+        lblBValorDecimal.setForeground(TemaEscuro.TEXTO);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        add(lblBValorDecimal, gridBagConstraints);
+
         JTextField txtB = new JTextField("10", 10);
         txtB.setBackground(TemaEscuro.CAMPO);
         txtB.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 1; gbc.gridy = 1;
-        add(txtB, gbc);
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        add(txtB, gridBagConstraints);
 
         JLabel lblOperacao = new JLabel("Operação:");
         lblOperacao.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 0; gbc.gridy = 2;
-        add(lblOperacao, gbc);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        add(lblOperacao, gridBagConstraints);
+
         JComboBox<String> cbOperacao = new JComboBox<>(Constantes.OPERACOES_BITWISE);
         cbOperacao.setBackground(TemaEscuro.BOTAO);
         cbOperacao.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 1; gbc.gridy = 2;
-        add(cbOperacao, gbc);
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        add(cbOperacao, gridBagConstraints);
 
         JButton btnCalcular = new JButton("Calcular");
         btnCalcular.setBackground(TemaEscuro.BOTAO);
         btnCalcular.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 0; gbc.gridy = 3;
-        gbc.gridwidth = 2;
-        add(btnCalcular, gbc);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 2;
+        add(btnCalcular, gridBagConstraints);
 
         JLabel lblDecimal = new JLabel("Decimal: ");
         lblDecimal.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 0; gbc.gridy = 4;
-        gbc.gridwidth = 2;
-        add(lblDecimal, gbc);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 2;
+        add(lblDecimal, gridBagConstraints);
 
         JLabel lblBinario = new JLabel("Binário: ");
         lblBinario.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 0; gbc.gridy = 5;
-        gbc.gridwidth = 2;
-        add(lblBinario, gbc);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 2;
+        add(lblBinario, gridBagConstraints);
 
         JLabel lblHexadecimal = new JLabel("Hexadecimal: ");
         lblHexadecimal.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 0; gbc.gridy = 6;
-        gbc.gridwidth = 2;
-        add(lblHexadecimal, gbc);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridwidth = 2;
+        add(lblHexadecimal, gridBagConstraints);
 
         btnCalcular.addActionListener(e -> {
             try {

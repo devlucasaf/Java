@@ -12,37 +12,41 @@ public class CalculadoraFatorialPainel extends JPanel {
         super(new GridBagLayout());
         setBackground(TemaEscuro.FUNDO);
         setBorder(new EmptyBorder(10, 10, 10, 10));
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(5, 5, 5, 5);
-        gbc.fill = GridBagConstraints.HORIZONTAL;
+        GridBagConstraints gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.insets = new Insets(5, 5, 5, 5);
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
 
-        JLabel lblN = new JLabel("n (inteiro ≥ 0):");
-        lblN.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 0; gbc.gridy = 0;
-        add(lblN, gbc);
+        JLabel lblNumero = new JLabel("n (inteiro ≥ 0):");
+        lblNumero.setForeground(TemaEscuro.TEXTO);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        add(lblNumero, gridBagConstraints);
 
-        JTextField txtN = new JTextField("5", 8);
-        txtN.setBackground(TemaEscuro.CAMPO);
-        txtN.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 1; gbc.gridy = 0;
-        add(txtN, gbc);
+        JTextField txtNumero = new JTextField("5", 8);
+        txtNumero.setBackground(TemaEscuro.CAMPO);
+        txtNumero.setForeground(TemaEscuro.TEXTO);
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        add(txtNumero, gridBagConstraints);
 
         JButton btnCalcular = new JButton("Calcular Fatorial");
         btnCalcular.setBackground(TemaEscuro.BOTAO);
         btnCalcular.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 0; gbc.gridy = 1;
-        gbc.gridwidth = 2;
-        add(btnCalcular, gbc);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
+        add(btnCalcular, gridBagConstraints);
 
         JLabel lblResultado = new JLabel("Resultado: ");
         lblResultado.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 0; gbc.gridy = 2;
-        gbc.gridwidth = 2;
-        add(lblResultado, gbc);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 2;
+        add(lblResultado, gridBagConstraints);
 
         btnCalcular.addActionListener(e -> {
             try {
-                int n = Integer.parseInt(txtN.getText().trim());
+                int n = Integer.parseInt(txtNumero.getText().trim());
                 lblResultado.setText("Resultado: " + Fatorial.calcular(n));
             } catch (Exception ex) {
                 lblResultado.setText("Resultado: valor inválido!");

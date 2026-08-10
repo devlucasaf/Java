@@ -8,10 +8,10 @@ public class Fatorial {
         if (n < 0) {
             throw new IllegalArgumentException("n deve ser ≥ 0");
         }
-        BigInteger fat = BigInteger.ONE;
+        BigInteger fatorial = BigInteger.ONE;
         for (int i = 2; i <= n; i++) {
-            fat = fat.multiply(BigInteger.valueOf(i));
+            fatorial = fatorial.multiply(BigInteger.valueOf(i));
         }
-        return fat;
+        return fatorial;
     }
 }

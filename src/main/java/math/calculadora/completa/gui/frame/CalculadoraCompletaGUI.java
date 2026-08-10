@@ -54,6 +54,11 @@ public class CalculadoraCompletaGUI extends JFrame {
         tabbedPane.addTab("Logaritmo", new CalculadoraLogaritmoPainel());
         tabbedPane.addTab("Primos", new CalculadoraPrimosPainel());
         tabbedPane.addTab("Fibonacci", new CalculadoraFibonacciPainel());
+        tabbedPane.addTab("Margem de Lucro", new CalculadoraMargemLucroPainel());
+        tabbedPane.addTab("Gorjeta", new CalculadoraGorjetaPainel());
+        tabbedPane.addTab("Equações", new CalculadoraEquacoesPainel());
+        tabbedPane.addTab("Matrizes", new CalculadoraMatrizesPainel());
+        tabbedPane.addTab("Área/Volume", new CalculadoraAreaVolumePainel());
 
         add(tabbedPane);
         setVisible(true);

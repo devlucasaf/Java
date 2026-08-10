@@ -15,62 +15,73 @@ public class CalculadoraMoedaPainel extends JPanel {
         super(new GridBagLayout());
         setBackground(TemaEscuro.FUNDO);
         setBorder(new EmptyBorder(10, 10, 10, 10));
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(5, 5, 5, 5);
-        gbc.fill = GridBagConstraints.HORIZONTAL;
+        GridBagConstraints gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.insets = new Insets(5, 5, 5, 5);
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
 
         JLabel lblValor = new JLabel("Valor:");
         lblValor.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 0; gbc.gridy = 0;
-        add(lblValor, gbc);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        add(lblValor, gridBagConstraints);
 
         JTextField txtValor = new JTextField("1", 10);
         txtValor.setBackground(TemaEscuro.CAMPO);
         txtValor.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 1; gbc.gridy = 0;
-        add(txtValor, gbc);
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        add(txtValor, gridBagConstraints);
 
         JLabel lblDe = new JLabel("De:");
         lblDe.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 0; gbc.gridy = 1;
-        add(lblDe, gbc);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        add(lblDe, gridBagConstraints);
+
         JComboBox<String> cbDe = new JComboBox<>(Constantes.MOEDAS);
         cbDe.setSelectedItem("USD");
         cbDe.setBackground(TemaEscuro.BOTAO);
         cbDe.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 1; gbc.gridy = 1;
-        add(cbDe, gbc);
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        add(cbDe, gridBagConstraints);
 
         JLabel lblPara = new JLabel("Para:");
         lblPara.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 0; gbc.gridy = 2;
-        add(lblPara, gbc);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        add(lblPara, gridBagConstraints);
+
         JComboBox<String> cbPara = new JComboBox<>(Constantes.MOEDAS);
         cbPara.setSelectedItem("BRL");
         cbPara.setBackground(TemaEscuro.BOTAO);
         cbPara.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 1; gbc.gridy = 2;
-        add(cbPara, gbc);
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        add(cbPara, gridBagConstraints);
 
         JButton btnConverter = new JButton("Converter");
         btnConverter.setBackground(TemaEscuro.BOTAO);
         btnConverter.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 0; gbc.gridy = 3;
-        gbc.gridwidth = 2;
-        add(btnConverter, gbc);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 2;
+        add(btnConverter, gridBagConstraints);
 
         JLabel lblResultado = new JLabel("Resultado: ");
         lblResultado.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 0; gbc.gridy = 4;
-        gbc.gridwidth = 2;
-        add(lblResultado, gbc);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 2;
+        add(lblResultado, gridBagConstraints);
 
         JLabel lblAviso = new JLabel("Taxas fornecidas pela API Frankfurter");
         lblAviso.setForeground(Color.LIGHT_GRAY);
         lblAviso.setFont(lblAviso.getFont().deriveFont(11f));
-        gbc.gridx = 0; gbc.gridy = 5;
-        gbc.gridwidth = 2;
-        add(lblAviso, gbc);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 2;
+        add(lblAviso, gridBagConstraints);
 
         btnConverter.addActionListener(e -> {
             try {

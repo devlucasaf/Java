@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 public class CalculadoraAction implements ActionListener {
     private JTextField  display;
     private String      comando;
-    private CalculadoraBasica calc = new CalculadoraBasica();
+    private CalculadoraBasica calculadora = new CalculadoraBasica();
 
     public CalculadoraAction(JTextField display, String comando) {
         this.display = display;
@@ -22,9 +22,9 @@ public class CalculadoraAction implements ActionListener {
         String texto = display.getText();
 
         if (comando.matches("[0-9.]")) {
-            if (calc.isNovoNumero()) {
+            if (calculadora.isNovoNumero()) {
                 display.setText(comando);
-                calc.setNovoNumero(false);
+                calculadora.setNovoNumero(false);
             } else {
                 if (comando.equals(".") && texto.contains(".")) {
                     return;
@@ -33,23 +33,23 @@ public class CalculadoraAction implements ActionListener {
             }
         } else if (comando.equals("C")) {
             display.setText("0");
-            calc.reset();
+            calculadora.reset();
         } else if (comando.equals("⌫")) {
             if (texto.length() > 1) {
                 display.setText(texto.substring(0, texto.length() - 1));
             } else {
                 display.setText("0");
-                calc.setNovoNumero(true);
+                calculadora.setNovoNumero(true);
             }
         } else if (comando.equals("=")) {
-            if (!calc.getOperador().isEmpty()) {
+            if (!calculadora.getOperador().isEmpty()) {
                 try {
                     double atual = Double.parseDouble(texto);
-                    double resultado = calc.calcular(atual, calc.getOperador());
+                    double resultado = calculadora.calcular(atual, calculadora.getOperador());
                     display.setText(Formatador.formatarNumero(resultado));
-                    calc.setValorAtual(resultado);
-                    calc.setOperador("");
-                    calc.setNovoNumero(true);
+                    calculadora.setValorAtual(resultado);
+                    calculadora.setOperador("");
+                    calculadora.setNovoNumero(true);
                 } catch (ArithmeticException ex) {
                     display.setText("Erro");
                 }
@@ -58,7 +58,7 @@ public class CalculadoraAction implements ActionListener {
             try {
                 double val = Double.parseDouble(texto);
                 display.setText(Formatador.formatarNumero(val * val));
-                calc.setNovoNumero(true);
+                calculadora.setNovoNumero(true);
             } catch (NumberFormatException ex) {
                 display.setText("Erro");
             }
@@ -70,31 +70,31 @@ public class CalculadoraAction implements ActionListener {
                     return;
                 }
                 display.setText(Formatador.formatarNumero(Math.sqrt(val)));
-                calc.setNovoNumero(true);
+                calculadora.setNovoNumero(true);
             } catch (NumberFormatException ex) {
                 display.setText("Erro");
             }
         } else {
-            if (!calc.getOperador().isEmpty() && !calc.isNovoNumero()) {
+            if (!calculadora.getOperador().isEmpty() && !calculadora.isNovoNumero()) {
                 try {
                     double atual = Double.parseDouble(texto);
-                    double resultado = calc.calcular(atual, calc.getOperador());
+                    double resultado = calculadora.calcular(atual, calculadora.getOperador());
                     display.setText(Formatador.formatarNumero(resultado));
-                    calc.setValorAtual(resultado);
+                    calculadora.setValorAtual(resultado);
                 } catch (ArithmeticException ex) {
                     display.setText("Erro");
                     return;
                 }
             } else {
                 try {
-                    calc.setValorAtual(Double.parseDouble(texto));
+                    calculadora.setValorAtual(Double.parseDouble(texto));
                 } catch (NumberFormatException ex) {
                     display.setText("Erro");
                     return;
                 }
             }
-            calc.setOperador(comando);
-            calc.setNovoNumero(true);
+            calculadora.setOperador(comando);
+            calculadora.setNovoNumero(true);
         }
     }
 }

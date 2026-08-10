@@ -12,69 +12,84 @@ public class CalculadoraRegraDeTresPainel extends JPanel {
         super(new GridBagLayout());
         setBackground(TemaEscuro.FUNDO);
         setBorder(new EmptyBorder(10, 10, 10, 10));
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(5, 5, 5, 5);
-        gbc.fill = GridBagConstraints.HORIZONTAL;
+        GridBagConstraints gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.insets = new Insets(5, 5, 5, 5);
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
 
-        JLabel lblInfo = new JLabel("A está para B, assim como C está para X");
-        lblInfo.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 0; gbc.gridy = 0;
-        gbc.gridwidth = 2;
-        add(lblInfo, gbc);
-        gbc.gridwidth = 1;
+        JLabel lblInformacao = new JLabel("A está para B, assim como C está para X");
+        lblInformacao.setForeground(TemaEscuro.TEXTO);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        add(lblInformacao, gridBagConstraints);
+        gridBagConstraints.gridwidth = 1;
 
         JLabel lblA = new JLabel("A:");
         lblA.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 0; gbc.gridy = 1;
-        add(lblA, gbc);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        add(lblA, gridBagConstraints);
+
         JTextField txtA = new JTextField("5", 10);
         txtA.setBackground(TemaEscuro.CAMPO);
         txtA.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 1; gbc.gridy = 1;
-        add(txtA, gbc);
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        add(txtA, gridBagConstraints);
 
         JLabel lblB = new JLabel("B:");
         lblB.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 0; gbc.gridy = 2;
-        add(lblB, gbc);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        add(lblB, gridBagConstraints);
+
         JTextField txtB = new JTextField("10", 10);
         txtB.setBackground(TemaEscuro.CAMPO);
         txtB.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 1; gbc.gridy = 2;
-        add(txtB, gbc);
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        add(txtB, gridBagConstraints);
 
         JLabel lblC = new JLabel("C:");
         lblC.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 0; gbc.gridy = 3;
-        add(lblC, gbc);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        add(lblC, gridBagConstraints);
+
         JTextField txtC = new JTextField("8", 10);
         txtC.setBackground(TemaEscuro.CAMPO);
         txtC.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 1; gbc.gridy = 3;
-        add(txtC, gbc);
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        add(txtC, gridBagConstraints);
 
-        JLabel lblTipo = new JLabel("Proporção:");
-        lblTipo.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 0; gbc.gridy = 4;
-        add(lblTipo, gbc);
+        JLabel lblTipoProporcao = new JLabel("Proporção:");
+        lblTipoProporcao.setForeground(TemaEscuro.TEXTO);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        add(lblTipoProporcao, gridBagConstraints);
+
         JComboBox<String> cbTipo = new JComboBox<>(new String[]{"Direta", "Inversa"});
         cbTipo.setBackground(TemaEscuro.BOTAO);
         cbTipo.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 1; gbc.gridy = 4;
-        add(cbTipo, gbc);
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 4;
+        add(cbTipo, gridBagConstraints);
 
         JButton btnCalcular = new JButton("Calcular X");
         btnCalcular.setBackground(TemaEscuro.BOTAO);
         btnCalcular.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 0; gbc.gridy = 5;
-        gbc.gridwidth = 2;
-        add(btnCalcular, gbc);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 2;
+        add(btnCalcular, gridBagConstraints);
 
         JLabel lblResultado = new JLabel("X: ");
         lblResultado.setForeground(TemaEscuro.TEXTO);
-        gbc.gridx = 0; gbc.gridy = 6;
-        gbc.gridwidth = 2;
-        add(lblResultado, gbc);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridwidth = 2;
+        add(lblResultado, gridBagConstraints);
 
         btnCalcular.addActionListener(e -> {
             try {

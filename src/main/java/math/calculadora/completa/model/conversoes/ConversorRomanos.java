@@ -2,7 +2,7 @@ package math.calculadora.completa.model.conversoes;
 
 public class ConversorRomanos {
 
-    public static String toRoman(int n) {
+    public static String paraRomano(int n) {
         if (n < 1 || n > 3999) {
             throw new IllegalArgumentException("Número fora do intervalo (1-3999)");
         }
@@ -13,26 +13,26 @@ public class ConversorRomanos {
         return mil[n / 1000] + cen[(n % 1000) / 100] + dez[(n % 100) / 10] + uni[n % 10];
     }
 
-    public static int fromRoman(String s) {
-        int result = 0;
+    public static int deRomano(String s) {
+        int resultado = 0;
         int prev = 0;
         for (int i = s.length() - 1; i >= 0; i--) {
-            int val = romanValue(s.charAt(i));
+            int val = romanoValor(s.charAt(i));
             if (val < prev) {
-                result -= val;
+                resultado -= val;
             } else {
-                result += val;
+                resultado += val;
             }
             prev = val;
         }
 
-        if (result < 1 || result > 3999) {
+        if (resultado < 1 || resultado > 3999) {
             throw new IllegalArgumentException("Numeral romano inválido");
         }
-        return result;
+        return resultado;
     }
 
-    private static int romanValue(char c) {
+    private static int romanoValor(char c) {
         switch (c) {
             case 'I':
                 return 1;

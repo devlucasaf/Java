@@ -101,7 +101,7 @@ public class CalculadoraCoresPainel extends JPanel {
 
         String hex = txtHex.getText().trim();
         try {
-            int[] rgb = ConversorCores.hexToRgb(hex);
+            int[] rgb = ConversorCores.hexadecimalParaRGB(hex);
             setRGB(rgb[0], rgb[1], rgb[2]);
             return;
         } catch (Exception ignored) {}
@@ -111,7 +111,7 @@ public class CalculadoraCoresPainel extends JPanel {
             double s = Double.parseDouble(txtS.getText()) / 100.0;
             double l = Double.parseDouble(txtL.getText()) / 100.0;
             if (h >= 0 && h <= 360 && s >= 0 && s <= 1 && l >= 0 && l <= 1) {
-                Color cor = ConversorCores.hslToRgb(h, s, l);
+                Color cor = ConversorCores.hslParaRgb(h, s, l);
                 setRGB(cor.getRed(), cor.getGreen(), cor.getBlue());
                 return;
             }
@@ -123,7 +123,7 @@ public class CalculadoraCoresPainel extends JPanel {
             double y = Double.parseDouble(txtY.getText()) / 100.0;
             double k = Double.parseDouble(txtK.getText()) / 100.0;
             if (c >= 0 && c <= 1 && m >= 0 && m <= 1 && y >= 0 && y <= 1 && k >= 0 && k <= 1) {
-                Color cor = ConversorCores.cmykToRgb(c, m, y, k);
+                Color cor = ConversorCores.cmykParaRgb(c, m, y, k);
                 setRGB(cor.getRed(), cor.getGreen(), cor.getBlue());
             }
         } catch (NumberFormatException ignored) {}
@@ -133,9 +133,9 @@ public class CalculadoraCoresPainel extends JPanel {
         txtR.setText(String.valueOf(r));
         txtG.setText(String.valueOf(g));
         txtB.setText(String.valueOf(b));
-        txtHex.setText(ConversorCores.rgbToHex(r, g, b));
+        txtHex.setText(ConversorCores.rgbParaHexadecimal(r, g, b));
 
-        float[] hsl = ConversorCores.rgbToHsl(r, g, b);
+        float[] hsl = ConversorCores.rgbParaHsl(r, g, b);
         txtH.setText(String.format("%.1f", hsl[0]));
         txtS.setText(String.format("%.1f", hsl[1] * 100));
         txtL.setText(String.format("%.1f", hsl[2] * 100));

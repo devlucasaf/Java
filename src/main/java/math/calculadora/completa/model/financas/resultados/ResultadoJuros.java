@@ -1,4 +1,4 @@
-package math.calculadora.completa.model.financas;
+package math.calculadora.completa.model.financas.resultados;
 
 public class ResultadoJuros {
     public final double montante;
