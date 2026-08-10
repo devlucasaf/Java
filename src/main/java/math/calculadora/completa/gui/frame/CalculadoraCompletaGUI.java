@@ -59,6 +59,11 @@ public class CalculadoraCompletaGUI extends JFrame {
         tabbedPane.addTab("Equações", new CalculadoraEquacoesPainel());
         tabbedPane.addTab("Matrizes", new CalculadoraMatrizesPainel());
         tabbedPane.addTab("Área/Volume", new CalculadoraAreaVolumePainel());
+        tabbedPane.addTab("Pitágoras", new CalculadoraPitagorasPainel());
+        tabbedPane.addTab("Salário Líquido", new CalculadoraSalarioPainel());
+        tabbedPane.addTab("Contador", new CalculadoraContadorPainel());
+        tabbedPane.addTab("Energia", new CalculadoraEnergiaPainel());
+        tabbedPane.addTab("Regressão Linear", new CalculadoraRegressaoPainel());
 
         add(tabbedPane);
         setVisible(true);
