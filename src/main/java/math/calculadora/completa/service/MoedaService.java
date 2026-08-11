@@ -11,22 +11,21 @@ import java.nio.charset.StandardCharsets;
 public class MoedaService {
 
     public double buscarConversao(double valor, String de, String para) throws Exception {
-        String urlStr = String.format(Constantes.API_MOEDA, valor, de, para);
-        URI uri = URI.create(urlStr);
-        HttpURLConnection conn = (HttpURLConnection) uri.toURL().openConnection();
-        conn.setRequestMethod("GET");
-        conn.setConnectTimeout(5000);
-        conn.setReadTimeout(5000);
+        String urlString = String.format(Constantes.API_MOEDA, valor, de, para);
+        URI uri = URI.create(urlString);
+        HttpURLConnection connection = (HttpURLConnection) uri.toURL().openConnection();
+        connection.setRequestMethod("GET");
+        connection.setConnectTimeout(5000);
+        connection.setReadTimeout(5000);
 
         StringBuilder resposta = new StringBuilder();
-        try (BufferedReader br = new BufferedReader(
-                new InputStreamReader(conn.getInputStream(), StandardCharsets.UTF_8))) {
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream(), StandardCharsets.UTF_8))) {
             String linha;
             while ((linha = br.readLine()) != null) {
                 resposta.append(linha);
             }
         } finally {
-            conn.disconnect();
+            connection.disconnect();
         }
 
         return extrairValor(resposta.toString(), para);

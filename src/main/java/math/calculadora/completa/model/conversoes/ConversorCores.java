@@ -19,7 +19,7 @@ public class ConversorCores {
     }
 
     public static String rgbParaHexadecimal(int r, int g, int b) {
-        return String.format("#%02X%02X%02X", clamp(r), clamp(g), clamp(b));
+        return String.format("#%02X%02X%02X", limitar(r), limitar(g), limitar(b));
     }
 
     public static float[] rgbParaHsl(int r, int g, int b) {
@@ -38,6 +38,7 @@ public class ConversorCores {
         } else {
             float d = max - min;
             s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+
             if (max == fr) {
                 h = (fg - fb) / d + (fg < fb ? 6 : 0);
             } else if (max == fg) {
@@ -105,10 +106,10 @@ public class ConversorCores {
         int r = (int)(255 * (1 - c) * (1 - k));
         int g = (int)(255 * (1 - m) * (1 - k));
         int b = (int)(255 * (1 - y) * (1 - k));
-        return new Color(clamp(r), clamp(g), clamp(b));
+        return new Color(limitar(r), limitar(g), limitar(b));
     }
 
-    private static int clamp(int v) {
+    private static int limitar(int v) {
         return Math.max(0, Math.min(255, v));
     }
 }

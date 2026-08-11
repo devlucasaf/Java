@@ -6,24 +6,24 @@ public class ConversorRomanos {
         if (n < 1 || n > 3999) {
             throw new IllegalArgumentException("Número fora do intervalo (1-3999)");
         }
-        String[] mil = {"", "M", "MM", "MMM"};
-        String[] cen = {"", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"};
-        String[] dez = {"", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"};
-        String[] uni = {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"};
-        return mil[n / 1000] + cen[(n % 1000) / 100] + dez[(n % 100) / 10] + uni[n % 10];
+        String[] milhares = {"", "M", "MM", "MMM"};
+        String[] centenas = {"", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"};
+        String[] dezenas = {"", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"};
+        String[] unidades = {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"};
+        return milhares[n / 1000] + centenas[(n % 1000) / 100] + dezenas[(n % 100) / 10] + unidades[n % 10];
     }
 
     public static int deRomano(String s) {
         int resultado = 0;
-        int prev = 0;
+        int valorProcessado = 0;
         for (int i = s.length() - 1; i >= 0; i--) {
-            int val = romanoValor(s.charAt(i));
-            if (val < prev) {
-                resultado -= val;
+            int valor = romanoValor(s.charAt(i));
+            if (valor < valorProcessado) {
+                resultado -= valor;
             } else {
-                resultado += val;
+                resultado += valor;
             }
-            prev = val;
+            valorProcessado = valor;
         }
 
         if (resultado < 1 || resultado > 3999) {

@@ -64,6 +64,12 @@ public class CalculadoraCompletaGUI extends JFrame {
         tabbedPane.addTab("Contador", new CalculadoraContadorPainel());
         tabbedPane.addTab("Energia", new CalculadoraEnergiaPainel());
         tabbedPane.addTab("Regressão Linear", new CalculadoraRegressaoPainel());
+        tabbedPane.addTab("Dia da Semana", new CalculadoraDiaSemanaPainel());
+        tabbedPane.addTab("Contagem Regressiva", new CalculadoraContagemRegressivaPainel());
+        tabbedPane.addTab("Calorias (TMB)", new CalculadoraCaloriasPainel());
+        tabbedPane.addTab("Peso Ideal", new CalculadoraPesoIdealPainel());
+        tabbedPane.addTab("Frequência", new CalculadoraFrequenciaPainel());
+        tabbedPane.addTab("Sistema Linear 3x3", new CalculadoraSistemaLinearPainel());
 
         add(tabbedPane);
         setVisible(true);
