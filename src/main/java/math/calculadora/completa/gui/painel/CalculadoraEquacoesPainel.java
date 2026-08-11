@@ -4,7 +4,7 @@ import math.calculadora.completa.gui.tema.TemaEscuro;
 import math.calculadora.completa.model.calculos.Equacoes;
 import math.calculadora.completa.model.calculos.Bhaskara;
 import math.calculadora.completa.model.calculos.Raizes;
-import math.calculadora.completa.model.calculos.resultados.SolucaoSistema;
+import math.calculadora.completa.model.calculos.resultados.ResultadoSolucaoSistema;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -276,7 +276,7 @@ public class CalculadoraEquacoesPainel extends JPanel {
                 double b2 = Double.parseDouble(txtB2.getText().trim());
                 double c2 = Double.parseDouble(txtC2.getText().trim());
 
-                SolucaoSistema solucaoSistema = Equacoes.resolverSistema2x2(a1,b1,c1,a2,b2,c2);
+                ResultadoSolucaoSistema solucaoSistema = Equacoes.resolverSistema2x2(a1,b1,c1,a2,b2,c2);
                 lblRes.setText(String.format("x = %.4f, y = %.4f", solucaoSistema.x, solucaoSistema.y));
             } catch (Exception ex) {
                 lblRes.setText("Erro: " + ex.getMessage());
