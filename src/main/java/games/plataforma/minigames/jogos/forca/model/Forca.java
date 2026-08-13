@@ -3,19 +3,21 @@ package games.plataforma.minigames.jogos.forca.model;
 import games.plataforma.minigames.util.GeradorAleatorio;
 
 public class Forca {
-    private String              palavraSecreta;
-    private char[]              progresso;
-    private int                 erros;
-    private boolean             finalizado;
-    private boolean             venceu;
+    private String  palavraSecreta;
+    private char[]  progresso;
+    private int     erros;
+    private boolean finalizado;
+    private boolean venceu;
 
     private static final int MAX_ERROS = 6;
-
     private static final String[] PALAVRAS = {
             "JAVA", "PROGRAMACAO", "COMPUTADOR", "ALGORITMO", "DESENVOLVIMENTO",
             "SISTEMA", "APLICACAO", "BANCO", "DADOS", "INTERNET",
             "SEGURANCA", "REDE", "CODIGO", "TESTE", "DEPURACAO"
     };
+
+    private boolean[] letrasReveladas;
+    private int reveladosCount;
 
     public Forca() {
         novaPalavra();
@@ -24,13 +26,15 @@ public class Forca {
     public void novaPalavra() {
         palavraSecreta = GeradorAleatorio.escolher(PALAVRAS).toUpperCase();
         progresso = new char[palavraSecreta.length()];
+        letrasReveladas = new boolean[palavraSecreta.length()];
         for (int i = 0; i < progresso.length; i++) {
             progresso[i] = '_';
+            letrasReveladas[i] = false;
         }
-
         erros = 0;
         finalizado = false;
         venceu = false;
+        reveladosCount = 0;
     }
 
     public boolean tentarLetra(char letra) {
@@ -43,10 +47,11 @@ public class Forca {
         for (int i = 0; i < palavraSecreta.length(); i++) {
             if (palavraSecreta.charAt(i) == letra && progresso[i] == '_') {
                 progresso[i] = letra;
+                letrasReveladas[i] = true;
                 acertou = true;
+                reveladosCount++;
             }
         }
-
         if (!acertou) {
             erros++;
             if (erros >= MAX_ERROS) {
@@ -97,5 +102,13 @@ public class Forca {
 
     public String getProgressoString() {
         return new String(progresso);
+    }
+
+    public boolean isLetraRevelada(int pos) {
+        return letrasReveladas[pos];
+    }
+
+    public int getReveladosCount() {
+        return reveladosCount;
     }
 }
