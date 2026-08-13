@@ -33,4 +33,16 @@
         </dependency>
     </dependencies>
 
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+            <resource>
+                <directory>src/main/java/games/plataforma/minigames/resources</directory>
+                <targetPath>games/plataforma/minigames/resources</targetPath>
+            </resource>
+        </resources>
+    </build>
+
 </project>
