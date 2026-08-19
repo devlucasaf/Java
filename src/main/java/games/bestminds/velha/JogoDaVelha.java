@@ -5,9 +5,9 @@ import java.util.Scanner;
 
 public class JogoDaVelha {
 
-    static char[][] tabuleiro = new char[3][3];
-    static Scanner scanner = new Scanner(System.in);
-    static Random random = new Random();
+    private static char[][] tabuleiro = new char[3][3];
+    private static Scanner  scanner = new Scanner(System.in);
+    private static Random   random = new Random();
 
     public static void main(String[] args) {
         boolean jogarNovamente;
@@ -31,7 +31,7 @@ public class JogoDaVelha {
         System.out.println("Obrigado por jogar!");
     }
 
-    static void jogar(int modo) {
+    private static void jogar(int modo) {
         char jogadorAtual = 'X';
         boolean jogoAtivo = true;
 
@@ -59,7 +59,7 @@ public class JogoDaVelha {
         }
     }
 
-    static void iniciarTabuleiro() {
+    private static void iniciarTabuleiro() {
         char posicao = '1';
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
@@ -68,7 +68,7 @@ public class JogoDaVelha {
         }
     }
 
-    static void exibirTabuleiro() {
+    private static void exibirTabuleiro() {
         System.out.println();
         for (int i = 0; i < 3; i++) {
             System.out.print(" ");
@@ -79,12 +79,14 @@ public class JogoDaVelha {
                 }
             }
             System.out.println();
-            if (i < 2) System.out.println("---+---+---");
+            if (i < 2) {
+                System.out.println("---+---+---");
+            }
         }
         System.out.println();
     }
 
-    static void jogadaJogador(char jogador) {
+    private static void jogadaJogador(char jogador) {
         int posicao;
         boolean valido = false;
 
@@ -102,7 +104,7 @@ public class JogoDaVelha {
         marcarPosicao(posicao, jogador);
     }
 
-    static void jogadaMaquina() {
+    private static void jogadaMaquina() {
         int posicao;
         do {
             posicao = random.nextInt(9) + 1;
@@ -112,7 +114,7 @@ public class JogoDaVelha {
         marcarPosicao(posicao, 'O');
     }
 
-    static boolean validarJogada(int posicao) {
+    private static boolean validarJogada(int posicao) {
         if (posicao < 1 || posicao > 9) {
             return false;
         }
@@ -123,13 +125,13 @@ public class JogoDaVelha {
         return tabuleiro[linha][coluna] != 'X' && tabuleiro[linha][coluna] != 'O';
     }
 
-    static void marcarPosicao(int posicao, char jogador) {
+    private static void marcarPosicao(int posicao, char jogador) {
         int linha = (posicao - 1) / 3;
         int coluna = (posicao - 1) % 3;
         tabuleiro[linha][coluna] = jogador;
     }
 
-    static boolean verificarVitoria(char jogador) {
+    private static boolean verificarVitoria(char jogador) {
         for (int i = 0; i < 3; i++) {
             if ((tabuleiro[i][0] == jogador &&
                     tabuleiro[i][1] == jogador &&
@@ -151,7 +153,7 @@ public class JogoDaVelha {
                         tabuleiro[2][0] == jogador);
     }
 
-    static boolean verificarEmpate() {
+    private static boolean verificarEmpate() {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 if (tabuleiro[i][j] != 'X' && tabuleiro[i][j] != 'O') {

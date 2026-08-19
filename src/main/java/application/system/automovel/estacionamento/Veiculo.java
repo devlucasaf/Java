@@ -1,5 +1,7 @@
 package application.system.automovel.estacionamento;
 
+import application.system.automovel.estacionamento.util.DataUtils;
+
 import java.time.LocalDateTime;
 
 public abstract class Veiculo {
@@ -25,6 +27,6 @@ public abstract class Veiculo {
     @Override
     public String toString() {
         return String.format("Tipo: %-10s | Placa: %-8s | Entrada: %s",
-                getTipo(), placa, Utils.formatarData(horaEntrada));
+                getTipo(), placa, DataUtils.formatarData(horaEntrada));
     }
 }

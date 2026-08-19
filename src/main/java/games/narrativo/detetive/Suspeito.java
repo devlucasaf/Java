@@ -1,6 +1,6 @@
 package games.narrativo.detetive;
 
-class Suspeito {
+public class Suspeito {
     String  nome;
     String  descricao;
     String  motivacao;

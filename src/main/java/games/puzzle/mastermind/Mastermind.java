@@ -53,6 +53,7 @@ public class Mastermind {
                 tentativa--;
                 continue;
             }
+
             String pista = avaliar(palpite);
             historico.add(palpite);
             pistas.add(pista);
@@ -102,6 +103,7 @@ public class Mastermind {
                 usadoPalpite[i] = true;
             }
         }
+
         for (int i = 0; i < TAMANHO_SENHA; i++) {
             if (usadoPalpite[i]) {
                 continue;

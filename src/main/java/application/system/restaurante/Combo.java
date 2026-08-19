@@ -1,5 +1,7 @@
 package application.system.restaurante;
 
+import application.system.restaurante.model.Promocional;
+
 public class Combo extends ItemCardapio implements Promocional {
     private final ItemCardapio[]    itens;
     private double                  percentualDesconto;

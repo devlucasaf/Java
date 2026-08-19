@@ -24,7 +24,8 @@ public class AngryBirds extends JPanel {
     private int                 pontos = 0;
     private int                 tentativas = 5;
     private boolean             mirando = false;
-    private int                 mouseX, mouseY;
+    private int                 mouseX;
+    private int                 mouseY;
     private final int           estilinguX = 120;
     private final int           estilinguY = SOLO - 30;
 
@@ -36,10 +37,17 @@ public class AngryBirds extends JPanel {
 
         MouseAdapter m = new MouseAdapter() {
             @Override public void mousePressed(MouseEvent e) {
-                if (!passaro.ativo && tentativas > 0) mirando = true;
+                if (!passaro.ativo && tentativas > 0) {
+                    mirando = true;
+                }
                 mouseX = e.getX(); mouseY = e.getY();
             }
-            @Override public void mouseDragged(MouseEvent e) { mouseX = e.getX(); mouseY = e.getY(); }
+
+            @Override public void mouseDragged(MouseEvent e) {
+                mouseX = e.getX();
+                mouseY = e.getY();
+            }
+
             @Override public void mouseReleased(MouseEvent e) {
                 if (mirando) {
                     double vx = (estilinguX - mouseX) * 3;
@@ -53,8 +61,11 @@ public class AngryBirds extends JPanel {
         addMouseListener(m);
         addMouseMotionListener(m);
 
-        Timer t = new Timer(16, e -> { atualizar(0.016); repaint(); });
-        t.start();
+        Timer timer = new Timer(16, e -> {
+            atualizar(0.016);
+            repaint();
+        });
+        timer.start();
     }
 
     private void montarNivel() {
@@ -84,8 +95,11 @@ public class AngryBirds extends JPanel {
             }
 
             if (passaro.y >= SOLO - passaro.raio || passaro.x > LARGURA || passaro.x < 0) {
-                if (tentativas > 0) passaro.reset(estilinguX, estilinguY);
-                else passaro.ativo = false;
+                if (tentativas > 0) {
+                    passaro.reset(estilinguX, estilinguY);
+                } else {
+                    passaro.ativo = false;
+                }
             }
         }
     }
@@ -102,7 +116,9 @@ public class AngryBirds extends JPanel {
         g2.setColor(new Color(90, 50, 20));
         g2.fillRect(estilinguX - 5, estilinguY, 10, 40);
 
-        for (Bloco b : blocos) b.desenhar(g2);
+        for (Bloco b : blocos) {
+            b.desenhar(g2);
+        }
 
         if (mirando) {
             g2.setColor(Color.GRAY);
@@ -115,18 +131,22 @@ public class AngryBirds extends JPanel {
         g2.drawString("Pontos: " + pontos, 20, 20);
         g2.drawString("Tentativas: " + tentativas, 20, 40);
         g2.drawString("Blocos restantes: " + blocos.size(), 20, 60);
-        if (blocos.isEmpty()) g2.drawString("VITORIA!", LARGURA / 2 - 30, 300);
-        else if (tentativas == 0 && !passaro.ativo) g2.drawString("FIM DE JOGO", LARGURA / 2 - 40, 300);
+
+        if (blocos.isEmpty()) {
+            g2.drawString("VITORIA!", LARGURA / 2 - 30, 300);
+        } else if (tentativas == 0 && !passaro.ativo) {
+            g2.drawString("FIM DE JOGO", LARGURA / 2 - 40, 300);
+        }
     }
 
     public static void main(String[] args) {
         javax.swing.SwingUtilities.invokeLater(() -> {
-            JFrame f = new JFrame("Angry Birds clone");
-            f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            f.add(new AngryBirds());
-            f.pack();
-            f.setLocationRelativeTo(null);
-            f.setVisible(true);
+            JFrame frame = new JFrame("Angry Birds clone");
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.add(new AngryBirds());
+            frame.pack();
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
         });
     }
 }

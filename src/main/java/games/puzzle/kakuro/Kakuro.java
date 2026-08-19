@@ -49,6 +49,7 @@ public class Kakuro {
                 System.out.println("PARABENS! Voce resolveu o Kakuro!");
                 return;
             }
+
             System.out.print("Jogada: ");
             String linha = entrada.nextLine().trim();
             if (linha.equalsIgnoreCase("q")) {
@@ -60,6 +61,7 @@ public class Kakuro {
                 System.out.println("Formato invalido. Use: linha coluna valor");
                 continue;
             }
+
             try {
                 int l = Integer.parseInt(partes[0]);
                 int c = Integer.parseInt(partes[1]);

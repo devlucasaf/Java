@@ -1,6 +1,6 @@
 package games.plataforma.ascii;
 
-class Jogador {
+public class Jogador {
 
     public int          x;
     public int          y;

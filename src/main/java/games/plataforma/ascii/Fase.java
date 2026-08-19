@@ -1,6 +1,6 @@
 package games.plataforma.ascii;
 
-class Fase {
+public class Fase {
 
     public int          cameraX = 0;
     private char[][]    mapa;
@@ -24,7 +24,9 @@ class Fase {
 
         // Chão com buracos
         for (int x = 0; x < comprimento; x++) {
-            if (x % 20 == 0 && x > 0) continue;
+            if (x % 20 == 0 && x > 0) {
+                continue;
+            }
             mapa[altura - 1][x] = '=';
         }
 
@@ -70,7 +72,6 @@ class Fase {
     }
 
     private boolean dentroDoMapa(int x, int y) {
-        return y >= 0 && y < mapa.length &&
-                x >= 0 && x < mapa[0].length;
+        return y >= 0 && y < mapa.length && x >= 0 && x < mapa[0].length;
     }
 }

@@ -72,6 +72,7 @@ public class PalavrasCruzadas {
                 System.out.println("Formato invalido.");
                 continue;
             }
+
             try {
                 int l = Integer.parseInt(partes[0]);
                 int c = Integer.parseInt(partes[1]);

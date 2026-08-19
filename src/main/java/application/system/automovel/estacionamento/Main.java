@@ -1,5 +1,10 @@
 package application.system.automovel.estacionamento;
 
+import application.system.automovel.estacionamento.util.DataUtils;
+import application.system.automovel.estacionamento.veiculo.Caminhao;
+import application.system.automovel.estacionamento.veiculo.Carro;
+import application.system.automovel.estacionamento.veiculo.Moto;
+
 import java.util.Scanner;
 
 public class Main {
@@ -63,7 +68,7 @@ public class Main {
         double valor = estacionamento.processarSaida(placa);
 
         if (valor != -1) {
-            System.out.println("Veículo liberado! Total a pagar: " + Utils.formatarMoeda(valor));
+            System.out.println("Veículo liberado! Total a pagar: " + DataUtils.formatarMoeda(valor));
         } else {
             System.out.println("Veículo não encontrado.");
         }

@@ -2,18 +2,6 @@ package games.arcade.labirinto;
 
 import java.util.Random;
 
-/**
- * 🏰 Labirinto com Backtracking
- *
- * Gera um labirinto aleatório e resolve usando recursão com backtracking.
- * Também permite que o jogador tente resolver manualmente.
- *
- * Conceitos praticados:
- * - Recursão / Backtracking
- * - Matrizes bidimensionais
- * - Algoritmo DFS (Depth-First Search)
- * - Geração procedural de labirinto
- */
 public class Labirinto {
     private final int           linhas;
     private final int           colunas;
@@ -92,7 +80,9 @@ public class Labirinto {
         for (int i = 0; i < linhas; i++) {
             for (int j = 0; j < colunas; j++) {
                 visitado[i][j] = false;
-                if (mapa[i][j] == SOLUCAO) mapa[i][j] = CAMINHO;
+                if (mapa[i][j] == SOLUCAO) {
+                    mapa[i][j] = CAMINHO;
+                }
             }
         }
         return resolverRecursivo(inicioLinha, inicioColuna);
@@ -117,7 +107,6 @@ public class Labirinto {
 
         visitado[linha][coluna] = true;
 
-        // Tenta todas as direções
         int[][] direcoes = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
         for (int[] dir : direcoes) {
             if (resolverRecursivo(linha + dir[0], coluna + dir[1])) {

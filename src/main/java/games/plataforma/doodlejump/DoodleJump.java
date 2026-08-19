@@ -136,6 +136,7 @@ public class DoodleJump {
                 tela[y][x] = ' ';
             }
         }
+
         for (Plataforma p : plataformas) {
             if (p.getY() >= 0 && p.getY() < ALTURA) {
                 for (int i = 0; i < p.getLargura(); i++) {

@@ -3,7 +3,7 @@ package games.plataforma.ascii;
 import java.io.IOException;
 import java.util.Scanner;
 
-class Jogo {
+public class Jogo {
 
     private final int   LARGURA_TELA = 60;
     private final int   ALTURA_TELA = 15;

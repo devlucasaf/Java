@@ -65,7 +65,6 @@ public class Corrida {
     }
 
     private void renderizar() {
-        // Limpa tela (ANSI)
         System.out.print("\033[" + (corredores.size() + 2) + "A");
         System.out.println("═".repeat(60));
         for (Corredor c : corredores) {

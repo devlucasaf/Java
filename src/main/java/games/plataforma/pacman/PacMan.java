@@ -209,10 +209,17 @@ public class PacMan {
         for (int[] f : fantasmas) {
             tela[f[1]][f[0]] = FANTASMA;
         }
+
         tela[pacY][pacX] = PAC;
         System.out.println();
-        System.out.println("Vidas: " + vidas + "   Pontos: " + pontuacao + "   Pastilhas: " + totalPastilhas
-                + (turnosPoder > 0 ? "   [PODER:" + turnosPoder + "]" : ""));
+        System.out.println("Vidas: " + vidas);
+        System.out.println("Pontos: " + pontuacao);
+        System.out.println("Pastilhas: " + totalPastilhas);
+
+        if (turnosPoder > 0) {
+            System.out.println("[PODER: " + turnosPoder + "]");
+        }
+
         StringBuilder borda = new StringBuilder("+");
         for (int i = 0; i < LARGURA; i++) {
             borda.append('-');

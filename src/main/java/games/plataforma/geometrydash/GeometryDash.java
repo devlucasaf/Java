@@ -139,6 +139,7 @@ public class GeometryDash {
             tela[CHAO + 1][x] = '_';
             tela[0][x] = '_';
         }
+
         for (int[] o : obstaculos) {
             if (o[0] >= 0 && o[0] < LARGURA) {
                 char c = switch (o[2]) {

@@ -77,6 +77,7 @@ public class DonkeyKong {
                 mapa[y][x] = ' ';
             }
         }
+
         int[] andaresY = {ALTURA - 1, ALTURA - 5, ALTURA - 9, 1};
         for (int y : andaresY) {
             for (int x = 0; x < LARGURA; x++) {

@@ -5,14 +5,17 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
 public class Bloco {
-
-    public double   x, y;
-    public double   largura, altura;
+    public double   x;
+    public double   y;
+    public double   largura;
+    public double   altura;
     public int      vida = 1;
 
     public Bloco(double x, double y, double largura, double altura) {
-        this.x = x; this.y = y;
-        this.largura = largura; this.altura = altura;
+        this.x = x;
+        this.y = y;
+        this.largura = largura;
+        this.altura = altura;
     }
 
     public Rectangle getBounds() {

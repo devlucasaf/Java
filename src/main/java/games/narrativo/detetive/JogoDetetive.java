@@ -5,12 +5,12 @@ import java.util.Scanner;
 
 public class JogoDetetive {
 
-    static Scanner scanner = new Scanner(System.in);
-    static ArrayList<Suspeito> suspeitos = new ArrayList<>();
-    static ArrayList<Pista> pistas = new ArrayList<>();
-    static int turnosRestantes = 10;
-    static int nivelInvestigacao = 0;
-    static String culpado = "Marcos Silva";
+    private static Scanner              scanner = new Scanner(System.in);
+    private static ArrayList<Suspeito>  suspeitos = new ArrayList<>();
+    private static ArrayList<Pista>     pistas = new ArrayList<>();
+    private static int                  turnosRestantes = 10;
+    private static int                  nivelInvestigacao = 0;
+    private static String               culpado = "Marcos Silva";
 
     public static void main(String[] args) {
         iniciarJogo();
