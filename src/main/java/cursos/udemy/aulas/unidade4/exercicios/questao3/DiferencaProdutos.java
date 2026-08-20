@@ -1,4 +1,4 @@
-package udemy.aulas.unidade4.exercicios.questao3;
+package cursos.udemy.aulas.unidade4.exercicios.questao3;
 
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-package udemy.aulas.unidade4.aula29;
+package cursos.udemy.aulas.unidade4.aula29;
 
 public class TiposPrimitivos {
     String  nome = "Leanderson";

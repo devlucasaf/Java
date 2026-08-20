@@ -1,4 +1,4 @@
-package udemy.aulas.unidade4.aula28;
+package cursos.udemy.aulas.unidade4.aula28;
 
 public class ExpressaoAritmetica {
     int num1;

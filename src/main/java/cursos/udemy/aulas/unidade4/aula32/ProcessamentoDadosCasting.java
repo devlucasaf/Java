@@ -1,4 +1,4 @@
-package udemy.aulas.unidade4.aula32;
+package cursos.udemy.aulas.unidade4.aula32;
 
 public class ProcessamentoDadosCasting {
     private void primeiroTeste() {

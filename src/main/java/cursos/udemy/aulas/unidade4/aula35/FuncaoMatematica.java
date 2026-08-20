@@ -1,4 +1,4 @@
-package udemy.aulas.unidade4.aula35;
+package cursos.udemy.aulas.unidade4.aula35;
 
 public class FuncaoMatematica {
     private void calculaRaizes(double a, double b, double c) {

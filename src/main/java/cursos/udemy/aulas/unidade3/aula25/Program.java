@@ -1,4 +1,4 @@
-package udemy.aulas.unidade3.aula25;
+package cursos.udemy.aulas.unidade3.aula25;
 
 public class Program {
     void main() {

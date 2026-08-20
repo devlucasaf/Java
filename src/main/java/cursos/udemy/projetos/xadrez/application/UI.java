@@ -1,4 +1,4 @@
-package udemy.projetos.xadrez.application;
+package cursos.udemy.projetos.xadrez.application;
 
 import java.util.Arrays;
 import java.util.InputMismatchException;
@@ -6,10 +6,10 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-import udemy.projetos.xadrez.chess.ChessMatch;
-import udemy.projetos.xadrez.chess.ChessPiece;
-import udemy.projetos.xadrez.chess.ChessPosition;
-import udemy.projetos.xadrez.chess.Color;
+import cursos.udemy.projetos.xadrez.chess.ChessMatch;
+import cursos.udemy.projetos.xadrez.chess.ChessPiece;
+import cursos.udemy.projetos.xadrez.chess.ChessPosition;
+import cursos.udemy.projetos.xadrez.chess.Color;
 
 public class UI {
 

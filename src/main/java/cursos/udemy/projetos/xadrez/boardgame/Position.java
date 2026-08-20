@@ -1,4 +1,4 @@
-package udemy.projetos.xadrez.boardgame;
+package cursos.udemy.projetos.xadrez.boardgame;
 
 public class Position {
 

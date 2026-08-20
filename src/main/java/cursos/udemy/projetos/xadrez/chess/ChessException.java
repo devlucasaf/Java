@@ -1,6 +1,6 @@
-package udemy.projetos.xadrez.chess;
+package cursos.udemy.projetos.xadrez.chess;
 
-import udemy.projetos.xadrez.boardgame.BoardException;
+import cursos.udemy.projetos.xadrez.boardgame.BoardException;
 
 public class ChessException extends BoardException{
   private static final long serialVersionUID = 1L;

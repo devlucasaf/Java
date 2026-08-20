@@ -1,6 +1,6 @@
-package udemy.projetos.xadrez.chess;
+package cursos.udemy.projetos.xadrez.chess;
 
-import udemy.projetos.xadrez.boardgame.Position;
+import cursos.udemy.projetos.xadrez.boardgame.Position;
 
 public class ChessPosition {
 

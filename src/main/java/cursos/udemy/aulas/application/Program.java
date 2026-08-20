@@ -1,6 +1,6 @@
-package udemy.aulas.application;
+package cursos.udemy.aulas.application;
 
-import udemy.aulas.entities.Triangle;
+import cursos.udemy.aulas.entities.Triangle;
 
 import java.util.Locale;
 import java.util.Scanner;

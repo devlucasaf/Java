@@ -1,8 +1,8 @@
-package udemy.projetos.xadrez.chess;
+package cursos.udemy.projetos.xadrez.chess;
 
-import udemy.projetos.xadrez.boardgame.Board;
-import udemy.projetos.xadrez.boardgame.Piece;
-import udemy.projetos.xadrez.boardgame.Position;
+import cursos.udemy.projetos.xadrez.boardgame.Board;
+import cursos.udemy.projetos.xadrez.boardgame.Piece;
+import cursos.udemy.projetos.xadrez.boardgame.Position;
 
 public abstract class ChessPiece extends Piece{
 

@@ -1,4 +1,4 @@
-package udemy.aulas.unidade4.aula36;
+package cursos.udemy.aulas.unidade4.aula36;
 
 import java.util.Locale;
 import java.util.Scanner;

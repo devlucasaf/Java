@@ -1,4 +1,4 @@
-package udemy.aulas.entities;
+package cursos.udemy.aulas.entities;
 
 public class Triangle {
     public double a;
