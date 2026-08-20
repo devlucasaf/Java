@@ -1,4 +1,4 @@
-package udemy.aulas.unidade5.aula40;
+package cursos.udemy.aulas.unidade5.aula40;
 
 public class Comparadores {
     public static void main(String[] args) {

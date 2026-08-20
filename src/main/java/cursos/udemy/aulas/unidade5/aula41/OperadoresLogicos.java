@@ -1,4 +1,4 @@
-package udemy.aulas.unidade5.aula41;
+package cursos.udemy.aulas.unidade5.aula41;
 
 public class OperadoresLogicos {
     public static void main(String[] args) {

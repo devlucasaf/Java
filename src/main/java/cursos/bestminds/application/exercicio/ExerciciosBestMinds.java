@@ -1,4 +1,4 @@
-package application.bestminds;
+package cursos.bestminds.application;
 
 import javax.swing.*;
 
