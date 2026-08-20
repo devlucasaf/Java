@@ -1,4 +1,4 @@
-package games.bestminds.velha;
+package cursos.bestminds.games.velha;
 
 import java.util.Random;
 import java.util.Scanner;

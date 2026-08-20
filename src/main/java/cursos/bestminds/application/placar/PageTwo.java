@@ -1,4 +1,4 @@
-package application.bestminds.placar;
+package cursos.bestminds.application.placar;
 
 import javax.swing.*;
 import java.awt.*;

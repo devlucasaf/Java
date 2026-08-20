@@ -1,4 +1,4 @@
-package application.bestminds.scoreboard;
+package cursos.bestminds.application.scoreboard;
 
 public class DataBase {
     private String  nomeJogador1;

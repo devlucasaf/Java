@@ -1,4 +1,4 @@
-package application.bestminds.placar;
+package cursos.bestminds.application.placar;
 
 public class DataBase {
     static String   playerOne;

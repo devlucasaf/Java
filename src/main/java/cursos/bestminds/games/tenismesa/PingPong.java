@@ -1,4 +1,4 @@
-package games.bestminds.tenismesa;
+package cursos.bestminds.games.tenismesa;
 
 import java.util.Objects;
 import java.util.Scanner;

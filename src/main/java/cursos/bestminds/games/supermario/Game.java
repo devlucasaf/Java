@@ -1,4 +1,4 @@
-package games.bestminds.supermario;
+package cursos.bestminds.games.supermario;
 
 import javax.swing.*;
 import java.awt.*;

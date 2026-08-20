@@ -1,4 +1,4 @@
-package application.bestminds.scoreboard;
+package cursos.bestminds.application.scoreboard;
 
 import javax.swing.*;
 

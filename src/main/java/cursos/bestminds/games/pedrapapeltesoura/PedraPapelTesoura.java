@@ -1,4 +1,4 @@
-package games.bestminds.pedrapapeltesoura;
+package cursos.bestminds.games.pedrapapeltesoura;
 
 import java.util.Random;
 import java.util.Scanner;

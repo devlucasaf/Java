@@ -1,4 +1,4 @@
-package games.bestminds.forca;
+package cursos.bestminds.games.forca;
 
 import java.util.*;
 
