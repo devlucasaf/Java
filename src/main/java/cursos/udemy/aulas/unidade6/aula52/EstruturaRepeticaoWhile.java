@@ -1,4 +1,4 @@
-package udemy.aulas.unidade6.aula52;
+package cursos.udemy.aulas.unidade6.aula52;
 
 import java.util.Scanner;
 
@@ -35,6 +35,7 @@ public class EstruturaRepeticaoWhile {
 
     public static void main(String[] args) {
         EstruturaRepeticaoWhile repeticaoWhile = new EstruturaRepeticaoWhile();
+
         repeticaoWhile.exemplo1While();
         repeticaoWhile.exemplo2While();
     }
