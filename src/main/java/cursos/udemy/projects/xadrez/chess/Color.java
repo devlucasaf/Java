@@ -1,4 +1,4 @@
-package cursos.udemy.projetos.xadrez.chess;
+package cursos.udemy.projects.xadrez.chess;
 
 public enum Color {
     BLACK,

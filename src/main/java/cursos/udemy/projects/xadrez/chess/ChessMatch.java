@@ -1,18 +1,18 @@
-package cursos.udemy.projetos.xadrez.chess;
+package cursos.udemy.projects.xadrez.chess;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import cursos.udemy.projetos.xadrez.boardgame.Board;
-import cursos.udemy.projetos.xadrez.boardgame.Piece;
-import cursos.udemy.projetos.xadrez.boardgame.Position;
-import cursos.udemy.projetos.xadrez.chess.pieces.Bishop;
-import cursos.udemy.projetos.xadrez.chess.pieces.King;
-import cursos.udemy.projetos.xadrez.chess.pieces.Knight;
-import cursos.udemy.projetos.xadrez.chess.pieces.Pawn;
-import cursos.udemy.projetos.xadrez.chess.pieces.Queen;
-import cursos.udemy.projetos.xadrez.chess.pieces.Rook;
+import cursos.udemy.projects.xadrez.boardgame.Board;
+import cursos.udemy.projects.xadrez.boardgame.Piece;
+import cursos.udemy.projects.xadrez.boardgame.Position;
+import cursos.udemy.projects.xadrez.chess.pieces.Bishop;
+import cursos.udemy.projects.xadrez.chess.pieces.King;
+import cursos.udemy.projects.xadrez.chess.pieces.Knight;
+import cursos.udemy.projects.xadrez.chess.pieces.Pawn;
+import cursos.udemy.projects.xadrez.chess.pieces.Queen;
+import cursos.udemy.projects.xadrez.chess.pieces.Rook;
 
 public class ChessMatch {
 

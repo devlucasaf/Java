@@ -1,14 +1,14 @@
-package cursos.udemy.projetos.xadrez.application;
+package cursos.udemy.projects.xadrez.application;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-import cursos.udemy.projetos.xadrez.chess.ChessException;
-import cursos.udemy.projetos.xadrez.chess.ChessMatch;
-import cursos.udemy.projetos.xadrez.chess.ChessPiece;
-import cursos.udemy.projetos.xadrez.chess.ChessPosition;
+import cursos.udemy.projects.xadrez.chess.ChessException;
+import cursos.udemy.projects.xadrez.chess.ChessMatch;
+import cursos.udemy.projects.xadrez.chess.ChessPiece;
+import cursos.udemy.projects.xadrez.chess.ChessPosition;
 
 public class Program {
 

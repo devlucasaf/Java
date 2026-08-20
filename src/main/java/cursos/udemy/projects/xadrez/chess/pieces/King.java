@@ -1,10 +1,10 @@
-package cursos.udemy.projetos.xadrez.chess.pieces;
+package cursos.udemy.projects.xadrez.chess.pieces;
 
-import cursos.udemy.projetos.xadrez.boardgame.Board;
-import cursos.udemy.projetos.xadrez.boardgame.Position;
-import cursos.udemy.projetos.xadrez.chess.ChessMatch;
-import cursos.udemy.projetos.xadrez.chess.ChessPiece;
-import cursos.udemy.projetos.xadrez.chess.Color;
+import cursos.udemy.projects.xadrez.boardgame.Board;
+import cursos.udemy.projects.xadrez.boardgame.Position;
+import cursos.udemy.projects.xadrez.chess.ChessMatch;
+import cursos.udemy.projects.xadrez.chess.ChessPiece;
+import cursos.udemy.projects.xadrez.chess.Color;
 
 public class King extends ChessPiece {
 

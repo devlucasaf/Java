@@ -1,4 +1,4 @@
-package cursos.udemy.projetos.xadrez.boardgame;
+package cursos.udemy.projects.xadrez.boardgame;
 
 public class Board {
     private int         rows;
