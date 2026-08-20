@@ -14,7 +14,7 @@
 </div>
 
 Cursos:
-- Java COMPLETO Programação Orientada a Objetos + Projetos - Udemy (A começar)<br>
+- Java COMPLETO Programação Orientada a Objetos + Projetos - Udemy <br>
 - Programação Java - Escola BestMinds
 
 Instrutores: <br>
