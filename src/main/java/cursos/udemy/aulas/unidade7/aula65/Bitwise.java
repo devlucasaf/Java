@@ -16,14 +16,16 @@ public class Bitwise {
         Scanner scanner = new Scanner(System.in);
 
         int mask = 0b100000;
-        int number = scanner.nextInt();
+        int numero = scanner.nextInt();
 
-        if ((number & mask) != 0) {
+        if ((numero & mask) != 0) {
             System.out.println("6th bit is true!");
         } else {
             System.out.println("6th bit is false!");
         }
+        scanner.close();
     }
+
     public static void main(String[] args) {
         Bitwise bitwise = new Bitwise();
         System.out.println("Exemplo 1 - Operadores Bitwise");

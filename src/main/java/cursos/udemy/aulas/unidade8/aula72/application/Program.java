@@ -1,6 +1,6 @@
-package cursos.udemy.aulas.application;
+package cursos.udemy.aulas.unidade8.aula72.application;
 
-import cursos.udemy.aulas.entities.Triangle;
+import cursos.udemy.aulas.unidade8.aula72.entities.Triangle;
 
 import java.util.Locale;
 import java.util.Scanner;
@@ -12,7 +12,9 @@ public class Program {
         Locale.setDefault(Locale.US);
         Scanner scanner = new Scanner(System.in);
 
-        Triangle x, y;
+        Triangle x;
+        Triangle y;
+
         x = new Triangle();
         y = new Triangle();
 
@@ -36,8 +38,7 @@ public class Program {
 
         if (areaX > areaY) {
             System.out.println("Larger area: X");
-        }
-        else {
+        } else {
             System.out.println("Larger area: Y");
         }
 

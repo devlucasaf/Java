@@ -23,21 +23,16 @@ public class BotDiscord {
         System.out.println("\nVer README.md para instrucoes de dependencia.");
     }
 
-    @FunctionalInterface
-    public interface ManipuladorComando {
-        String responder(String usuario, String argumentos);
-    }
-
     public static void main(String[] args) {
         String token = System.getenv("DISCORD_BOT_TOKEN");
-        BotDiscord bot = new BotDiscord(token);
-        bot.registrarComando("ping", (u, a) -> "Pong!");
-        bot.registrarComando("oi", (u, a) -> "Ola, " + u + "!");
-        bot.registrarComando("dado", (u, a) -> {
+        BotDiscord discord = new BotDiscord(token);
+        discord.registrarComando("ping", (u, a) -> "Pong!");
+        discord.registrarComando("oi", (u, a) -> "Ola, " + u + "!");
+        discord.registrarComando("dado", (u, a) -> {
             int lados = a.isBlank() ? 6 : Integer.parseInt(a);
             return "Rolou " + (1 + (int) (Math.random() * lados));
         });
-        bot.iniciar();
+        discord.iniciar();
     }
 }
 
