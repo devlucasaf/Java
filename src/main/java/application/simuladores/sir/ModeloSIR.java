@@ -30,15 +30,18 @@ public class ModeloSIR extends JPanel {
         setPreferredSize(new java.awt.Dimension(LARGURA, ALTURA));
         historico.add(new double[]{S, I, R});
 
-        Timer t = new Timer(50, e -> { passo(); repaint(); });
-        t.start();
+        Timer timer = new Timer(50, e -> { passo(); repaint(); });
+        timer.start();
     }
 
     private void passo() {
         double dS = -beta * S * I * dt;
         double dI = (beta * S * I - gamma * I) * dt;
         double dR = gamma * I * dt;
-        S += dS; I += dI; R += dR;
+        S += dS;
+        I += dI;
+        R += dR;
+
         if (S < 0) {
             S = 0;
         }
@@ -64,7 +67,8 @@ public class ModeloSIR extends JPanel {
 
         int gW = LARGURA - 40;
         int gH = ALTURA - GRAFICO_TOP - 20;
-        int x0 = 20, y0 = GRAFICO_TOP;
+        int x0 = 20;
+        int y0 = GRAFICO_TOP;
 
         g2.setColor(Color.LIGHT_GRAY);
         g2.drawRect(x0, y0, gW, gH);

@@ -19,20 +19,20 @@ public class SimuladorProdutorConsumidor {
 
         List<Thread> threadsProdutores = new ArrayList<>();
         for (int i = 1; i <= numProdutores; i++) {
-            Produtor p = new Produtor("P" + i, fila, itensPorProdutor, 100, 400);
-            Thread t = new Thread(p);
-            t.start();
-            threadsProdutores.add(t);
+            Produtor produtor = new Produtor("P" + i, fila, itensPorProdutor, 100, 400);
+            Thread thread = new Thread(produtor);
+            thread.start();
+            threadsProdutores.add(thread);
         }
 
         List<Thread> threadsConsumidores = new ArrayList<>();
         List<Consumidor> consumidores = new ArrayList<>();
         for (int i = 1; i <= numConsumidores; i++) {
-            Consumidor c = new Consumidor("C" + i, fila, produtoresAtivos, 200, 600);
-            Thread t = new Thread(c);
-            t.start();
-            threadsConsumidores.add(t);
-            consumidores.add(c);
+            Consumidor consumidor = new Consumidor("C" + i, fila, produtoresAtivos, 200, 600);
+            Thread thread = new Thread(consumidor);
+            thread.start();
+            threadsConsumidores.add(thread);
+            consumidores.add(consumidor);
         }
 
         for (Thread t : threadsProdutores) {
@@ -41,7 +41,9 @@ public class SimuladorProdutorConsumidor {
         System.out.println("\n=== Todos produtores terminaram ===\n");
         produtoresAtivos.set(false);
 
-        for (Thread t : threadsConsumidores) t.join();
+        for (Thread t : threadsConsumidores) {
+            t.join();
+        }
 
         int totalConsumido = 0;
 

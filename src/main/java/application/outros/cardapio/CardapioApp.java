@@ -1,5 +1,6 @@
 package application.outros.cardapio;
 
+
 import application.system.restaurante.*;
 
 import javafx.application.Application;
@@ -58,20 +59,20 @@ public class CardapioApp extends Application {
 
     // --- CABEÇALHO ---
     private HBox criarHeader() {
-        Label titulo = new Label("🍽  Cardápio Digital");
-        titulo.setFont(Font.font("Segoe UI", FontWeight.BOLD, 26));
-        titulo.setTextFill(Color.web(TEXT_PRIMARY));
+        Label lblTitulo = new Label("🍽  Cardápio Digital");
+        lblTitulo.setFont(Font.font("Segoe UI", FontWeight.BOLD, 26));
+        lblTitulo.setTextFill(Color.web(TEXT_PRIMARY));
 
-        Label subtitulo = new Label("Escolha seus itens favoritos");
-        subtitulo.setFont(Font.font("Segoe UI", FontWeight.NORMAL, 13));
-        subtitulo.setTextFill(Color.web(TEXT_MUTED));
+        Label lblSubtitulo = new Label("Escolha seus itens favoritos");
+        lblSubtitulo.setFont(Font.font("Segoe UI", FontWeight.NORMAL, 13));
+        lblSubtitulo.setTextFill(Color.web(TEXT_MUTED));
 
-        VBox textos = new VBox(2, titulo, subtitulo);
+        VBox vbxTextos = new VBox(2, lblTitulo, lblSubtitulo);
 
         Region spacer = new Region();
         HBox.setHgrow(spacer, Priority.ALWAYS);
 
-        HBox header = new HBox(textos, spacer);
+        HBox header = new HBox(vbxTextos, spacer);
         header.setPadding(new Insets(4, 8, 16, 8));
         header.setAlignment(Pos.CENTER_LEFT);
         return header;
@@ -135,54 +136,54 @@ public class CardapioApp extends Application {
 
     // --- CARD DE ITEM DO CARDÁPIO ---
     private VBox criarCardItem(ItemCardapio item) {
-        Label nome = new Label(item.getNome());
+        Label lblNome = new Label(item.getNome());
 
-        nome.setFont(Font.font("Segoe UI", FontWeight.BOLD, 16));
-        nome.setTextFill(Color.web(TEXT_PRIMARY));
-        nome.setWrapText(true);
+        lblNome.setFont(Font.font("Segoe UI", FontWeight.BOLD, 16));
+        lblNome.setTextFill(Color.web(TEXT_PRIMARY));
+        lblNome.setWrapText(true);
 
-        Label categoria = new Label(item.getCategoria().getDescricao().toUpperCase());
+        Label lblCategoria = new Label(item.getCategoria().getDescricao().toUpperCase());
 
-        categoria.setFont(Font.font("Segoe UI", FontWeight.BOLD, 10));
-        categoria.setTextFill(Color.web(ACCENT));
+        lblCategoria.setFont(Font.font("Segoe UI", FontWeight.BOLD, 10));
+        lblCategoria.setTextFill(Color.web(ACCENT));
 
-        Label descricao = new Label(item.getDescricao().isBlank()
+        Label lblDescricao = new Label(item.getDescricao().isBlank()
                 ? "Sem descrição disponível."
                 : item.getDescricao());
 
-        descricao.setFont(Font.font("Segoe UI", 12));
-        descricao.setTextFill(Color.web(TEXT_MUTED));
-        descricao.setWrapText(true);
-        descricao.setMaxHeight(60);
+        lblDescricao.setFont(Font.font("Segoe UI", 12));
+        lblDescricao.setTextFill(Color.web(TEXT_MUTED));
+        lblDescricao.setWrapText(true);
+        lblDescricao.setMaxHeight(60);
 
-        Label detalhes = new Label(detalhesCurto(item));
+        Label lblDetalhes = new Label(detalhesCurto(item));
 
-        detalhes.setFont(Font.font("Segoe UI", FontWeight.NORMAL, 11));
-        detalhes.setTextFill(Color.web(TEXT_MUTED));
-        detalhes.setWrapText(true);
+        lblDetalhes.setFont(Font.font("Segoe UI", FontWeight.NORMAL, 11));
+        lblDetalhes.setTextFill(Color.web(TEXT_MUTED));
+        lblDetalhes.setWrapText(true);
 
-        Label preco = new Label(String.format("R$ %.2f", item.calcularPrecoFinal()));
+        Label lblPreco = new Label(String.format("R$ %.2f", item.calcularPrecoFinal()));
 
-        preco.setFont(Font.font("Segoe UI", FontWeight.BOLD, 18));
-        preco.setTextFill(Color.web(ACCENT));
+        lblPreco.setFont(Font.font("Segoe UI", FontWeight.BOLD, 18));
+        lblPreco.setTextFill(Color.web(ACCENT));
 
-        Label tempo = new Label("⏱ " + item.getTempoPreparo() + " min");
+        Label lblTempo = new Label("⏱ " + item.getTempoPreparo() + " min");
 
-        tempo.setFont(Font.font("Segoe UI", 11));
-        tempo.setTextFill(Color.web(TEXT_MUTED));
+        lblTempo.setFont(Font.font("Segoe UI", 11));
+        lblTempo.setTextFill(Color.web(TEXT_MUTED));
 
-        HBox rodape = new HBox(preco, spacerH(), tempo);
+        HBox rodape = new HBox(lblPreco, spacerH(), lblTempo);
         rodape.setAlignment(Pos.CENTER_LEFT);
 
-        Button adicionar = new Button("+ Adicionar");
+        Button btnAdicionar = new Button("+ Adicionar");
 
-        adicionar.setMaxWidth(Double.MAX_VALUE);
-        adicionar.setStyle(estiloBotaoAccent());
-        adicionar.setOnMouseEntered(e -> adicionar.setStyle(estiloBotaoAccentHover()));
-        adicionar.setOnMouseExited(e -> adicionar.setStyle(estiloBotaoAccent()));
-        adicionar.setOnAction(e -> adicionarAoPedido(item));
+        btnAdicionar.setMaxWidth(Double.MAX_VALUE);
+        btnAdicionar.setStyle(estiloBotaoAccent());
+        btnAdicionar.setOnMouseEntered(e -> btnAdicionar.setStyle(estiloBotaoAccentHover()));
+        btnAdicionar.setOnMouseExited(e -> btnAdicionar.setStyle(estiloBotaoAccent()));
+        btnAdicionar.setOnAction(e -> adicionarAoPedido(item));
 
-        VBox card = new VBox(6, categoria, nome, descricao, detalhes, rodape, adicionar);
+        VBox card = new VBox(6, lblCategoria, lblNome, lblDescricao, lblDetalhes, rodape, btnAdicionar);
 
         card.setPadding(new Insets(14));
         card.setPrefWidth(260);
@@ -295,42 +296,42 @@ public class CardapioApp extends Application {
             }
         });
 
-        Label totalLabel = new Label();
+        Label lblTotal = new Label();
 
-        totalLabel.setFont(Font.font("Segoe UI", FontWeight.BOLD, 22));
-        totalLabel.setTextFill(Color.web(ACCENT));
-        totalLabel.textProperty().bind(total.asString("Total: R$ %.2f"));
+        lblTotal.setFont(Font.font("Segoe UI", FontWeight.BOLD, 22));
+        lblTotal.setTextFill(Color.web(ACCENT));
+        lblTotal.textProperty().bind(total.asString("Total: R$ %.2f"));
 
-        Button finalizar = new Button("Finalizar Pedido");
+        Button btnFinalizarPedido = new Button("Finalizar Pedido");
 
-        finalizar.setMaxWidth(Double.MAX_VALUE);
-        finalizar.setStyle(estiloBotaoAccent());
-        finalizar.setOnMouseEntered(e -> finalizar.setStyle(estiloBotaoAccentHover()));
-        finalizar.setOnMouseExited(e -> finalizar.setStyle(estiloBotaoAccent()));
-        finalizar.setOnAction(e -> finalizarPedido());
+        btnFinalizarPedido.setMaxWidth(Double.MAX_VALUE);
+        btnFinalizarPedido.setStyle(estiloBotaoAccent());
+        btnFinalizarPedido.setOnMouseEntered(e -> btnFinalizarPedido.setStyle(estiloBotaoAccentHover()));
+        btnFinalizarPedido.setOnMouseExited(e -> btnFinalizarPedido.setStyle(estiloBotaoAccent()));
+        btnFinalizarPedido.setOnAction(e -> finalizarPedido());
 
-        Button limpar = new Button("Limpar");
+        Button btnLimpar = new Button("Limpar");
 
-        limpar.setMaxWidth(Double.MAX_VALUE);
-        limpar.setStyle(estiloBotaoSecundario());
-        limpar.setOnAction(e -> {
+        btnLimpar.setMaxWidth(Double.MAX_VALUE);
+        btnLimpar.setStyle(estiloBotaoSecundario());
+        btnLimpar.setOnAction(e -> {
             pedido.clear();
             recalcularTotal();
         });
 
-        VBox rodape = new VBox(10, totalLabel, finalizar, limpar);
-        rodape.setPadding(new Insets(12, 0, 0, 0));
+        VBox vbxRodape = new VBox(10, lblTotal, btnFinalizarPedido, btnLimpar);
+        vbxRodape.setPadding(new Insets(12, 0, 0, 0));
 
-        VBox painel = new VBox(12, titulo, lista, rodape);
+        VBox vbxPainel = new VBox(12, titulo, lista, vbxRodape);
         VBox.setVgrow(lista, Priority.ALWAYS);
-        painel.setPadding(new Insets(16));
-        painel.setPrefWidth(320);
-        painel.setStyle(
+        vbxPainel.setPadding(new Insets(16));
+        vbxPainel.setPrefWidth(320);
+        vbxPainel.setStyle(
                 "-fx-background-color: " + BG_PANEL + ";" +
                 "-fx-background-radius: 10;"
         );
-        BorderPane.setMargin(painel, new Insets(0, 0, 0, 12));
-        return painel;
+        BorderPane.setMargin(vbxPainel, new Insets(0, 0, 0, 12));
+        return vbxPainel;
     }
 
     // --- AÇÕES ---
@@ -347,6 +348,7 @@ public class CardapioApp extends Application {
         recalcularTotal();
     }
 
+    // --- RECALCULA O VALOR TOTAL DOS ITENS DO PEDIDO ---
     private void recalcularTotal() {
         double soma = pedido.stream()
                 .mapToDouble(ip -> ip.item.calcularPrecoFinal() * ip.quantidade)
@@ -354,6 +356,7 @@ public class CardapioApp extends Application {
         total.set(soma);
     }
 
+    // --- FINALIZA O PEDIDO E EXIBE UM RESUMO DOS ITENS ---
     private void finalizarPedido() {
         if (pedido.isEmpty()) {
             alerta(Alert.AlertType.WARNING, "Pedido vazio",
@@ -362,6 +365,7 @@ public class CardapioApp extends Application {
         }
 
         StringBuilder sb = new StringBuilder();
+
         for (ItemPedido ip : pedido) {
             sb.append(String.format("• %dx %-25s R$ %.2f%n",
                     ip.quantidade,
@@ -377,18 +381,17 @@ public class CardapioApp extends Application {
         recalcularTotal();
     }
 
+    // --- CRIA E EXIBE UM ALERTA PERSONALIZADO ---
     private void alerta(Alert.AlertType tipo, String titulo, String msg) {
-        Alert a = new Alert(tipo);
-        a.setTitle(titulo);
-        a.setHeaderText(titulo);
-        a.setContentText(msg);
-        DialogPane pane = a.getDialogPane();
-        pane.setStyle(
-                "-fx-background-color: " + BG_PANEL + ";"
-        );
-        pane.lookupAll(".label").forEach(n ->
-                n.setStyle("-fx-text-fill: " + TEXT_PRIMARY + ";"));
-        a.showAndWait();
+        Alert alerta = new Alert(tipo);
+        alerta.setTitle(titulo);
+        alerta.setHeaderText(titulo);
+        alerta.setContentText(msg);
+        DialogPane pane = alerta.getDialogPane();
+
+        pane.setStyle("-fx-background-color: " + BG_PANEL + ";");
+        pane.lookupAll(".label").forEach(n -> n.setStyle("-fx-text-fill: " + TEXT_PRIMARY + ";"));
+        alerta.showAndWait();
     }
 
     // --- ESTILOS UTILITÁRIOS ---
@@ -439,16 +442,16 @@ public class CardapioApp extends Application {
 
     // --- BOTÃO PEQUENO COM TEXTO ---
     private Button pequenoBotao(String txt) {
-        Button b = new Button(txt);
-        b.setStyle(estiloBotaoPequeno(ACCENT));
-        return b;
+        Button btn = new Button(txt);
+        btn.setStyle(estiloBotaoPequeno(ACCENT));
+        return btn;
     }
 
     // --- ESPAÇADOR HORIZONTAL ---
     private Region spacerH() {
-        Region r = new Region();
-        HBox.setHgrow(r, Priority.ALWAYS);
-        return r;
+        Region regiao = new Region();
+        HBox.setHgrow(regiao, Priority.ALWAYS);
+        return regiao;
     }
 
     // --- POPULAÇÃO DO CARDÁPIO ---
@@ -509,16 +512,6 @@ public class CardapioApp extends Application {
                 "Vinho tinto seco da casa.", 32.00, 3, 150, false, true, 12.5));
         cardapio.adicionarItem(new Bebida(19, "Caipirinha",
                 "Cachaça, limão, açúcar e gelo.", 22.00, 5, 300, true, true, 15.0));
-    }
-
-    // --- MODELO INTERNO ---
-    private static class ItemPedido {
-        final ItemCardapio item;
-        int quantidade;
-        ItemPedido(ItemCardapio item, int quantidade) {
-            this.item = item;
-            this.quantidade = quantidade;
-        }
     }
 
     public static void main(String[] args) {

@@ -4,9 +4,10 @@ import java.util.*;
 
 public class Votacao {
 
-    static ArrayList<Integer>   votosTotais = new ArrayList<>();
-    static String               eleito = "";
+    static ArrayList<Integer> votosTotais = new ArrayList<>();
+    static String             eleito = "";
 
+    // --- EXIBE AS OPCOES DE CANDIDATOS E INICIA A ELEICAO ---
     public static void main(String[] args) {
         System.out.println("""
                 Escolha entre as seguintes opções de candidatos:
@@ -20,9 +21,9 @@ public class Votacao {
         eleicao();
     }
 
+    // --- REGISTRA OS VOTOS E APRESENTA O RESULTADO DA ELEICAO ---
     public static void eleicao() {
         Scanner scanner = new Scanner(System.in);
-
         while (true) {
             System.out.print("Digite seu voto: ");
             int voto = scanner.nextInt();
@@ -39,6 +40,7 @@ public class Votacao {
                 System.out.println("Número digitado não identificado a nenhum candidato! Tente outro número!");
             }
 
+            // --- IDENTIFICA O CANDIDATO COM A MAIOR QUANTIDADE DE VOTOS ---
             if (Collections.frequency(votosTotais, 22) > Collections.frequency(votosTotais, 13)
                     && Collections.frequency(votosTotais, 22) > Collections.frequency(votosTotais, 14)) {
                 eleito = "Leanderson";
@@ -51,6 +53,7 @@ public class Votacao {
             }
         }
 
+        // --- CALCULA A QUANTIDADE E A PORCENTAGEM DE VOTOS ---
         if (votosTotais.size() != 0) {
             int votosLeanderson = Collections.frequency(votosTotais, 22);
             int votosMario      = Collections.frequency(votosTotais, 13);
@@ -71,6 +74,7 @@ public class Votacao {
             double porcentagem3    = (votosLucao        / (double) totalVotos) * 100;
             double porcentagemNull = (votosNulo         / (double) totalVotos) * 100;
 
+            // --- ANULA E REINICIA A ELEICAO CASO OS VOTOS NULOS SEJAM MAIORIA ---
             if (votosNulo > votosEleito) {
                 System.out.println("Votação anulada! Os votos nulos venceram com " + votosNulo);
                 System.out.println("\nVotação recomeçada!\n");

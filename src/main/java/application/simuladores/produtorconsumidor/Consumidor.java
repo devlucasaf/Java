@@ -13,8 +13,7 @@ public class Consumidor implements Runnable {
     private final int                   atrasoMaxMs;
     private int                         consumidos = 0;
 
-    public Consumidor(String nome, BlockingQueue<Item> fila, AtomicBoolean executando,
-                      int atrasoMinMs, int atrasoMaxMs) {
+    public Consumidor(String nome, BlockingQueue<Item> fila, AtomicBoolean executando, int atrasoMinMs, int atrasoMaxMs) {
         this.nome = nome;
         this.fila = fila;
         this.executando = executando;
@@ -22,10 +21,12 @@ public class Consumidor implements Runnable {
         this.atrasoMaxMs = atrasoMaxMs;
     }
 
+    // --- RETORNA A QUANTIDADE TOTAL DE ITENS CONSUMIDOS ---
     public int getConsumidos() {
         return consumidos;
     }
 
+    // --- CONSOME OS ITENS DA FILA ENQUANTO A EXECUCAO ESTIVER ATIVA ---
     @Override
     public void run() {
         try {
@@ -38,8 +39,8 @@ public class Consumidor implements Runnable {
                 System.out.println("  [CONSUMIDOR " + nome + "] consumiu " + item
                         + " | latencia="
                         + (System.currentTimeMillis() - item.getTimestamp()) + "ms");
-                Thread.sleep(ThreadLocalRandom.current()
-                        .nextInt(atrasoMinMs, atrasoMaxMs + 1));
+
+                Thread.sleep(ThreadLocalRandom.current().nextInt(atrasoMinMs, atrasoMaxMs + 1));
             }
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();

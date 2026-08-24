@@ -6,18 +6,18 @@ import java.util.Scanner;
 
 public class CalculadoraDerivadaPolinomial {
     public static void main(String[] argumentos) {
-        Scanner entrada = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
         System.out.println("--- CÁLCULO DA DERIVADA DE UM POLINÔMIO ---");
 
         System.out.print("Digite o grau do polinômio: ");
-        int grau = entrada.nextInt();
+        int grau = scanner.nextInt();
 
         List<Double> coeficientes = new ArrayList<>(grau + 1);
 
         for (int i = grau; i >= 0; i--) {
             System.out.print("Digite o coeficiente para x^" + i + ": ");
-            double coeficiente = entrada.nextDouble();
+            double coeficiente = scanner.nextDouble();
             coeficientes.add(coeficiente);
         }
 
@@ -34,7 +34,7 @@ public class CalculadoraDerivadaPolinomial {
             System.out.println(formatarPolinomio(coeficientesDerivada, novoGrau));
         }
 
-        entrada.close();
+        scanner.close();
     }
 
     public static List<Double> calcularDerivada(List<Double> coeficientes, int grau) {

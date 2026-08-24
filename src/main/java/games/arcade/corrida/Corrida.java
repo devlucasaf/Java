@@ -84,6 +84,7 @@ public class Corrida {
             };
             System.out.println(medal + " " + classificacao.get(i).getNome());
         }
+
         if (!classificacao.isEmpty()) {
             System.out.println("\n  Vencedor: " + classificacao.get(0).getNome() + "!");
         }

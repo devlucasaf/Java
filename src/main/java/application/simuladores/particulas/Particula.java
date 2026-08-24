@@ -9,7 +9,7 @@ public class Particula {
     public double   vx;
     public double   vy;
     public double   vida;
-    public double   vidaMax;
+    public double   vidaMaxima;
     public double   tamanho;
     public Color    cor;
 
@@ -19,7 +19,7 @@ public class Particula {
         this.vx = vx;
         this.vy = vy;
         this.vida = vida;
-        this.vidaMax = vida;
+        this.vidaMaxima = vida;
         this.cor = cor;
         this.tamanho = tamanho;
     }

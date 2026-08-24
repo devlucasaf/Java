@@ -1,5 +1,7 @@
 package application.exercicios.basico.pipeline;
 
+import application.exercicios.basico.pipeline.entity.Funcionario;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -8,9 +10,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 import java.util.stream.Collectors;
-
-import application.exercicios.basico.pipeline.entity.Funcionario;
-
 
 public class Main {
 

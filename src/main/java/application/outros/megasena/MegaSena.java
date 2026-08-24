@@ -8,6 +8,7 @@ import java.util.*;
 public class MegaSena {
     private List<Integer> NumerosJogosAJogar;
 
+    // --- GERA UM JOGO COM DEZENAS ALEATORIAS ENTRE 1 E 60 ---
     public List<Integer> gerarJogo (int quantidadeNumeros) {
         if (quantidadeNumeros < 6 || quantidadeNumeros > 20) {
             throw new IllegalArgumentException("Para jogar, escolha entre 6 e 20 dezenas.");
@@ -16,6 +17,7 @@ public class MegaSena {
         Set<Integer> selecao = new HashSet<>();
         Random random = new Random();
 
+        // --- GERA AS DEZENAS ATE ATINGIR A QUANTIDADE SOLICITADA ---
         while (selecao.size() < quantidadeNumeros) {
             selecao.add(random.nextInt(60) + 1);
         }
@@ -26,6 +28,7 @@ public class MegaSena {
         return this.NumerosJogosAJogar;
     }
 
+    // --- CALCULA O CUSTO DO JOGO CONFORME A QUANTIDADE DE DEZENAS ---
     public double custoJogoMegaSena (int tamanho) {
         return switch (tamanho) {
             case 6 -> 5.00;
@@ -47,6 +50,7 @@ public class MegaSena {
         };
     }
 
+    // --- GRAVA O JOGO E O VALOR TOTAL EM UM ARQUIVO DE TEXTO ---
     public void gravarJogos() {
         try (FileWriter fileWriter = new FileWriter("mega-teste.txt", true);
              PrintWriter printWriter = new PrintWriter(fileWriter)) {
@@ -58,7 +62,6 @@ public class MegaSena {
             printWriter.println("------------------------------------");
             printWriter.printf("- Valor total: R$%.2f ------\n", custoJogoMegaSena(this.NumerosJogosAJogar.size()));
             printWriter.println("\n");
-
         } catch (IOException e) {
             System.err.println("Erro ao salvar: " + e.getMessage());
         }

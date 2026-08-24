@@ -7,8 +7,8 @@ import java.time.format.DateTimeFormatter;
 public class ContagemRegressiva {
 
     public static String calcularContagem(String dataHoraAlvo) {
-        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-        LocalDateTime alvo = LocalDateTime.parse(dataHoraAlvo, fmt);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        LocalDateTime alvo = LocalDateTime.parse(dataHoraAlvo, formatter);
         LocalDateTime agora = LocalDateTime.now();
 
         if (alvo.isBefore(agora)) {

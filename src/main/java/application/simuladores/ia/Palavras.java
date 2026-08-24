@@ -11,6 +11,7 @@ import java.util.Scanner;
 
 public class Palavras {
 
+    // --- REMOVE ESPACOS EXCEDENTES E NORMALIZA O TEXTO RECEBIDO ---
     public static String extrairInteligente(String textoBruto) {
         if (textoBruto == null || textoBruto.isBlank()) {
             return "";
@@ -21,6 +22,7 @@ public class Palavras {
         return textoLimpo;
     }
 
+    // --- VERIFICA SE O ARQUIVO PDF EXISTE NO CAMINHO INFORMADO ---
     public static void pdf() {
         Path caminhoPdf = Path.of(
                 "C:", "VSCode", "GitHub", "IA", "leitor-de-documentos-IA", "teste.pdf"
@@ -31,13 +33,13 @@ public class Palavras {
                 System.out.println("Arquivo PDF nao encontrado: " + caminhoPdf);
                 return;
             }
-
             System.out.println("PDF localizado: " + caminhoPdf);
         } catch (SecurityException e) {
             System.err.println("Sem permissao para acessar o PDF: " + e.getMessage());
         }
     }
 
+    // --- CONSULTA E EXIBE O CONTEUDO DE UM DOCUMENTO PUBLICO DO GOOGLE DOCS ---
     public static void docs() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Informe a URL publica/exportavel do Google Docs: ");
@@ -52,11 +54,9 @@ public class Palavras {
         HttpRequest requisicao = HttpRequest.newBuilder(URI.create(url)).GET().build();
 
         try {
-            HttpResponse<String> resposta = cliente.send(
-                    requisicao, HttpResponse.BodyHandlers.ofString()
-            );
-            System.out.println("Status HTTP: " + resposta.statusCode());
-            System.out.println(extrairInteligente(resposta.body()));
+            HttpResponse<String> respostaHttp = cliente.send(requisicao, HttpResponse.BodyHandlers.ofString());
+            System.out.println("Status HTTP: " + respostaHttp.statusCode());
+            System.out.println(extrairInteligente(respostaHttp.body()));
         } catch (IOException e) {
             System.err.println("Erro ao consultar o documento: " + e.getMessage());
         } catch (InterruptedException e) {
@@ -67,6 +67,7 @@ public class Palavras {
         }
     }
 
+    // --- SOLICITA O MODO DE LEITURA E EXECUTA A OPCAO SELECIONADA ---
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Qual modo deseja utilizar:\n[1] - Arquivo PDF\n[2] - Google Docs\nOpcao: ");
@@ -79,4 +80,3 @@ public class Palavras {
         }
     }
 }
-

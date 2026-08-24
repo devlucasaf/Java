@@ -15,7 +15,7 @@ public class TeoremaPitagoras {
     }
 
     public static void main(String[] args) {
-        Scanner entrada = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         int opcao;
 
         System.out.println("=== TEOREMA DE PITÁGORAS ===");
@@ -26,34 +26,34 @@ public class TeoremaPitagoras {
             System.out.println("2 - Calcular um cateto (dado o outro cateto e a hipotenusa)");
             System.out.println("3 - Sair");
             System.out.print("Opção: ");
-            opcao = entrada.nextInt();
+            opcao = scanner.nextInt();
 
             switch (opcao) {
                 case 1:
                     System.out.print("Digite o valor do primeiro cateto: ");
-                    double cateto1 = entrada.nextDouble();
+                    double catetoOposto = scanner.nextDouble();
                     System.out.print("Digite o valor do segundo cateto: ");
-                    double cateto2 = entrada.nextDouble();
+                    double catetoAdjacente = scanner.nextDouble();
 
-                    if (cateto1 <= 0 || cateto2 <= 0) {
+                    if (catetoOposto <= 0 || catetoAdjacente <= 0) {
                         System.out.println("Os catetos devem ser valores positivos.");
                     } else {
-                        double hipotenusa = calcularHipotenusa(cateto1, cateto2);
+                        double hipotenusa = calcularHipotenusa(catetoOposto, catetoAdjacente);
                         System.out.printf("A hipotenusa é: %.2f%n", hipotenusa);
                     }
                     break;
 
                 case 2:
                     System.out.print("Digite o valor da hipotenusa: ");
-                    double hip = entrada.nextDouble();
+                    double hipotenusa = scanner.nextDouble();
                     System.out.print("Digite o valor do cateto conhecido: ");
-                    double catetoConhecido = entrada.nextDouble();
+                    double catetoConhecido = scanner.nextDouble();
 
-                    if (hip <= 0 || catetoConhecido <= 0) {
+                    if (hipotenusa <= 0 || catetoConhecido <= 0) {
                         System.out.println("Os valores devem ser positivos.");
                     } else {
                         try {
-                            double catetoDesconhecido = calcularCateto(hip, catetoConhecido);
+                            double catetoDesconhecido = calcularCateto(hipotenusa, catetoConhecido);
                             System.out.printf("O outro cateto mede: %.2f%n", catetoDesconhecido);
                         } catch (IllegalArgumentException e) {
                             System.out.println("Erro: " + e.getMessage());
@@ -71,6 +71,7 @@ public class TeoremaPitagoras {
 
         } while (opcao != 3);
 
-        entrada.close();
+        scanner.close();
     }
 }
+

@@ -5,7 +5,8 @@ import java.util.Scanner;
 public class MatrizCalculadora {
 
     public static double[][] soma(double[][] a, double[][] b) {
-        int linhas = a.length, colunas = a[0].length;
+        int linhas = a.length;
+        int colunas = a[0].length;
         double[][] resultado = new double[linhas][colunas];
         for (int i = 0; i < linhas; i++) {
             for (int j = 0; j < colunas; j++) {
@@ -16,7 +17,8 @@ public class MatrizCalculadora {
     }
 
     public static double[][] subtracao(double[][] a, double[][] b) {
-        int linhas = a.length, colunas = a[0].length;
+        int linhas = a.length;
+        int colunas = a[0].length;
         double[][] resultado = new double[linhas][colunas];
         for (int i = 0; i < linhas; i++) {
             for (int j = 0; j < colunas; j++) {
@@ -27,7 +29,9 @@ public class MatrizCalculadora {
     }
 
     public static double[][] multiplicacao(double[][] a, double[][] b) {
-        int linhasA = a.length, colunasA = a[0].length, colunasB = b[0].length;
+        int linhasA = a.length;
+        int colunasA = a[0].length;
+        int colunasB = b[0].length;
         double[][] resultado = new double[linhasA][colunasB];
         for (int i = 0; i < linhasA; i++) {
             for (int j = 0; j < colunasB; j++) {
@@ -40,7 +44,8 @@ public class MatrizCalculadora {
     }
 
     public static double[][] transposta(double[][] matriz) {
-        int linhas = matriz.length, colunas = matriz[0].length;
+        int linhas = matriz.length;
+        int colunas = matriz[0].length;
         double[][] resultado = new double[colunas][linhas];
         for (int i = 0; i < linhas; i++) {
             for (int j = 0; j < colunas; j++) {
@@ -69,7 +74,8 @@ public class MatrizCalculadora {
     }
 
     public static double[][] multiplicacaoEscalar(double[][] matriz, double escalar) {
-        int linhas = matriz.length, colunas = matriz[0].length;
+        int linhas = matriz.length;
+        int colunas = matriz[0].length;
         double[][] resultado = new double[linhas][colunas];
         for (int i = 0; i < linhas; i++) {
             for (int j = 0; j < colunas; j++) {
@@ -102,7 +108,7 @@ public class MatrizCalculadora {
     }
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         int opcao;
 
         do {
@@ -115,30 +121,30 @@ public class MatrizCalculadora {
             System.out.println(" 6. Multiplicação por escalar         ");
             System.out.println(" 0. Sair                              ");
             System.out.print("Escolha: ");
-            opcao = sc.nextInt();
+            opcao = scanner.nextInt();
 
             switch (opcao) {
                 case 1, 2, 3 -> {
                     System.out.print("Linhas da matriz A: ");
-                    int linhasA = sc.nextInt();
+                    int linhasA = scanner.nextInt();
                     System.out.print("Colunas da matriz A: ");
-                    int colunasA = sc.nextInt();
+                    int colunasA = scanner.nextInt();
 
                     System.out.println("Matriz A:");
-                    double[][] a = lerMatriz(sc, linhasA, colunasA);
+                    double[][] a = lerMatriz(scanner, linhasA, colunasA);
 
                     int linhasB, colunasB;
                     if (opcao == 3) {
                         linhasB = colunasA;
                         System.out.print("Colunas da matriz B: ");
-                        colunasB = sc.nextInt();
+                        colunasB = scanner.nextInt();
                     } else {
                         linhasB = linhasA;
                         colunasB = colunasA;
                     }
 
                     System.out.println("Matriz B:");
-                    double[][] b = lerMatriz(sc, linhasB, colunasB);
+                    double[][] b = lerMatriz(scanner, linhasB, colunasB);
 
                     double[][] resultado = switch (opcao) {
                         case 1 -> soma(a, b);
@@ -152,30 +158,30 @@ public class MatrizCalculadora {
                 }
                 case 4 -> {
                     System.out.print("Linhas: ");
-                    int l = sc.nextInt();
+                    int l = scanner.nextInt();
                     System.out.print("Colunas: ");
-                    int c = sc.nextInt();
+                    int c = scanner.nextInt();
                     System.out.println("Matriz:");
-                    double[][] m = lerMatriz(sc, l, c);
+                    double[][] m = lerMatriz(scanner, l, c);
                     System.out.println("Transposta:");
                     imprimir(transposta(m));
                 }
                 case 5 -> {
                     System.out.print("Tamanho (2 ou 3): ");
-                    int n = sc.nextInt();
+                    int n = scanner.nextInt();
                     System.out.println("Matriz:");
-                    double[][] m = lerMatriz(sc, n, n);
+                    double[][] m = lerMatriz(scanner, n, n);
                     System.out.printf("Determinante: %.2f%n%n", determinante(m));
                 }
                 case 6 -> {
                     System.out.print("Linhas: ");
-                    int l = sc.nextInt();
+                    int l = scanner.nextInt();
                     System.out.print("Colunas: ");
-                    int c = sc.nextInt();
+                    int c = scanner.nextInt();
                     System.out.println("Matriz:");
-                    double[][] m = lerMatriz(sc, l, c);
+                    double[][] m = lerMatriz(scanner, l, c);
                     System.out.print("Escalar: ");
-                    double escalar = sc.nextDouble();
+                    double escalar = scanner.nextDouble();
                     System.out.println("Resultado:");
                     imprimir(multiplicacaoEscalar(m, escalar));
                 }
@@ -184,7 +190,7 @@ public class MatrizCalculadora {
             }
         } while (opcao != 0);
 
-        sc.close();
+        scanner.close();
     }
 }
 

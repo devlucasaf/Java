@@ -5,14 +5,15 @@ import java.util.Scanner;
 
 public class CalculadoraRenda {
 
+    // --- LE O SALARIO, CALCULA OS DESCONTOS E EXIBE O RESULTADO ---
     public static void main(String[] args) {
-        Scanner entrada = new Scanner(System.in);
-        entrada.useLocale(Locale.US);
+        Scanner scanner = new Scanner(System.in);
+        scanner.useLocale(Locale.US);
 
         System.out.println("=== CALCULADORA DE IMPOSTO DE RENDA E INSS ===");
         System.out.print("Informe o valor do salario bruto: R$ ");
 
-        double salarioBruto = lerValor(entrada);
+        double salarioBruto = lerValor(scanner);
         if (salarioBruto < 0) {
             System.out.println("Salario invalido.");
             return;
@@ -31,6 +32,7 @@ public class CalculadoraRenda {
         System.out.printf(Locale.of("pt", "BR"), "Salario liquido:  R$ %,.2f%n", salarioLiquido);
     }
 
+    // --- CALCULA O IMPOSTO DE RENDA CONFORME A FAIXA SALARIAL ---
     private static double calcularImpostoRenda(double salario) {
         if (salario <= 5000.00) {
             return 0.0;
@@ -50,6 +52,7 @@ public class CalculadoraRenda {
         return (salario - 10000.00) * 0.275;
     }
 
+    // --- CALCULA O DESCONTO DO INSS CONFORME A FAIXA SALARIAL ---
     private static double calcularInss(double salario) {
         if (salario <= 1412.00) {
             return salario * 0.075;
@@ -69,6 +72,7 @@ public class CalculadoraRenda {
         return 8475.55 * 0.14;
     }
 
+    // --- LE E CONVERTE O VALOR INFORMADO PELO USUARIO ---
     private static double lerValor(Scanner entrada) {
         String linha = entrada.nextLine().trim().replace(",", ".");
         try {

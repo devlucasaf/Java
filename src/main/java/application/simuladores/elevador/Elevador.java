@@ -1,20 +1,21 @@
 package application.simuladores.elevador;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
-class Elevador {
+public class Elevador {
     private int                 totalAndares;
     private int                 andarAtual;
     private List<Passageiro>    passageiros;
     private List<Passageiro>    chamadas;
     private int                 movimentos;
 
+    // --- INICIALIZA O ELEVADOR COM 100 ANDARES ---
     public Elevador() {
         this(100);
     }
 
+    // --- INICIALIZA O ELEVADOR COM A QUANTIDADE DE ANDARES INFORMADA ---
     public Elevador(int totalAndares) {
         this.totalAndares = totalAndares;
         this.andarAtual = 0;
@@ -23,6 +24,7 @@ class Elevador {
         this.movimentos = 0;
     }
 
+    // --- ADICIONA UMA CHAMADA APOS VALIDAR OS ANDARES DO PASSAGEIRO ---
     public void adicionarChamada(Passageiro passageiro) {
         if (passageiro.getAndarOrigem() < 0 || passageiro.getAndarOrigem() >= totalAndares ||
                 passageiro.getAndarDestino() < 0 || passageiro.getAndarDestino() >= totalAndares) {
@@ -33,6 +35,7 @@ class Elevador {
         System.out.println("📞 Chamada: " + passageiro.getAndarOrigem() + " - " + passageiro.getAndarDestino());
     }
 
+    // --- ESCOLHE O DESTINO MAIS PROXIMO DO ANDAR ATUAL ---
     private Integer escolherDestino() {
         List<Integer> destinos = new ArrayList<>();
 
@@ -62,6 +65,7 @@ class Elevador {
         return destinoMaisProximo;
     }
 
+    // --- MOVIMENTA O ELEVADOR EM DIRECAO AO DESTINO MAIS PROXIMO ---
     public void mover() {
         Integer destino = escolherDestino();
 
@@ -114,6 +118,7 @@ class Elevador {
         }
     }
 
+    // --- EXIBE O ESTADO ATUAL DO ELEVADOR ---
     public void status() {
         System.out.println("🏢 Andar atual: " + andarAtual);
         System.out.println("📞 Chamadas: " + (chamadas.isEmpty() ? "—" : chamadas));
@@ -121,14 +126,17 @@ class Elevador {
         System.out.println("-".repeat(40));
     }
 
+    // --- RETORNA A QUANTIDADE TOTAL DE ANDARES ---
     public int getTotalAndares() {
         return totalAndares;
     }
 
+    // --- RETORNA O ANDAR ATUAL DO ELEVADOR ---
     public int getAndarAtual() {
         return andarAtual;
     }
 
+    // --- RETORNA A QUANTIDADE DE MOVIMENTOS REALIZADOS ---
     public int getMovimentos() {
         return movimentos;
     }

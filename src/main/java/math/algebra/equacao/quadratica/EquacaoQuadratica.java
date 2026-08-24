@@ -5,20 +5,20 @@ import java.util.Scanner;
 public class EquacaoQuadratica {
 
     public static void main(String[] args) {
-        Scanner entrada = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
         System.out.print("Digite o valor de a: ");
-        double a = entrada.nextDouble();
+        double a = scanner.nextDouble();
         while (a == 0) {
             System.out.print("Coeficiente 'a' inválido para equação quadrática. Digite novamente: ");
-            a = entrada.nextDouble();
+            a = scanner.nextDouble();
         }
 
         System.out.print("Digite o valor de b: ");
-        double b = entrada.nextDouble();
+        double b = scanner.nextDouble();
 
         System.out.print("Digite o valor de c: ");
-        double c = entrada.nextDouble();
+        double c = scanner.nextDouble();
 
         double delta = calcularDelta(a, b, c);
         System.out.println("Discriminante (Δ) = " + delta);
@@ -27,7 +27,7 @@ public class EquacaoQuadratica {
 
         exibirResultado(delta, raizes);
 
-        entrada.close();
+        scanner.close();
     }
 
     public static double calcularDelta(double a, double b, double c) {

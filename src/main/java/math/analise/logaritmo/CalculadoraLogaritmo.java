@@ -36,7 +36,6 @@ public class CalculadoraLogaritmo {
 
             System.out.println("\nRESULTADO:");
             System.out.println("log_" + base + "(" + numero + ") = " + formatador.format(resultado));
-
         } catch (IllegalArgumentException erro) {
             System.err.println("Erro: " + erro.getMessage());
         } catch (Exception erro) {

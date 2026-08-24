@@ -24,28 +24,28 @@ public class AproximacaoIntegralTrapezios {
     }
 
     public static void main(String[] args) {
-        Scanner entrada = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
         System.out.println("=== APROXIMAÇÃO DE INTEGRAL DEFINIDA - MÉTODO DOS TRAPÉZIOS ===\n");
 
         System.out.print("Digite a função polinomial (use 'x' como variável): ");
         System.out.println("Exemplos: 2*x**2 + 3*x - 5   ou   Math.sin(x) + x**3");
         System.out.print("Função: ");
-        String funcao = entrada.nextLine();
+        String funcao = scanner.nextLine();
 
         funcao = funcao.replace('^', '*').replace("**", "**"); // garante que '^' vire '**'
 
         System.out.print("\nLimite inferior (a): ");
-        double a = entrada.nextDouble();
+        double a = scanner.nextDouble();
         System.out.print("Limite superior (b): ");
-        double b = entrada.nextDouble();
+        double b = scanner.nextDouble();
 
         System.out.print("Número de subdivisões (n): ");
-        int n = entrada.nextInt();
+        int n = scanner.nextInt();
 
         if (n <= 0) {
             System.out.println("ERRO: O número de subdivisões deve ser positivo.");
-            entrada.close();
+            scanner.close();
             return;
         }
 
@@ -76,6 +76,6 @@ public class AproximacaoIntegralTrapezios {
             System.out.println("ou funções como Math.sin(x), Math.cos(x), Math.exp(x), etc.");
         }
 
-        entrada.close();
+        scanner.close();
     }
 }

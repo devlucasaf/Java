@@ -86,12 +86,14 @@ public class ServidorControle {
                 } catch (IOException ignorado) {
                 }
             }
+
             if (in != null) {
                 try {
                     in.close();
                 } catch (IOException ignorado) {
                 }
             }
+
             try {
                 cliente.close();
             } catch (IOException ignorado) {

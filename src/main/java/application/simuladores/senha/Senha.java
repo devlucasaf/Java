@@ -8,10 +8,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-class Senha {
-    private String              app;
-    private String              senhaFinal;
-    private Random              random = new Random();
+public class Senha {
+    private String app;
+    private String senhaFinal;
+    private Random random = new Random();
 
     private static final String LETRAS = "abcdefghijklmnopqrstuvwxyz";
     private static final String NUMEROS = "0123456789";

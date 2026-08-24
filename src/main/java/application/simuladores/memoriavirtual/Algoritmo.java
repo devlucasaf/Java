@@ -9,15 +9,20 @@ public interface Algoritmo {
 
     int simular(List<Integer> referencias, int numeroFrames);
 
+    // --- CRIA UMA IMPLEMENTACAO DO ALGORITMO FIFO ---
     static Algoritmo fifo() {
         return new Algoritmo() {
             @Override
-            public String getNome() { return "FIFO"; }
+            public String getNome() {
+                return "FIFO";
+            }
 
+            // --- SIMULA A SUBSTITUICAO DE PAGINAS PELO ALGORITMO FIFO ---
             @Override
             public int simular(List<Integer> referencias, int numeroFrames) {
                 LinkedList<Integer> fila = new LinkedList<>();
                 int faults = 0;
+
                 for (int p : referencias) {
                     if (!fila.contains(p)) {
                         if (fila.size() == numeroFrames) {
@@ -32,6 +37,7 @@ public interface Algoritmo {
         };
     }
 
+    // --- CRIA UMA IMPLEMENTACAO DO ALGORITMO LRU ---
     static Algoritmo lru() {
         return new Algoritmo() {
             @Override
@@ -39,10 +45,12 @@ public interface Algoritmo {
                 return "LRU";
             }
 
+            // --- SIMULA A SUBSTITUICAO DE PAGINAS PELO ALGORITMO LRU ---
             @Override
             public int simular(List<Integer> referencias, int numeroFrames) {
                 LinkedList<Integer> ordem = new LinkedList<>();
                 int faults = 0;
+
                 for (int p : referencias) {
                     if (ordem.contains(p)) {
                         ordem.remove((Integer) p);
@@ -59,15 +67,20 @@ public interface Algoritmo {
         };
     }
 
+    // --- CRIA UMA IMPLEMENTACAO DO ALGORITMO OTIMO ---
     static Algoritmo otimo() {
         return new Algoritmo() {
             @Override
-            public String getNome() { return "OTIMO"; }
+            public String getNome() {
+                return "OTIMO";
+            }
 
+            // --- SIMULA A SUBSTITUICAO DE PAGINAS PELO ALGORITMO OTIMO ---
             @Override
             public int simular(List<Integer> referencias, int numeroFrames) {
                 LinkedList<Integer> frames = new LinkedList<>();
                 int faults = 0;
+
                 for (int i = 0; i < referencias.size(); i++) {
                     int p = referencias.get(i);
                     if (frames.contains(p)) {
@@ -79,6 +92,7 @@ public interface Algoritmo {
                     } else {
                         int indiceRemocao = -1;
                         int maiorFuturo = -1;
+
                         for (int f = 0; f < frames.size(); f++) {
                             int prox = -1;
                             for (int j = i + 1; j < referencias.size(); j++) {

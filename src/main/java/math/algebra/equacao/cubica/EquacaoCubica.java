@@ -8,40 +8,40 @@ public class EquacaoCubica {
     private static final double EPSILON = 1e-10;
 
     public static void main(String[] args) {
-        Scanner entrada = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
         System.out.println("Resolução de equação cúbica: a*x³ + b*x² + c*x + d = 0");
         System.out.print("Digite o coeficiente a (diferente de zero): ");
-        double a = entrada.nextDouble();
+        double a = scanner.nextDouble();
 
         if (Math.abs(a) < EPSILON) {
             System.out.println("O coeficiente 'a' não pode ser zero (não é uma equação cúbica).");
             System.out.println("Tratando como equação de grau inferior...");
-            resolverGrauInferior(a, entrada);
-            entrada.close();
+            resolverGrauInferior(a, scanner);
+            scanner.close();
             return;
         }
 
         System.out.print("Digite o coeficiente b: ");
-        double b = entrada.nextDouble();
+        double b = scanner.nextDouble();
         System.out.print("Digite o coeficiente c: ");
-        double c = entrada.nextDouble();
+        double c = scanner.nextDouble();
         System.out.print("Digite o coeficiente d: ");
-        double d = entrada.nextDouble();
+        double d = scanner.nextDouble();
 
-        entrada.close();
+        scanner.close();
 
         double[] raizesReais = calcularRaizesReais(a, b, c, d);
         exibirRaizes(raizesReais);
     }
 
-    private static void resolverGrauInferior(double a, Scanner entrada) {
+    private static void resolverGrauInferior(double a, Scanner scanner) {
         System.out.print("Digite o coeficiente b: ");
-        double b = entrada.nextDouble();
+        double b = scanner.nextDouble();
         System.out.print("Digite o coeficiente c: ");
-        double c = entrada.nextDouble();
+        double c = scanner.nextDouble();
         System.out.print("Digite o coeficiente d: ");
-        double d = entrada.nextDouble();
+        double d = scanner.nextDouble();
 
         if (Math.abs(b) < EPSILON && Math.abs(c) < EPSILON) {
             if (Math.abs(d) < EPSILON) {

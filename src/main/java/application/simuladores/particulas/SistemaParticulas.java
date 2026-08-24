@@ -23,11 +23,13 @@ public class SistemaParticulas extends JPanel {
     private int                     mx = 500;
     private int                     my = 350;
 
+    // --- CONFIGURA A INTERFACE, OS CONTROLES E A ATUALIZACAO DAS PARTICULAS ---
     public SistemaParticulas() {
         setBackground(Color.BLACK);
         setPreferredSize(new java.awt.Dimension(1000, 700));
         setFocusable(true);
 
+        // --- ATUALIZA A POSICAO DE EMISSAO CONFORME O MOVIMENTO DO MOUSE ---
         addMouseMotionListener(new MouseAdapter() {
             @Override
             public void mouseMoved(MouseEvent e) {
@@ -42,6 +44,7 @@ public class SistemaParticulas extends JPanel {
             }
         });
 
+        // --- GERA UMA EXPLOSAO AO PRESSIONAR O MOUSE NO MODO CORRESPONDENTE ---
         addMouseListener(new MouseAdapter() {
             @Override public void mousePressed(MouseEvent e) {
                 if (modo.equals("explosao")) {
@@ -50,6 +53,7 @@ public class SistemaParticulas extends JPanel {
             }
         });
 
+        // --- ALTERA O MODO DE EMISSAO CONFORME A TECLA PRESSIONADA ---
         addKeyListener(new KeyAdapter() {
             @Override public void keyPressed(KeyEvent e) {
                 switch (e.getKeyChar()) {
@@ -62,14 +66,16 @@ public class SistemaParticulas extends JPanel {
             }
         });
 
-        Timer t = new Timer(16, e -> {
+        // --- EMITE, ATUALIZA E REDESENHA AS PARTICULAS A CADA 16 MILISSEGUNDOS ---
+        Timer timer = new Timer(16, e -> {
             emitir();
             atualizar();
             repaint();
         });
-        t.start();
+        timer.start();
     }
 
+    // --- EMITE PARTICULAS CONFORME O MODO SELECIONADO ---
     private void emitir() {
         switch (modo) {
             case "fogo" -> {
@@ -98,6 +104,7 @@ public class SistemaParticulas extends JPanel {
         }
     }
 
+    // --- GERA PARTICULAS EM TODAS AS DIRECOES A PARTIR DO PONTO INFORMADO ---
     private void explosao(int cx, int cy) {
         for (int i = 0; i < 100; i++) {
             double a = r.nextDouble() * Math.PI * 2;
@@ -107,8 +114,10 @@ public class SistemaParticulas extends JPanel {
         }
     }
 
+    // --- ATUALIZA A POSICAO, A VELOCIDADE E O TEMPO DE VIDA DAS PARTICULAS ---
     private void atualizar() {
         Iterator<Particula> it = particulas.iterator();
+
         while (it.hasNext()) {
             Particula p = it.next();
             p.x += p.vx;
@@ -126,21 +135,24 @@ public class SistemaParticulas extends JPanel {
         }
     }
 
+    // --- DESENHA AS PARTICULAS E AS INFORMACOES DO MODO ATUAL ---
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        Graphics2D g2 = (Graphics2D) g;
+        Graphics2D graphics2D = (Graphics2D) g;
+
         for (Particula p : particulas) {
-            int alpha = Math.max(0, Math.min(255, (int) (255 * p.vida / p.vidaMax)));
-            g2.setColor(new Color(p.cor.getRed(), p.cor.getGreen(), p.cor.getBlue(), alpha));
+            int alpha = Math.max(0, Math.min(255, (int) (255 * p.vida / p.vidaMaxima)));
+            graphics2D.setColor(new Color(p.cor.getRed(), p.cor.getGreen(), p.cor.getBlue(), alpha));
             int s = (int) p.tamanho;
-            g2.fillOval((int) p.x - s / 2, (int) p.y - s / 2, s, s);
+            graphics2D.fillOval((int) p.x - s / 2, (int) p.y - s / 2, s, s);
         }
-        g2.setColor(Color.WHITE);
-        g2.drawString("Modo: " + modo + " (teclas 1=fogo 2=fumaca 3=chuva 4=explosao)", 10, 20);
-        g2.drawString("Particulas: " + particulas.size(), 10, 35);
+        graphics2D.setColor(Color.WHITE);
+        graphics2D.drawString("Modo: " + modo + " (teclas 1=fogo 2=fumaca 3=chuva 4=explosao)", 10, 20);
+        graphics2D.drawString("Particulas: " + particulas.size(), 10, 35);
     }
 
+    // --- CRIA E EXIBE A JANELA DO SISTEMA DE PARTICULAS ---
     public static void main(String[] args) {
         javax.swing.SwingUtilities.invokeLater(() -> {
             JFrame frame = new JFrame("Sistema de Particulas");

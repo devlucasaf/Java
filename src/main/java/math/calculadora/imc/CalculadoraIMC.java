@@ -9,10 +9,10 @@ import java.text.DecimalFormat;
 
 public class CalculadoraIMC extends JFrame {
 
-    private JTextField  campoPeso;
-    private JTextField  campoAltura;
-    private JButton     botaoCalcular;
-    private JLabel      rotuloResultado;
+    private JTextField  txtCampoPeso;
+    private JTextField  txtCampoAltura;
+    private JButton     btnCalcular;
+    private JLabel      lblRotuloResultado;
 
     // Cores do tema escuro
     private static final Color COR_FUNDO = new Color(45, 45, 45);
@@ -44,55 +44,55 @@ public class CalculadoraIMC extends JFrame {
         painelPrincipal.setBorder(new EmptyBorder(20, 30, 20, 30));
 
         // Título
-        JLabel titulo = new JLabel("Calculadora de IMC");
-        titulo.setFont(new Font("SansSerif", Font.BOLD, 20));
-        titulo.setAlignmentX(Component.CENTER_ALIGNMENT);
-        titulo.setForeground(COR_TITULO); // Será aplicado no tema escuro, mas forçamos a cor
-        painelPrincipal.add(titulo);
+        JLabel lblTitulo = new JLabel("Calculadora de IMC");
+        lblTitulo.setFont(new Font("SansSerif", Font.BOLD, 20));
+        lblTitulo.setAlignmentX(Component.CENTER_ALIGNMENT);
+        lblTitulo.setForeground(COR_TITULO); // Será aplicado no tema escuro, mas forçamos a cor
+        painelPrincipal.add(lblTitulo);
         painelPrincipal.add(Box.createVerticalStrut(20));
 
         // Campo Peso
-        JLabel rotuloPeso = new JLabel("Peso (kg):");
-        rotuloPeso.setAlignmentX(Component.LEFT_ALIGNMENT);
-        rotuloPeso.setFont(new Font("SansSerif", Font.PLAIN, 14));
-        painelPrincipal.add(rotuloPeso);
-        campoPeso = new JTextField();
-        campoPeso.setMaximumSize(new Dimension(Integer.MAX_VALUE, 30));
-        campoPeso.setFont(new Font("SansSerif", Font.PLAIN, 14));
-        painelPrincipal.add(campoPeso);
+        JLabel lblRotuloPeso = new JLabel("Peso (kg):");
+        lblRotuloPeso.setAlignmentX(Component.LEFT_ALIGNMENT);
+        lblRotuloPeso.setFont(new Font("SansSerif", Font.PLAIN, 14));
+        painelPrincipal.add(lblRotuloPeso);
+        txtCampoPeso = new JTextField();
+        txtCampoPeso.setMaximumSize(new Dimension(Integer.MAX_VALUE, 30));
+        txtCampoPeso.setFont(new Font("SansSerif", Font.PLAIN, 14));
+        painelPrincipal.add(txtCampoPeso);
         painelPrincipal.add(Box.createVerticalStrut(10));
 
         // Campo Altura
-        JLabel rotuloAltura = new JLabel("Altura (m):");
-        rotuloAltura.setAlignmentX(Component.LEFT_ALIGNMENT);
-        rotuloAltura.setFont(new Font("SansSerif", Font.PLAIN, 14));
-        painelPrincipal.add(rotuloAltura);
-        campoAltura = new JTextField();
-        campoAltura.setMaximumSize(new Dimension(Integer.MAX_VALUE, 30));
-        campoAltura.setFont(new Font("SansSerif", Font.PLAIN, 14));
-        painelPrincipal.add(campoAltura);
+        JLabel lblRotuloAltura = new JLabel("Altura (m):");
+        lblRotuloAltura.setAlignmentX(Component.LEFT_ALIGNMENT);
+        lblRotuloAltura.setFont(new Font("SansSerif", Font.PLAIN, 14));
+        painelPrincipal.add(lblRotuloAltura);
+        txtCampoAltura = new JTextField();
+        txtCampoAltura.setMaximumSize(new Dimension(Integer.MAX_VALUE, 30));
+        txtCampoAltura.setFont(new Font("SansSerif", Font.PLAIN, 14));
+        painelPrincipal.add(txtCampoAltura);
         painelPrincipal.add(Box.createVerticalStrut(20));
 
         // Botão de cálculo
-        botaoCalcular = new JButton("Calcular IMC");
-        botaoCalcular.setAlignmentX(Component.CENTER_ALIGNMENT);
-        botaoCalcular.setFont(new Font("SansSerif", Font.BOLD, 14));
-        botaoCalcular.setFocusPainted(false);
-        botaoCalcular.addActionListener(new ActionListener() {
+        btnCalcular = new JButton("Calcular IMC");
+        btnCalcular.setAlignmentX(Component.CENTER_ALIGNMENT);
+        btnCalcular.setFont(new Font("SansSerif", Font.BOLD, 14));
+        btnCalcular.setFocusPainted(false);
+        btnCalcular.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 calcularIMC();
             }
         });
-        painelPrincipal.add(botaoCalcular);
+        painelPrincipal.add(btnCalcular);
         painelPrincipal.add(Box.createVerticalStrut(20));
 
         // Área de resultado
-        rotuloResultado = new JLabel("<html><center>Insira os dados e clique em Calcular</center></html>");
-        rotuloResultado.setAlignmentX(Component.CENTER_ALIGNMENT);
-        rotuloResultado.setFont(new Font("SansSerif", Font.PLAIN, 14));
-        rotuloResultado.setHorizontalAlignment(SwingConstants.CENTER);
-        painelPrincipal.add(rotuloResultado);
+        lblRotuloResultado = new JLabel("<html><center>Insira os dados e clique em Calcular</center></html>");
+        lblRotuloResultado.setAlignmentX(Component.CENTER_ALIGNMENT);
+        lblRotuloResultado.setFont(new Font("SansSerif", Font.PLAIN, 14));
+        lblRotuloResultado.setHorizontalAlignment(SwingConstants.CENTER);
+        painelPrincipal.add(lblRotuloResultado);
 
         add(painelPrincipal);
     }
@@ -107,21 +107,21 @@ public class CalculadoraIMC extends JFrame {
         }
 
         // Configura cores dos componentes
-        campoPeso.setBackground(COR_FUNDO_CAMPO);
-        campoPeso.setForeground(COR_TEXTO);
-        campoPeso.setCaretColor(COR_TEXTO);
-        campoPeso.setBorder(BorderFactory.createLineBorder(COR_FUNDO_CAMPO.darker()));
+        txtCampoPeso.setBackground(COR_FUNDO_CAMPO);
+        txtCampoPeso.setForeground(COR_TEXTO);
+        txtCampoPeso.setCaretColor(COR_TEXTO);
+        txtCampoPeso.setBorder(BorderFactory.createLineBorder(COR_FUNDO_CAMPO.darker()));
 
-        campoAltura.setBackground(COR_FUNDO_CAMPO);
-        campoAltura.setForeground(COR_TEXTO);
-        campoAltura.setCaretColor(COR_TEXTO);
-        campoAltura.setBorder(BorderFactory.createLineBorder(COR_FUNDO_CAMPO.darker()));
+        txtCampoAltura.setBackground(COR_FUNDO_CAMPO);
+        txtCampoAltura.setForeground(COR_TEXTO);
+        txtCampoAltura.setCaretColor(COR_TEXTO);
+        txtCampoAltura.setBorder(BorderFactory.createLineBorder(COR_FUNDO_CAMPO.darker()));
 
-        botaoCalcular.setBackground(COR_BOTAO);
-        botaoCalcular.setForeground(COR_BOTAO_TEXTO);
-        botaoCalcular.setBorder(BorderFactory.createEmptyBorder(8, 20, 8, 20));
+        btnCalcular.setBackground(COR_BOTAO);
+        btnCalcular.setForeground(COR_BOTAO_TEXTO);
+        btnCalcular.setBorder(BorderFactory.createEmptyBorder(8, 20, 8, 20));
 
-        rotuloResultado.setForeground(COR_TEXTO);
+        lblRotuloResultado.setForeground(COR_TEXTO);
 
         // Define cor de todos os JLabel
         for (Component comp : getContentPane().getComponents()) {
@@ -136,20 +136,22 @@ public class CalculadoraIMC extends JFrame {
     }
 
     private void calcularIMC() {
-        String textoPeso = campoPeso.getText().trim();
-        String textoAltura = campoAltura.getText().trim();
+        String txtPeso = txtCampoPeso.getText().trim();
+        String txtAltura = txtCampoAltura.getText().trim();
 
-        if (textoPeso.isEmpty() || textoAltura.isEmpty()) {
+        if (txtPeso.isEmpty() || txtAltura.isEmpty()) {
             JOptionPane.showMessageDialog(this,
                     "Por favor, preencha os campos de peso e altura.",
                     "Campos vazios", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
-        double peso, altura;
+        double peso;
+        double altura;
+
         try {
-            peso = Double.parseDouble(textoPeso.replace(',', '.'));
-            altura = Double.parseDouble(textoAltura.replace(',', '.'));
+            peso = Double.parseDouble(txtPeso.replace(',', '.'));
+            altura = Double.parseDouble(txtAltura.replace(',', '.'));
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this,
                     "Insira apenas valores numéricos válidos.",
@@ -168,7 +170,7 @@ public class CalculadoraIMC extends JFrame {
         String classificacao = classificarIMC(imc);
         DecimalFormat df = new DecimalFormat("#0.0");
 
-        rotuloResultado.setText(String.format(
+        lblRotuloResultado.setText(String.format(
                 "<html><center>IMC: <b>%s</b><br>Classificação: <b>%s</b></center></html>",
                 df.format(imc), classificacao));
     }

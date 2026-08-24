@@ -9,14 +9,16 @@ public class Main {
     private static final int SENSOR_TEMP = 0;
     private static final int LED_PWM = 9;
 
+    // --- EXECUTA OS SKETCHES DE SIMULACAO DO ARDUINO ---
     public static void main(String[] args) {
         Arduino arduino = new Arduino();
 
+        // --- SIMULA UM LED PISCANDO EM INTERVALOS DE 200 MILISSEGUNDOS ---
         System.out.println("=== SKETCH 1: LED piscando ===\n");
         new Sketch(arduino) {
             @Override
             public void setup() {
-                arduino.pinMode(LED, Arduino.ModoPino.SAIDA);
+                arduino.pinMode(LED, ModoPino.SAIDA);
             }
 
             @Override
@@ -28,12 +30,13 @@ public class Main {
             }
         }.executar(3);
 
+        // --- SIMULA UM BOTAO QUE CONTROLA O ESTADO DO LED ---
         System.out.println("\n=== SKETCH 2: Botao + LED ===\n");
         new Sketch(arduino) {
             @Override
             public void setup() {
-                arduino.pinMode(BOTAO, Arduino.ModoPino.ENTRADA_PULLUP);
-                arduino.pinMode(LED, Arduino.ModoPino.SAIDA);
+                arduino.pinMode(BOTAO, ModoPino.ENTRADA_PULLUP);
+                arduino.pinMode(LED, ModoPino.SAIDA);
             }
 
             @Override
@@ -45,11 +48,12 @@ public class Main {
             }
         }.executar(4);
 
+        // --- SIMULA UM SENSOR DE TEMPERATURA QUE CONTROLA O BRILHO DO LED ---
         System.out.println("\n=== SKETCH 3: Termometro com PWM ===\n");
         new Sketch(arduino) {
             @Override
             public void setup() {
-                arduino.pinMode(LED_PWM, Arduino.ModoPino.SAIDA);
+                arduino.pinMode(LED_PWM, ModoPino.SAIDA);
             }
 
             @Override

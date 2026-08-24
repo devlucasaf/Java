@@ -12,6 +12,7 @@ public class Carteira {
     private final String    dono;
     private final KeyPair   chaves;
 
+    // --- INICIALIZA A CARTEIRA E GERA UM PAR DE CHAVES RSA ---
     public Carteira(String dono) throws Exception {
         this.dono = dono;
         KeyPairGenerator kpg = KeyPairGenerator.getInstance("RSA");
@@ -19,18 +20,22 @@ public class Carteira {
         this.chaves = kpg.generateKeyPair();
     }
 
+    // --- RETORNA O NOME DO DONO DA CARTEIRA ---
     public String getDono() {
         return dono;
     }
 
+    // --- RETORNA A CHAVE PUBLICA DA CARTEIRA ---
     public PublicKey getChavePublica() {
         return chaves.getPublic();
     }
 
+    // --- RETORNA A CHAVE PRIVADA DA CARTEIRA ---
     public PrivateKey getChavePrivada() {
         return chaves.getPrivate();
     }
 
+    // --- GERA O ENDERECO DA CARTEIRA A PARTIR DA CHAVE PUBLICA ---
     public String getEndereco() {
         try {
             java.security.MessageDigest md = java.security.MessageDigest.getInstance("SHA-256");
@@ -41,6 +46,7 @@ public class Carteira {
         }
     }
 
+    // --- ASSINA OS DADOS UTILIZANDO A CHAVE PRIVADA DA CARTEIRA ---
     public byte[] assinar(String dados) throws Exception {
         Signature signature = Signature.getInstance("SHA256withRSA");
 
@@ -50,6 +56,7 @@ public class Carteira {
         return signature.sign();
     }
 
+    // --- VERIFICA A AUTENTICIDADE DA ASSINATURA COM A CHAVE PUBLICA ---
     public static boolean verificar(String dados, byte[] assinatura, PublicKey chavePublica) throws Exception {
         Signature signature = Signature.getInstance("SHA256withRSA");
 

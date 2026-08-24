@@ -36,7 +36,8 @@ public class NumerosPrimos {
         if (n < 2) {
             return "Número deve ser >= 2";
         }
-        StringBuilder sb = new StringBuilder("Fatoração de " + n + ":\n");
+
+        StringBuilder builder = new StringBuilder("Fatoração de " + n + ":\n");
         long temp = n;
         for (long i = 2; i * i <= temp; i++) {
             int count = 0;
@@ -46,13 +47,16 @@ public class NumerosPrimos {
             }
 
             if (count > 0) {
-                sb.append(i).append("^").append(count).append("  ");
+                builder.append(i)
+                        .append("^")
+                        .append(count)
+                        .append("  ");
             }
         }
 
         if (temp > 1) {
-            sb.append(temp).append("^1");
+            builder.append(temp).append("^1");
         }
-        return sb.toString().trim();
+        return builder.toString().trim();
     }
 }

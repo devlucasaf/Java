@@ -24,7 +24,7 @@ public class CalendarioPerpetuo {
 
     public static String diaDaSemanaModerno(int dia, int mes, int ano) {
         LocalDate data = LocalDate.of(ano, mes, dia);
-        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("EEEE");
-        return fmt.format(data);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE");
+        return formatter.format(data);
     }
 }

@@ -7,10 +7,12 @@ public class Individuo implements Comparable<Individuo> {
     public final String gene;
     public final int    fitness;
 
+    // --- CRIA UM INDIVIDUO E CALCULA SUA APTIDAO EM RELACAO AO ALVO ---
     public Individuo(String gene, String alvo) {
         this.gene = gene;
         int f = 0;
         int len = Math.min(gene.length(), alvo.length());
+
         for (int i = 0; i < len; i++) {
             if (gene.charAt(i) == alvo.charAt(i)) {
                 f++;
@@ -19,6 +21,7 @@ public class Individuo implements Comparable<Individuo> {
         this.fitness = f;
     }
 
+    // --- GERA UM INDIVIDUO ALEATORIO COM O TAMANHO DO ALVO ---
     public static Individuo aleatorio(String alvo, Random r) {
         StringBuilder sb = new StringBuilder(alvo.length());
         for (int i = 0; i < alvo.length(); i++) {
@@ -27,8 +30,10 @@ public class Individuo implements Comparable<Individuo> {
         return new Individuo(sb.toString(), alvo);
     }
 
+    // --- CRUZA DOIS INDIVIDUOS E APLICA A POSSIBILIDADE DE MUTACAO ---
     public Individuo cruzar(Individuo outro, String alvo, Random r, double taxaMutacao) {
         StringBuilder sb = new StringBuilder(gene.length());
+
         for (int i = 0; i < gene.length(); i++) {
             char c = r.nextBoolean() ? gene.charAt(i) : outro.gene.charAt(i);
             if (r.nextDouble() < taxaMutacao) {
@@ -39,11 +44,13 @@ public class Individuo implements Comparable<Individuo> {
         return new Individuo(sb.toString(), alvo);
     }
 
+    // --- RETORNA UM CARACTERE ALEATORIO DO ALFABETO PERMITIDO ---
     private static char alfabeto(Random r) {
         String chars = "abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ.!?";
         return chars.charAt(r.nextInt(chars.length()));
     }
 
+    // --- ORDENA OS INDIVIDUOS DO MAIOR PARA O MENOR FITNESS ---
     @Override
     public int compareTo(Individuo o) {
         return Integer.compare(o.fitness, this.fitness);

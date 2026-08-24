@@ -17,8 +17,8 @@ public class CalculadoraEmprestimo extends JFrame {
 
     private JTextField          campoValor;
     private JComboBox<Integer>  comboParcelas;
-    private JLabel              labelResultadoParcela;
-    private JLabel              labelResultadoTotal;
+    private JLabel              lblResultadoParcela;
+    private JLabel              lblResultadoTotal;
 
     private final double TAXA_JUROS_MENSAL = 0.085; // 8,5% ao mês
     private final Locale LOCAL_BR = new Locale("pt", "BR");
@@ -37,11 +37,11 @@ public class CalculadoraEmprestimo extends JFrame {
         painelPrincipal.setBorder(new EmptyBorder(20, 20, 20, 20));
 
         // Título
-        JLabel labelTitulo = new JLabel("Simulador de Empréstimo");
-        labelTitulo.setFont(new Font("Arial", Font.BOLD, 18));
-        labelTitulo.setForeground(Color.WHITE);
-        labelTitulo.setAlignmentX(Component.CENTER_ALIGNMENT);
-        painelPrincipal.add(labelTitulo);
+        JLabel lblTitulo = new JLabel("Simulador de Empréstimo");
+        lblTitulo.setFont(new Font("Arial", Font.BOLD, 18));
+        lblTitulo.setForeground(Color.WHITE);
+        lblTitulo.setAlignmentX(Component.CENTER_ALIGNMENT);
+        painelPrincipal.add(lblTitulo);
         painelPrincipal.add(Box.createRigidArea(new Dimension(0, 20)));
 
         // Painel do Formulário
@@ -49,21 +49,21 @@ public class CalculadoraEmprestimo extends JFrame {
         painelForm.setBackground(COR_FUNDO);
 
         // Campo de Valor
-        JLabel labelValor = criarLabel("Valor do Empréstimo (R$):");
+        JLabel lblValor = criarLabel("Valor do Empréstimo (R$):");
         campoValor = new JTextField();
         estilizarCampo(campoValor);
         aplicarMascaraDinheiro(campoValor);
 
         // Campo de Parcelas
-        JLabel labelParcelas = criarLabel("Quantidade de Parcelas:");
+        JLabel lblParcelas = criarLabel("Quantidade de Parcelas:");
         Integer[] opcoesParcelas = {1, 3, 6, 12, 24, 36};
         comboParcelas = new JComboBox<>(opcoesParcelas);
         comboParcelas.setBackground(COR_PAINEL);
         comboParcelas.setForeground(Color.WHITE);
 
-        painelForm.add(labelValor);
+        painelForm.add(lblValor);
         painelForm.add(campoValor);
-        painelForm.add(labelParcelas);
+        painelForm.add(lblParcelas);
         painelForm.add(comboParcelas);
 
         painelPrincipal.add(painelForm);
@@ -82,19 +82,19 @@ public class CalculadoraEmprestimo extends JFrame {
         painelPrincipal.add(btnCalcular);
         painelPrincipal.add(Box.createRigidArea(new Dimension(0, 20)));
 
-        labelResultadoParcela = new JLabel("Valor da Parcela: R$ 0,00");
-        labelResultadoParcela.setFont(new Font("Arial", Font.BOLD, 16));
-        labelResultadoParcela.setForeground(new Color(137, 207, 113)); // Verde claro
-        labelResultadoParcela.setAlignmentX(Component.CENTER_ALIGNMENT);
+        lblResultadoParcela = new JLabel("Valor da Parcela: R$ 0,00");
+        lblResultadoParcela.setFont(new Font("Arial", Font.BOLD, 16));
+        lblResultadoParcela.setForeground(new Color(137, 207, 113)); // Verde claro
+        lblResultadoParcela.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        labelResultadoTotal = new JLabel("Valor Total Pago: R$ 0,00");
-        labelResultadoTotal.setFont(new Font("Arial", Font.PLAIN, 14));
-        labelResultadoTotal.setForeground(COR_TEXTO);
-        labelResultadoTotal.setAlignmentX(Component.CENTER_ALIGNMENT);
+        lblResultadoTotal = new JLabel("Valor Total Pago: R$ 0,00");
+        lblResultadoTotal.setFont(new Font("Arial", Font.PLAIN, 14));
+        lblResultadoTotal.setForeground(COR_TEXTO);
+        lblResultadoTotal.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        painelPrincipal.add(labelResultadoParcela);
+        painelPrincipal.add(lblResultadoParcela);
         painelPrincipal.add(Box.createRigidArea(new Dimension(0, 10)));
-        painelPrincipal.add(labelResultadoTotal);
+        painelPrincipal.add(lblResultadoTotal);
 
         add(painelPrincipal);
     }
@@ -161,8 +161,8 @@ public class CalculadoraEmprestimo extends JFrame {
             double valorTotal = pmt * n;
 
             NumberFormat formatoMoeda = NumberFormat.getCurrencyInstance(LOCAL_BR);
-            labelResultadoParcela.setText("Valor da Parcela: " + formatoMoeda.format(pmt));
-            labelResultadoTotal.setText("Valor Total Pago: " + formatoMoeda.format(valorTotal));
+            lblResultadoParcela.setText("Valor da Parcela: " + formatoMoeda.format(pmt));
+            lblResultadoTotal.setText("Valor Total Pago: " + formatoMoeda.format(valorTotal));
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Ocorreu um erro no cálculo. Verifique os valores inseridos.",
                     "Erro", JOptionPane.ERROR_MESSAGE);

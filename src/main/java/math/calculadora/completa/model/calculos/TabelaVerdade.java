@@ -3,15 +3,15 @@ package math.calculadora.completa.model.calculos;
 public class TabelaVerdade {
 
     public static String gerarTabela(String operacao) {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder builder = new StringBuilder();
         boolean usaC = operacao.contains("C");
 
-        sb.append("A\tB");
+        builder.append("A\tB");
         if (usaC) {
-            sb.append("\tC");
+            builder.append("\tC");
         }
-        sb.append("\t| Resultado\n");
-        sb.append("----------------------------\n");
+        builder.append("\t| Resultado\n");
+        builder.append("----------------------------\n");
 
         int max = usaC ? 8 : 4;
         for (int i = 0; i < max; i++) {
@@ -22,13 +22,15 @@ public class TabelaVerdade {
                 continue;
             }
             boolean resultado = avaliar(operacao, a, b, c);
-            sb.append((a ? 1 : 0)).append("\t").append((b ? 1 : 0));
+            builder.append((a ? 1 : 0)).append("\t").append((b ? 1 : 0));
             if (usaC) {
-                sb.append("\t").append((c ? 1 : 0));
+                builder.append("\t").append((c ? 1 : 0));
             }
-            sb.append("\t| ").append(resultado ? 1 : 0).append("\n");
+            builder.append("\t| ")
+                    .append(resultado ? 1 : 0)
+                    .append("\n");
         }
-        return sb.toString();
+        return builder.toString();
     }
 
     private static boolean avaliar(String op, boolean a, boolean b, boolean c) {

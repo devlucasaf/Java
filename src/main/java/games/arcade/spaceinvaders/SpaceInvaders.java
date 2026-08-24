@@ -154,25 +154,25 @@ public class SpaceInvaders extends JPanel {
         }
 
         for (Iterator<Tiro> it = tiros.iterator(); it.hasNext(); ) {
-            Tiro t = it.next();
-            t.atualizar(dt);
-            if (!t.isAtivo()) {
+            Tiro tiro = it.next();
+            tiro.atualizar(dt);
+            if (!tiro.isAtivo()) {
                 it.remove();
                 continue;
             }
 
-            if (t.isDoJogador()) {
+            if (tiro.isDoJogador()) {
                 for (Inimigo i : inimigos) {
-                    if (i.isAtivo() && t.colideCom(i)) {
+                    if (i.isAtivo() && tiro.colideCom(i)) {
                         pontuacao += i.getPontos();
                         i.destruir();
-                        t.destruir();
+                        tiro.destruir();
                         break;
                     }
                 }
-            } else if (t.colideCom(jogador)) {
+            } else if (tiro.colideCom(jogador)) {
                 jogador.perderVida();
-                t.destruir();
+                tiro.destruir();
                 if (!jogador.isAtivo()) {
                     fimDeJogo = true;
                 }
