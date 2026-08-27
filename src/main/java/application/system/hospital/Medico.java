@@ -9,6 +9,8 @@ public class Medico extends Funcionario {
     private String          especialidade;
     private List<Paciente>  pacientesAtendidos;
     private double          valorConsulta;
+    private boolean         disponivel;
+    private RegistroTriagem atendimentoAtual;
 
     public Medico(String nome, String cpf, LocalDate dataNascimento, String telefone, String endereco,
                   String matricula, double salarioBase, LocalDate dataAdmissao, String cargo,
@@ -18,6 +20,8 @@ public class Medico extends Funcionario {
         this.especialidade = especialidade;
         this.valorConsulta = valorConsulta;
         this.pacientesAtendidos = new ArrayList<>();
+        this.disponivel = true;
+        this.atendimentoAtual = null;
     }
 
     @Override
@@ -50,6 +54,70 @@ public class Medico extends Funcionario {
         System.out.println("Especialidade: " + especialidade);
         System.out.println("Valor Consulta: R$" + valorConsulta);
         System.out.println("Pacientes atendidos: " + pacientesAtendidos.size());
+    }
+
+    // --- VERIFICA SE O MÉDICO ESTÁ DISPONÍVEL PARA ATENDIMENTO ---
+    public boolean isDisponivel() {
+        return disponivel && ativo && atendimentoAtual == null;
+    }
+
+    // --- ALTERA MANUALMENTE A DISPONIBILIDADE DO MÉDICO ---
+    public void setDisponivel(boolean disponivel) {
+        if (atendimentoAtual != null && disponivel) {
+            throw new IllegalStateException("O médico não pode ser disponibilizado enquanto possui um atendimento ativo.");
+        }
+
+        this.disponivel = disponivel;
+    }
+
+    // --- INICIA UM ATENDIMENTO DE TRIAGEM ---
+    public void iniciarAtendimentoTriagem(RegistroTriagem registroTriagem) {
+        if (registroTriagem == null) {
+            throw new IllegalArgumentException("O registro de triagem não pode ser nulo.");
+        }
+
+        if (!isDisponivel()) {
+            throw new IllegalStateException("O médico não está disponível.");
+        }
+
+        this.atendimentoAtual = registroTriagem;
+        this.disponivel = false;
+        registroTriagem.iniciarAtendimento(this);
+    }
+
+    // --- FINALIZA O ATENDIMENTO DE TRIAGEM ATUAL ---
+    public RegistroTriagem finalizarAtendimentoTriagem() {
+        if (atendimentoAtual == null) {
+            throw new IllegalStateException("O médico não possui um atendimento ativo.");
+        }
+
+        RegistroTriagem registroFinalizado = atendimentoAtual;
+        registroFinalizado.finalizarAtendimento();
+        atenderPaciente(registroFinalizado.getPaciente());
+
+        this.atendimentoAtual = null;
+        this.disponivel = true;
+
+        return registroFinalizado;
+    }
+
+    // --- INTERROMPE O ATENDIMENTO E DEVOLVE O PACIENTE À FILA ---
+    public RegistroTriagem devolverPacienteParaFila(String motivo) {
+        if (atendimentoAtual == null) {
+            throw new IllegalStateException("O médico não possui um atendimento ativo.");
+        }
+
+        RegistroTriagem registroDevolvido = atendimentoAtual;
+        registroDevolvido.retornarParaFila(motivo);
+
+        this.atendimentoAtual = null;
+        this.disponivel = true;
+
+        return registroDevolvido;
+    }
+
+    public RegistroTriagem getAtendimentoAtual() {
+        return atendimentoAtual;
     }
 
     public String getCrm() {

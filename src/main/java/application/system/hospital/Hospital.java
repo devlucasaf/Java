@@ -9,6 +9,7 @@ public class Hospital {
     private List<Funcionario>   funcionarios;
     private List<Paciente>      pacientes;
     private List<Medico>        medicos;
+    private FilaTriagem         filaTriagem;
 
     public Hospital(String nome, String endereco) {
         this.nome = nome;
@@ -16,6 +17,7 @@ public class Hospital {
         this.funcionarios = new ArrayList<>();
         this.pacientes = new ArrayList<>();
         this.medicos = new ArrayList<>();
+        this.filaTriagem = new FilaTriagem();
     }
 
     public void adicionarFuncionario(Funcionario f) {
@@ -91,6 +93,132 @@ public class Hospital {
         }
     }
 
+    // --- REGISTRA UM PACIENTE NA FILA DE TRIAGEM ---
+    public RegistroTriagem registrarTriagem(Paciente paciente, GravidadeTriagem gravidade, List<String> sintomas, String observacoes) {
+        if (paciente == null) {
+            throw new IllegalArgumentException("O paciente não pode ser nulo.");
+        }
+
+        if (!pacientes.contains(paciente)) {
+            adicionarPaciente(paciente);
+        }
+
+        RegistroTriagem registro = filaTriagem.adicionarPaciente(paciente, gravidade, sintomas, observacoes);
+        System.out.println("Paciente " + paciente.getNome() + " incluído na triagem como " + gravidade.getNomeFormatado() + ".");
+        return registro;
+    }
+
+    // --- BUSCA O PRIMEIRO MÉDICO DISPONÍVEL ---
+    public Medico buscarMedicoDisponivel() {
+        for (Medico medico : medicos) {
+            if (medico.isDisponivel()) {
+                return medico;
+            }
+        }
+
+        return null;
+    }
+
+    // --- BUSCA UM MÉDICO DISPONÍVEL PELA ESPECIALIDADE ---
+    public Medico buscarMedicoDisponivel(String especialidade) {
+        if (especialidade == null || especialidade.trim().isEmpty()) {
+            return buscarMedicoDisponivel();
+        }
+
+        for (Medico medico : medicos) {
+            if (medico.isDisponivel() && medico.getEspecialidade().equalsIgnoreCase(especialidade.trim())) {
+                return medico;
+            }
+        }
+
+        return null;
+    }
+
+    // --- CHAMA O PRÓXIMO PACIENTE PARA UM MÉDICO DISPONÍVEL ---
+    public RegistroTriagem chamarProximoPaciente() {
+        Medico medico = buscarMedicoDisponivel();
+
+        if (medico == null) {
+            System.out.println("Nenhum médico está disponível.");
+            return null;
+        }
+
+        RegistroTriagem registro = filaTriagem.obterProximoPaciente();
+
+        if (registro == null) {
+            System.out.println("Não existem pacientes aguardando na triagem.");
+            return null;
+        }
+
+        medico.iniciarAtendimentoTriagem(registro);
+        System.out.println("Paciente " + registro.getPaciente().getNome() + " encaminhado para Dr(a). " + medico.getNome() + ".");
+        return registro;
+    }
+
+    // --- CHAMA O PRÓXIMO PACIENTE PARA UM MÉDICO ESPECÍFICO ---
+    public RegistroTriagem chamarProximoPaciente(Medico medico) {
+        if (medico == null) {
+            throw new IllegalArgumentException("O médico não pode ser nulo.");
+        }
+
+        if (!medicos.contains(medico)) {
+            throw new IllegalArgumentException("O médico não pertence a este hospital.");
+        }
+
+        if (!medico.isDisponivel()) {
+            throw new IllegalStateException("O médico informado não está disponível.");
+        }
+
+        RegistroTriagem registro = filaTriagem.obterProximoPaciente();
+
+        if (registro == null) {
+            return null;
+        }
+
+        medico.iniciarAtendimentoTriagem(registro);
+        return registro;
+    }
+
+    // --- EXECUTA A RECLASSIFICAÇÃO AUTOMÁTICA DA FILA ---
+    public int reclassificarFilaTriagem() {
+        int quantidade = filaTriagem.reclassificarAutomaticamente();
+        System.out.println(quantidade + " paciente(s) reclassificado(s) automaticamente.");
+        return quantidade;
+    }
+
+    // --- EXIBE A FILA ATUAL DE TRIAGEM ---
+    public void listarFilaTriagem() {
+        List<RegistroTriagem> filaAtual = filaTriagem.listarPacientesAguardando();
+
+        System.out.println("\n===== FILA DE TRIAGEM =====");
+
+        if (filaAtual.isEmpty()) {
+            System.out.println("Nenhum paciente aguardando.");
+            return;
+        }
+
+        int posicao = 1;
+
+        for (RegistroTriagem registro : filaAtual) {
+            System.out.println(posicao + "º - " + registro.getPaciente().getNome());
+            System.out.println("Prontuário: " + registro.getPaciente().getNumeroProntuario());
+            System.out.println("Classificação: " + registro.getGravidadeAtual().getNomeFormatado());
+            System.out.println("Cor: " + registro.getGravidadeAtual().getCor());
+            System.out.println("Espera: " + registro.calcularTempoEsperaMinutos() + " minuto(s)");
+            System.out.println("Prioridade: " + registro.calcularPontuacaoPrioridade());
+            System.out.println("----------------------");
+            posicao++;
+        }
+    }
+
+    public FilaTriagem getFilaTriagem() {
+        return filaTriagem;
+    }
+
+    public List<Medico> getMedicos() {
+        return medicos;
+    }
+
     public String getNome() {
         return nome;
     }
@@ -103,3 +231,4 @@ public class Hospital {
         return funcionarios;
     }
 }
+
