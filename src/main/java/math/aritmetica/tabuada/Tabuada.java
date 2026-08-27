@@ -1,4 +1,4 @@
-package math.aritmetica;
+package math.aritmetica.tabuada;
 
 import java.util.Scanner;
 
