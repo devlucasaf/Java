@@ -8,12 +8,12 @@ import java.util.Scanner;
 
 public class Mastermind {
 
-    private static final String[] CORES = {"V", "A", "M", "P", "B", "C"};
-    private static final int TAMANHO_SENHA = 4;
-    private static final int MAX_TENTATIVAS = 10;
+    private static final String[]   CORES = {"V", "A", "M", "P", "B", "C"};
+    private static final int        TAMANHO_SENHA = 4;
+    private static final int        MAX_TENTATIVAS = 10;
 
-    private final Random sorteador = new Random();
-    private final Scanner entrada = new Scanner(System.in);
+    private final Random    sorteador = new Random();
+    private final Scanner   entrada = new Scanner(System.in);
     private String[] segredo;
 
     public static void main(String[] args) {

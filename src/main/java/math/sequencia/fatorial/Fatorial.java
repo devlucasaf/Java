@@ -4,6 +4,8 @@ import java.math.BigInteger;
 import java.util.Scanner;
 
 public class Fatorial {
+
+    // --- LE UM NUMERO E CALCULA SEU FATORIAL DE FORMA ITERATIVA E RECURSIVA ---
     public static void main(String[] args) {
         Scanner entrada = new Scanner(System.in);
 
@@ -24,14 +26,17 @@ public class Fatorial {
         entrada.close();
     }
 
+    // --- CALCULA O FATORIAL UTILIZANDO UMA ABORDAGEM ITERATIVA ---
     public static BigInteger calcularFatorialIterativo(BigInteger n) {
         BigInteger resultado = BigInteger.ONE;
+
         for (BigInteger i = BigInteger.valueOf(2); i.compareTo(n) <= 0; i = i.add(BigInteger.ONE)) {
             resultado = resultado.multiply(i);
         }
         return resultado;
     }
 
+    // --- CALCULA O FATORIAL UTILIZANDO UMA ABORDAGEM RECURSIVA ---
     public static BigInteger calcularFatorialRecursivo(BigInteger n) {
         if (n.compareTo(BigInteger.ONE) <= 0) {
             return BigInteger.ONE;

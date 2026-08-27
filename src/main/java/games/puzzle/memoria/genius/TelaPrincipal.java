@@ -22,9 +22,9 @@ public class TelaPrincipal extends JFrame implements ActionListener {
     };
     private ArrayList<Integer>  sequencia;
     private ArrayList<Integer>  jogadaAtual;
-    private JButton             botaoReiniciar;
+    private JButton             btnReiniciar;
     private JPanel              painelBotoes;
-    private JLabel              labelRodada;
+    private JLabel              lblRodada;
     private int                 rodada;
     private int                 indiceAnimacao;
     private boolean             aguardandoJogador;
@@ -62,14 +62,14 @@ public class TelaPrincipal extends JFrame implements ActionListener {
         }
 
         JPanel painelSuperior = new JPanel(new BorderLayout());
-        labelRodada = new JLabel("Clique em 'Iniciar' para começar", SwingConstants.CENTER);
-        labelRodada.setFont(new Font("Arial", Font.BOLD, 18));
-        botaoReiniciar = new JButton("Iniciar / Reiniciar");
-        botaoReiniciar.setFont(new Font("Arial", Font.BOLD, 14));
-        botaoReiniciar.addActionListener(e -> reiniciarJogo());
+        lblRodada = new JLabel("Clique em 'Iniciar' para começar", SwingConstants.CENTER);
+        lblRodada.setFont(new Font("Arial", Font.BOLD, 18));
+        btnReiniciar = new JButton("Iniciar / Reiniciar");
+        btnReiniciar.setFont(new Font("Arial", Font.BOLD, 14));
+        btnReiniciar.addActionListener(e -> reiniciarJogo());
 
-        painelSuperior.add(labelRodada, BorderLayout.CENTER);
-        painelSuperior.add(botaoReiniciar, BorderLayout.SOUTH);
+        painelSuperior.add(lblRodada, BorderLayout.CENTER);
+        painelSuperior.add(btnReiniciar, BorderLayout.SOUTH);
         painelSuperior.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         add(painelSuperior, BorderLayout.NORTH);
@@ -90,7 +90,7 @@ public class TelaPrincipal extends JFrame implements ActionListener {
         aguardandoJogador = false;
 
         adicionarNovaCor();
-        labelRodada.setText("Rodada: " + rodada);
+        lblRodada.setText("Rodada: " + rodada);
 
         mostrarSequencia();
     }
@@ -99,7 +99,7 @@ public class TelaPrincipal extends JFrame implements ActionListener {
         int novaCor = (int) (Math.random() * 4);
         sequencia.add(novaCor);
         rodada++;
-        labelRodada.setText("Rodada: " + rodada);
+        lblRodada.setText("Rodada: " + rodada);
     }
 
     private void mostrarSequencia() {
@@ -192,7 +192,7 @@ public class TelaPrincipal extends JFrame implements ActionListener {
         if (opcao == JOptionPane.YES_OPTION) {
             reiniciarJogo();
         } else {
-            labelRodada.setText("Jogo encerrado. Clique em 'Iniciar/Reiniciar' para uma nova partida.");
+            lblRodada.setText("Jogo encerrado. Clique em 'Iniciar/Reiniciar' para uma nova partida.");
         }
     }
 
@@ -207,3 +207,4 @@ public class TelaPrincipal extends JFrame implements ActionListener {
         }
     }
 }
+
