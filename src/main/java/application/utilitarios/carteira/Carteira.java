@@ -1,4 +1,4 @@
-package application.utilitarios.carteiradigital;
+package application.utilitarios.carteira;
 
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;

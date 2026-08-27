@@ -1,4 +1,4 @@
-package application.utilitarios.carteiradigital;
+package application.utilitarios.carteira;
 
 import java.security.PublicKey;
 import java.util.Base64;

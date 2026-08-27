@@ -1,4 +1,4 @@
-package application.utilitarios.carteiradigital;
+package application.utilitarios.carteira;
 
 public class Main {
 

@@ -1,4 +1,4 @@
-package math.aritmetica;
+package math.aritmetica.primo;
 
 import java.util.Scanner;
 

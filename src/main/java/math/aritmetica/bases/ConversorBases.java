@@ -1,4 +1,4 @@
-package math.aritmetica;
+package math.aritmetica.bases;
 
 import java.util.Scanner;
 
