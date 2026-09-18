@@ -1,4 +1,4 @@
-package math.probabilidade.montecarlo;
+package math.estatistica.montecarlo;
 
 import java.util.Random;
 import java.util.function.DoubleUnaryOperator;

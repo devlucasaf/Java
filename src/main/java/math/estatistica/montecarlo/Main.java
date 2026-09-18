@@ -1,4 +1,4 @@
-package math.probabilidade.montecarlo;
+package math.estatistica.montecarlo;
 
 public class Main {
 
