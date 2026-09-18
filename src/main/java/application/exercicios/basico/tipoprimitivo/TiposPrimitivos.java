@@ -1,6 +1,6 @@
 package application.exercicios.basico.tipoprimitivo;
 
-public class PrimitiveType {
+public class TiposPrimitivos {
     public static void main(String[] args) {
         var nome = "Marcelo";
         var n2 ="j";
