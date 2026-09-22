@@ -11,7 +11,7 @@ public class DisplayTexto implements Display {
 
     @Override
     public void iniciar(EstadoJogo estado) {
-        System.out.println("=== INICIO DO JOGO ===");
+        System.out.println("=== INÍCIO DO JOGO ===");
         desenhar(estado);
     }
 
@@ -24,9 +24,9 @@ public class DisplayTexto implements Display {
     public void finalizar(EstadoJogo estado) {
         desenhar(estado);
         System.out.println("=== FIM DO JOGO ===");
-        System.out.println("Pontuacao final: " + estado.getPontuacao());
+        System.out.println("Pontuação final: " + estado.getPontuacao());
         if (estado.venceu()) {
-            System.out.println("VITORIA!");
+            System.out.println("VITÓRIA!");
         } else if (estado.perdeu()) {
             System.out.println("DERROTA");
         }
@@ -57,6 +57,7 @@ public class DisplayTexto implements Display {
                 if (pacman.equals(p)) {
                     c = 'P';
                 }
+
                 for (EstadoAgente f : fantasmas) {
                     if (f.getPosicao().equals(p)) {
                         c = f.estaAssustado() ? 'g' : 'G';
@@ -66,7 +67,7 @@ public class DisplayTexto implements Display {
             }
             sb.append('\n');
         }
-        sb.append("Pontuacao: ")
+        sb.append("Pontuação: ")
                 .append(estado.getPontuacao())
                 .append(" | Comida restante: ")
                 .append(estado.getComidaRestante())

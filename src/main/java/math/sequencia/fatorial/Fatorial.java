@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Fatorial {
 
-    // --- LE UM NUMERO E CALCULA SEU FATORIAL DE FORMA ITERATIVA E RECURSIVA ---
+    // --- LE UM NÚMERO E CALCULA SEU FATORIAL DE FORMA ITERATIVA E RECURSIVA ---
     public static void main(String[] args) {
         Scanner entrada = new Scanner(System.in);
 

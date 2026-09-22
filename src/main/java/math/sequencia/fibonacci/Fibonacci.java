@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Fibonacci {
 
-    // --- LE A QUANTIDADE DE TERMOS E EXIBE A SEQUENCIA DE FIBONACCI ---
+    // --- LE A QUANTIDADE DE TERMOS E EXIBE A SEQUÊNCIA DE FIBONACCI ---
     public static void main(String[] args) {
         Scanner entrada = new Scanner(System.in);
 
@@ -24,7 +24,7 @@ public class Fibonacci {
         entrada.close();
     }
 
-    // --- EXIBE A SEQUENCIA DE FIBONACCI UTILIZANDO UMA ABORDAGEM ITERATIVA ---
+    // --- EXIBE A SEQUÊNCIA DE FIBONACCI UTILIZANDO UMA ABORDAGEM ITERATIVA ---
     public static void exibirFibonacciIterativo(int quantidade) {
         long termoAtual = 0;
         long proximoTermo = 1;
@@ -38,7 +38,7 @@ public class Fibonacci {
         System.out.println();
     }
 
-    // --- EXIBE A SEQUENCIA DE FIBONACCI UTILIZANDO UMA ABORDAGEM RECURSIVA ---
+    // --- EXIBE A SEQUÊNCIA DE FIBONACCI UTILIZANDO UMA ABORDAGEM RECURSIVA ---
     public static void exibirFibonacciRecursivo(int quantidade) {
         for (int posicao = 1; posicao <= quantidade; posicao++) {
             long valor = calcularFibonacciRecursivo(posicao - 1);
@@ -47,7 +47,7 @@ public class Fibonacci {
         System.out.println();
     }
 
-    // --- CALCULA RECURSIVAMENTE O VALOR DE UM TERMO DA SEQUENCIA ---
+    // --- CALCULA RECURSIVAMENTE O VALOR DE UM TERMO DA SEQUÊNCIA ---
     public static long calcularFibonacciRecursivo(int indice) {
         if (indice == 0) {
             return 0;

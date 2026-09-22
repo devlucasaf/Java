@@ -11,15 +11,15 @@ import java.util.Random;
 
 public class AgenteDirecional implements Agente {
 
-    private final double probPerseguir;
+    private final double probabilidadeFantasmaPerseguir;
     private final Random random;
 
     public AgenteDirecional() {
         this(0.8, new Random());
     }
 
-    public AgenteDirecional(double probPerseguir, Random random) {
-        this.probPerseguir = probPerseguir;
+    public AgenteDirecional(double probabilidadeFantasmaPerseguir, Random random) {
+        this.probabilidadeFantasmaPerseguir = probabilidadeFantasmaPerseguir;
         this.random = random;
     }
 
@@ -36,19 +36,19 @@ public class AgenteDirecional implements Agente {
 
         double melhor = assustado ? Double.NEGATIVE_INFINITY : Double.POSITIVE_INFINITY;
         List<Direcao> melhores = new ArrayList<>();
-        for (Direcao d : acoes) {
-            Posicao nova = agente.getPosicao().mover(d);
-            double distancia = nova.distanciaManhattan(pacman);
+        for (Direcao direcao : acoes) {
+            Posicao novaPosicao = agente.getPosicao().mover(direcao);
+            double distancia = novaPosicao.distanciaManhattan(pacman);
             if (assustado ? distancia > melhor : distancia < melhor) {
                 melhor = distancia;
                 melhores.clear();
-                melhores.add(d);
+                melhores.add(direcao);
             } else if (distancia == melhor) {
-                melhores.add(d);
+                melhores.add(direcao);
             }
         }
 
-        if (random.nextDouble() < probPerseguir) {
+        if (random.nextDouble() < probabilidadeFantasmaPerseguir) {
             return melhores.get(random.nextInt(melhores.size()));
         }
         return acoes.get(random.nextInt(acoes.size()));

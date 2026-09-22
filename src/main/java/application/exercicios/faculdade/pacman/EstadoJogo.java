@@ -112,10 +112,10 @@ public final class EstadoJogo {
         Posicao pos = agente.getPosicao();
         List<Direcao> acoes = new ArrayList<>();
 
-        for (Direcao d : new Direcao[]{Direcao.NORTE, Direcao.SUL, Direcao.LESTE, Direcao.OESTE}) {
-            Posicao nova = pos.mover(d);
+        for (Direcao direcao : new Direcao[]{Direcao.NORTE, Direcao.SUL, Direcao.LESTE, Direcao.OESTE}) {
+            Posicao nova = pos.mover(direcao);
             if (!layout.ehParede(nova.getX(), nova.getY())) {
-                acoes.add(d);
+                acoes.add(direcao);
             }
         }
 
@@ -141,16 +141,16 @@ public final class EstadoJogo {
         boolean novoPerdeu = false;
 
         EstadoAgente agente = novosAgentes.get(indiceAgente);
-        Posicao proxPos = agente.getPosicao().mover(acao);
+        Posicao proximaPosicao = agente.getPosicao().mover(acao);
 
         if (indiceAgente == 0) {
             novaPontuacao += PENALIDADE_TEMPO;
-            EstadoAgente novoPacman = new EstadoAgente(proxPos, acao,
+            EstadoAgente novoPacman = new EstadoAgente(proximaPosicao, acao,
                     agente.getTempoAssustado());
             novosAgentes.set(0, novoPacman);
 
-            int x = proxPos.getX();
-            int y = proxPos.getY();
+            int x = proximaPosicao.getX();
+            int y = proximaPosicao.getY();
             if (x >= 0 && y >= 0 && x < novasComidas.length && y < novasComidas[0].length && novasComidas[x][y]) {
                 novasComidas = copiarMatriz(novasComidas);
                 novasComidas[x][y] = false;
@@ -162,9 +162,9 @@ public final class EstadoJogo {
                 }
             }
 
-            if (capsulas.contains(proxPos)) {
+            if (capsulas.contains(proximaPosicao)) {
                 novasCapsulas = new ArrayList<>(capsulas);
-                novasCapsulas.remove(proxPos);
+                novasCapsulas.remove(proximaPosicao);
                 novaPontuacao += RECOMPENSA_CAPSULA;
                 for (int i = 1; i < novosAgentes.size(); i++) {
                     novosAgentes.set(i, novosAgentes.get(i).comTempoAssustado(TEMPO_ASSUSTADO));
@@ -172,7 +172,7 @@ public final class EstadoJogo {
             }
         } else {
             int novoTempo = Math.max(0, agente.getTempoAssustado() - 1);
-            EstadoAgente novoFantasma = new EstadoAgente(proxPos, acao, novoTempo);
+            EstadoAgente novoFantasma = new EstadoAgente(proximaPosicao, acao, novoTempo);
             novosAgentes.set(indiceAgente, novoFantasma);
         }
 

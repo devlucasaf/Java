@@ -64,7 +64,8 @@ public class ColunaCsv {
 
         String texto = valor.trim();
 
-        if (texto.isEmpty() || texto.equalsIgnoreCase("null") || texto.equalsIgnoreCase("nan") || texto.equalsIgnoreCase("n/a")) {
+        if (texto.isEmpty() || texto.equalsIgnoreCase("null") ||
+                texto.equalsIgnoreCase("nan") || texto.equalsIgnoreCase("n/a")) {
             return null;
         }
 
@@ -73,7 +74,7 @@ public class ColunaCsv {
         try {
             double numero = Double.parseDouble(texto);
             return Double.isFinite(numero) ? numero : null;
-        } catch (NumberFormatException excecao) {
+        } catch (NumberFormatException e) {
             return null;
         }
     }
@@ -103,7 +104,8 @@ public class ColunaCsv {
         int quantidade = 0;
 
         for (String valor : valores) {
-            if (valor == null || valor.trim().isEmpty() || valor.equalsIgnoreCase("null") || valor.equalsIgnoreCase("n/a")) {
+            if (valor == null || valor.trim().isEmpty() || valor.equalsIgnoreCase("null")
+                    || valor.equalsIgnoreCase("n/a")) {
                 quantidade++;
             }
         }

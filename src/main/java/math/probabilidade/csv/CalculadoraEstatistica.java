@@ -153,7 +153,8 @@ public class CalculadoraEstatistica {
         }
 
         if (primeirosValores.size() < 2) {
-            return new ResultadoCorrelacao(primeiraColuna.getNome(), segundaColuna.getNome(), primeirosValores.size(), null, "Dados insuficientes");
+            return new ResultadoCorrelacao(primeiraColuna.getNome(), segundaColuna.getNome(),
+                    primeirosValores.size(), null, "Dados insuficientes");
         }
 
         double mediaPrimeira = calcularMedia(primeirosValores);
