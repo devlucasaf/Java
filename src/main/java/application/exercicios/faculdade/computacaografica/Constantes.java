@@ -1,4 +1,4 @@
-package application.exercicios.faculdade.cg;
+package application.exercicios.faculdade.computacaografica;
 
 public class Constantes {
     public static final int     LARGURA_JANELA = 800;

@@ -1,4 +1,4 @@
-package application.exercicios.faculdade.cg;
+package application.exercicios.faculdade.computacaografica;
 
 public class VerificadorColisao {
 
