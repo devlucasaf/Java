@@ -15,7 +15,12 @@ public class PrincipalSnippetManager {
         SnippetsService servico = new SnippetsService(ARQUIVO_PADRAO);
 
         exibirTitulo();
-        System.out.println(servico.carregarDados());
+        try {
+            servico.carregarDados();
+            System.out.println("Dados carregados com sucesso.");
+        } catch (IOException excecao) {
+            System.out.println("Erro ao carregar os dados: " + excecao.getMessage());
+        }
 
         executarSistema(servico);
         LEITOR.close();
