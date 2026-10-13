@@ -5,14 +5,10 @@ import javafx.scene.Scene;
 
 import java.net.URL;
 
-/**
- * Acesso aos recursos gráficos do jogo (folha de estilos).
- * Se o arquivo CSS não for encontrado, o jogo continua funcionando com o visual padrão do JavaFX.
- */
 public final class Recursos {
 
-    private static String urlEstilos;
-    private static boolean avisoEmitido;
+    private static String   urlEstilos;
+    private static boolean  avisoEmitido;
 
     private Recursos() {
     }

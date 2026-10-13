@@ -1,11 +1,11 @@
 package games.tabuleiro.damas.motor;
 
-import games.tabuleiro.damas.modelo.EstadoPartida;
-import games.tabuleiro.damas.modelo.Jogador;
-import games.tabuleiro.damas.modelo.Movimento;
-import games.tabuleiro.damas.modelo.Peca;
-import games.tabuleiro.damas.modelo.Posicao;
-import games.tabuleiro.damas.modelo.Tabuleiro;
+import games.tabuleiro.damas.model.EstadoPartida;
+import games.tabuleiro.damas.model.Jogador;
+import games.tabuleiro.damas.model.Movimento;
+import games.tabuleiro.damas.model.Peca;
+import games.tabuleiro.damas.model.Posicao;
+import games.tabuleiro.damas.model.Tabuleiro;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,14 +17,14 @@ public class Partida {
 
     public static final int LIMITE_LANCES_SEM_PROGRESSO = 40;
 
-    private Tabuleiro tabuleiro;
-    private Jogador jogadorAtual;
-    private EstadoPartida estado;
+    private Tabuleiro       tabuleiro;
+    private Jogador         jogadorAtual;
+    private EstadoPartida   estado;
     private List<Movimento> movimentosLegais;
-    private Movimento ultimoMovimento;
-    private int lancesSemProgresso;
-    private int jogadasRealizadas;
-    private String motivoFim;
+    private Movimento       ultimoMovimento;
+    private int             lancesSemProgresso;
+    private int             jogadasRealizadas;
+    private String          motivoFim;
 
     public Partida() {
         reiniciar();
@@ -45,6 +45,7 @@ public class Partida {
         if (estado.isEncerrada()) {
             throw new IllegalStateException("A partida já foi encerrada.");
         }
+
         if (!movimentosLegais.contains(movimento)) {
             throw new IllegalArgumentException("Movimento inválido: " + movimento);
         }
@@ -127,7 +128,6 @@ public class Partida {
         return resultado;
     }
 
-    /** Casas das peças que podem se mover neste turno. */
     public Set<Posicao> getOrigensJogaveis() {
         Set<Posicao> origens = new LinkedHashSet<>();
         for (Movimento movimento : movimentosLegais) {

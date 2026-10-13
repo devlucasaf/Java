@@ -1,8 +1,5 @@
 package games.tabuleiro.damas.util;
 
-/**
- * Constantes de configuração da interface (dimensões da janela, durações de animação, recursos).
- */
 public final class Constantes {
 
     public static final String TITULO_JOGO = "Damas";

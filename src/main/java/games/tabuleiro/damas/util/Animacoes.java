@@ -18,10 +18,12 @@ public final class Animacoes {
         no.setOpacity(0);
         FadeTransition fade = new FadeTransition(Duration.millis(350), no);
         fade.setToValue(1);
+
         TranslateTransition deslize = new TranslateTransition(Duration.millis(350), no);
         deslize.setFromY(14);
         deslize.setToY(0);
         deslize.setInterpolator(Interpolator.EASE_OUT);
+
         new ParallelTransition(fade, deslize).play();
     }
 
