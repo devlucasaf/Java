@@ -20,15 +20,15 @@ import java.util.List;
 
 public class CardapioApp extends Application {
 
-    private static final String BG_APP        = "#121417";
-    private static final String BG_PANEL      = "#1B1F24";
-    private static final String BG_CARD       = "#232A31";
+    private static final String BG_APP = "#121417";
+    private static final String BG_PANEL = "#1B1F24";
+    private static final String BG_CARD = "#232A31";
     private static final String BG_CARD_HOVER = "#2C353D";
-    private static final String ACCENT        = "#F5A524";
-    private static final String ACCENT_HOVER  = "#FFB74A";
-    private static final String TEXT_PRIMARY  = "#F1F1F1";
-    private static final String TEXT_MUTED    = "#B0B8C1";
-    private static final String DANGER        = "#E5484D";
+    private static final String ACCENT = "#F5A524";
+    private static final String ACCENT_HOVER = "#FFB74A";
+    private static final String TEXT_PRIMARY = "#F1F1F1";
+    private static final String TEXT_MUTED = "#B0B8C1";
+    private static final String DANGER = "#E5484D";
 
     private final Cardapio cardapio = new Cardapio();
 
@@ -91,7 +91,9 @@ public class CardapioApp extends Application {
 
         for (CategoriaItem cat : CategoriaItem.values()) {
             List<ItemCardapio> itens = cardapio.buscarPorCategoria(cat)
-                    .stream().filter(ItemCardapio::isDisponivel).toList();
+                    .stream()
+                    .filter(ItemCardapio::isDisponivel)
+                    .toList();
             if (!itens.isEmpty()) {
                 Tab tab = new Tab(cat.getDescricao(), criarGridItens(itens));
                 tabPane.getTabs().add(tab);
@@ -113,6 +115,7 @@ public class CardapioApp extends Application {
     // --- GRID DE ITENS DO CARDÁPIO ---
     private ScrollPane criarGridItens(List<ItemCardapio> itens) {
         TilePane tile = new TilePane();
+
         tile.setHgap(14);
         tile.setVgap(14);
         tile.setPadding(new Insets(16));
@@ -124,6 +127,7 @@ public class CardapioApp extends Application {
         }
 
         ScrollPane sp = new ScrollPane(tile);
+
         sp.setFitToWidth(true);
         sp.setStyle(
                 "-fx-background: " + BG_PANEL + ";" +

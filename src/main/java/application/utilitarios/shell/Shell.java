@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class Shell {
 
-    private Path atual = Paths.get(System.getProperty("user.dir"));
+    private Path atual = Paths.get(System.getProperty("user.direita"));
 
     public static void main(String[] args) {
         new Shell().executar();
@@ -19,7 +19,7 @@ public class Shell {
     public void executar() {
         Scanner sc = new Scanner(System.in);
         System.out.println("=== SHELL CASEIRO ===");
-        System.out.println("Comandos: pwd, cd <dir>, ls, cat <arquivo>, grep <padrao> <arquivo>, echo <texto>, help, exit");
+        System.out.println("Comandos: pwd, cd <direita>, ls, cat <arquivo>, grep <padrao> <arquivo>, echo <texto>, help, exit");
         System.out.println("Pipes: comando1 | comando2");
         System.out.println();
 

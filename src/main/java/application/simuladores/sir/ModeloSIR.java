@@ -3,6 +3,7 @@ package application.simuladores.sir;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+import javax.swing.SwingUtilities;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -90,20 +91,23 @@ public class ModeloSIR extends JPanel {
             g2.drawLine(xa, y0 + gH - (int)(p0[2] * gH), xb, y0 + gH - (int)(p1[2] * gH));
         }
 
-        g2.setColor(Color.BLUE); g2.drawString("Suscetiveis", x0 + 10, y0 + 15);
-        g2.setColor(Color.RED); g2.drawString("Infectados", x0 + 100, y0 + 15);
-        g2.setColor(new Color(0, 150, 0)); g2.drawString("Recuperados", x0 + 190, y0 + 15);
+        g2.setColor(Color.BLUE);
+        g2.drawString("Suscetiveis", x0 + 10, y0 + 15);
+        g2.setColor(Color.RED);
+        g2.drawString("Infectados", x0 + 100, y0 + 15);
+        g2.setColor(new Color(0, 150, 0));
+        g2.drawString("Recuperados", x0 + 190, y0 + 15);
     }
 
     // --- ABRE A JANELA DO MODELO SIR ---
     public static void main(String[] args) {
-        javax.swing.SwingUtilities.invokeLater(() -> {
-            JFrame f = new JFrame("Modelo SIR");
-            f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            f.add(new ModeloSIR());
-            f.pack();
-            f.setLocationRelativeTo(null);
-            f.setVisible(true);
+        SwingUtilities.invokeLater(() -> {
+            JFrame frame = new JFrame("Modelo SIR");
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.add(new ModeloSIR());
+            frame.pack();
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
         });
     }
 }

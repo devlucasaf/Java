@@ -18,7 +18,7 @@ import java.util.Random;
 public class SistemaParticulas extends JPanel {
 
     private final List<Particula>   particulas = new ArrayList<>();
-    private final Random            r = new Random();
+    private final Random            random = new Random();
     private String                  modo = "fogo";
     private int                     mx = 500;
     private int                     my = 350;
@@ -80,24 +80,24 @@ public class SistemaParticulas extends JPanel {
         switch (modo) {
             case "fogo" -> {
                 for (int i = 0; i < 5; i++) {
-                    double vx = (r.nextDouble() - 0.5) * 1.5;
-                    double vy = -2 - r.nextDouble() * 2;
-                    Color c = new Color(255, 100 + r.nextInt(155), 0, 200);
-                    particulas.add(new Particula(mx, my, vx, vy, 60, c, 4 + r.nextDouble() * 4));
+                    double vx = (random.nextDouble() - 0.5) * 1.5;
+                    double vy = -2 - random.nextDouble() * 2;
+                    Color c = new Color(255, 100 + random.nextInt(155), 0, 200);
+                    particulas.add(new Particula(mx, my, vx, vy, 60, c, 4 + random.nextDouble() * 4));
                 }
             }
             case "fumaca" -> {
                 for (int i = 0; i < 3; i++) {
-                    double vx = (r.nextDouble() - 0.5) * 0.8;
-                    double vy = -1 - r.nextDouble();
-                    int cinza = 100 + r.nextInt(80);
+                    double vx = (random.nextDouble() - 0.5) * 0.8;
+                    double vy = -1 - random.nextDouble();
+                    int cinza = 100 + random.nextInt(80);
                     particulas.add(new Particula(mx, my, vx, vy, 120, new Color(cinza, cinza, cinza, 150), 8));
                 }
             }
             case "chuva" -> {
                 for (int i = 0; i < 8; i++) {
-                    double x = r.nextDouble() * getWidth();
-                    particulas.add(new Particula(x, 0, 0.5, 8 + r.nextDouble() * 4, 120, new Color(150, 200, 255), 2));
+                    double x = random.nextDouble() * getWidth();
+                    particulas.add(new Particula(x, 0, 0.5, 8 + random.nextDouble() * 4, 120, new Color(150, 200, 255), 2));
                 }
             }
             default -> { }
@@ -107,30 +107,31 @@ public class SistemaParticulas extends JPanel {
     // --- GERA PARTÍCULAS EM TODAS AS DIREÇÕES A PARTIR DO PONTO INFORMADO ---
     private void explosao(int cx, int cy) {
         for (int i = 0; i < 100; i++) {
-            double a = r.nextDouble() * Math.PI * 2;
-            double v = 3 + r.nextDouble() * 4;
-            Color c = new Color(255, 100 + r.nextInt(155), r.nextInt(80));
-            particulas.add(new Particula(cx, cy, Math.cos(a) * v, Math.sin(a) * v, 50, c, 3 + r.nextDouble() * 3));
+            double a = random.nextDouble() * Math.PI * 2;
+            double v = 3 + random.nextDouble() * 4;
+            Color color = new Color(255, 100 + random.nextInt(155), random.nextInt(80));
+            particulas.add(new Particula(cx, cy, Math.cos(a) * v, Math.sin(a) * v, 50, color, 3 + random.nextDouble() * 3));
         }
     }
 
     // --- ATUALIZA A POSIÇÃO, A VELOCIDADE E O TEMPO DE VIDA DAS PARTÍCULAS ---
     private void atualizar() {
-        Iterator<Particula> it = particulas.iterator();
+        Iterator<Particula> iterator = particulas.iterator();
 
-        while (it.hasNext()) {
-            Particula p = it.next();
-            p.x += p.vx;
-            p.y += p.vy;
+        while (iterator.hasNext()) {
+            Particula particula = iterator.next();
+            particula.x += particula.vx;
+            particula.y += particula.vy;
+
             if (modo.equals("fumaca")) {
-                p.vy -= 0.02;
+                particula.vy -= 0.02;
             } else {
-                p.vy += 0.05;
+                particula.vy += 0.05;
             }
 
-            p.vida--;
-            if (p.vida <= 0) {
-                it.remove();
+            particula.vida--;
+            if (particula.vida <= 0) {
+                iterator.remove();
             }
         }
     }

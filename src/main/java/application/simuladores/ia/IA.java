@@ -40,10 +40,10 @@ public class IA {
         Path caminhoPdf = Path.of("C:", "VSCode", "GitHub", "IA", "leitor-de-documentos-ia", "teste_pizza.pdf");
 
         try {
-            AnaliseCronologica dados = analise(caminhoPdf);
+            AnaliseCronologica analiseCronologicaDados = analise(caminhoPdf);
             Path grafico = Path.of("Grafico_Pizza.png");
-            graficoPizza(dados, grafico);
-            gerarPdf(dados, grafico);
+            graficoPizza(analiseCronologicaDados, grafico);
+            gerarPdf(analiseCronologicaDados, grafico);
         } catch (IOException | IllegalStateException e) {
             System.err.println("Erro: " + e.getMessage());
         }

@@ -23,10 +23,10 @@ public class Main {
         }
 
         System.out.println("\n=== TESTE ALEATORIO (1000 refs, 10 paginas, 4 frames) ===");
-        Random r = new Random(42);
+        Random random = new Random(42);
         List<Integer> aleatorio = new ArrayList<>();
         for (int i = 0; i < 1000; i++) {
-            aleatorio.add(r.nextInt(10));
+            aleatorio.add(random.nextInt(10));
         }
 
         for (Algoritmo a : List.of(Algoritmo.fifo(), Algoritmo.lru(), Algoritmo.otimo())) {
