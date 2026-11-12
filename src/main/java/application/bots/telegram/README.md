@@ -32,3 +32,7 @@ Para recursos mais avancados (botoes inline, arquivos, etc), use [rubenlagus/Tel
 </dependency>
 ```
 
+
+## BotTelegramExtras
+
+Roda o `BotTelegram` com os comandos de `bots/comum/ComandosExtras`: `/quiz`, `/resposta`, `/placar`, `/enquete`, `/votar`, `/resultado`, `/lembrar 10m texto`, `/calc`, `/velha`, `/moeda`, `/sortear`. Requer `TELEGRAM_BOT_TOKEN`.

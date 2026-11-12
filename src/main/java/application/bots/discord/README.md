@@ -48,3 +48,10 @@ JDA jda = JDABuilder.createDefault(token)
 - `!oi` — Ola, usuario!
 - `!dado <n>` — Rola um dado de N lados
 
+
+## BotDiscordGateway (sem JDA)
+
+`BotDiscordGateway` conecta direto ao Gateway v10 (WebSocket) e usa a API REST, so com `java.net.http` e Gson.
+Requer `DISCORD_BOT_TOKEN` e a **Message Content Intent** habilitada no Developer Portal. Prefixo `!`:
+`!ping`, `!oi`, `!dado`, mais os comandos de `bots/comum/ComandosExtras` (`!quiz`, `!enquete`, `!lembrar`, `!calc`, `!velha`...).
+Escrito conforme a documentacao do Discord, mas ainda nao testado contra o servidor real.
